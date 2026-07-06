@@ -10,11 +10,11 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaveVex-logo-c1xr3UPv1kVKKzEThRXASNEs5481td.png"
+              src="/savevex-logo.png"
               alt="SaveVex"
               width={150}
               height={50}
-              className="h-10 w-auto mb-4 brightness-0 invert dark:brightness-100 dark:invert-0"
+              className="h-12 md:h-14 w-auto mb-4 brightness-0 invert dark:brightness-100 dark:invert-0"
             />
             <p className="text-sm opacity-75 leading-relaxed">
               The easiest way to download and save videos from any platform.

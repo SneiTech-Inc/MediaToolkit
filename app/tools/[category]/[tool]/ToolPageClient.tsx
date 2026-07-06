@@ -1,0 +1,221 @@
+'use client'
+
+import dynamic from 'next/dynamic'
+import { useState } from 'react'
+import { UploadDropzone } from '@/components/shared/UploadDropzone'
+import { ProcessingStatus } from '@/components/shared/ProcessingStatus'
+import { ResultCard } from '@/components/shared/ResultCard'
+import { FAQSection } from '@/components/shared/FAQSection'
+import { RelatedTools } from '@/components/shared/RelatedTools'
+import { ToolOptions } from '@/components/shared/ToolOptions'
+import { TOOLS } from '@/lib/constants'
+import type { Tool } from '@/types/tool'
+
+// ─── Tool Registry ───────────────────────────────────────────────────────────
+// Map tool slugs to their real implementation components.
+// Components are dynamically imported (code-split per tool).
+// Add new real tools here as they are implemented.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const ImageCompressor = dynamic(
+  () => import('@/features/image/components/ImageCompressor').then(m => ({ default: m.ImageCompressor })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ImageResizer = dynamic(
+  () => import('@/features/image/components/ImageResizer').then(m => ({ default: m.ImageResizer })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ImageConverter = dynamic(
+  () => import('@/features/image/components/ImageConverter').then(m => ({ default: m.ImageConverter })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ImageCrop = dynamic(
+  () => import('@/features/image/components/ImageCrop').then(m => ({ default: m.ImageCrop })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ImageRotate = dynamic(
+  () => import('@/features/image/components/ImageRotate').then(m => ({ default: m.ImageRotate })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ImageFlip = dynamic(
+  () => import('@/features/image/components/ImageFlip').then(m => ({ default: m.ImageFlip })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const WatermarkImage = dynamic(
+  () => import('@/features/image/components/WatermarkImage').then(m => ({ default: m.WatermarkImage })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ImageBlur = dynamic(
+  () => import('@/features/image/components/ImageBlur').then(m => ({ default: m.ImageBlur })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ImageToPDF = dynamic(
+  () => import('@/features/image/components/ImageToPDF').then(m => ({ default: m.ImageToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const AddBorder = dynamic(
+  () => import('@/features/image/components/AddBorder').then(m => ({ default: m.AddBorder })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const toolComponents: Record<string, React.ComponentType> = {
+  'compress-image': ImageCompressor,
+  'resize-image': ImageResizer,
+  'convert-image': ImageConverter,
+  'crop-image': ImageCrop,
+  'rotate-image': ImageRotate,
+  'flip-image': ImageFlip,
+  'watermark-image': WatermarkImage,
+  'blur-image': ImageBlur,
+  'image-to-pdf': ImageToPDF,
+  'add-border': AddBorder,
+}
+
+// ─── Generic Fallback (placeholder for tools without real logic yet) ─────────
+
+interface ToolPageClientProps {
+  toolSlug: string
+  toolData: Tool
+}
+
+export function ToolPageClient({ toolSlug, toolData }: ToolPageClientProps) {
+  // Check if this tool has a real implementation
+  const RealTool = toolComponents[toolSlug]
+
+  if (RealTool) {
+    return <RealTool />
+  }
+
+  // ─── Generic fallback UI for unimplemented tools ───────────────────────
+  return <GenericToolFallback toolData={toolData} />
+}
+
+function GenericToolFallback({ toolData }: { toolData: Tool }) {
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [isComplete, setIsComplete] = useState(false)
+
+  const handleFileSelect = (file: File) => {
+    setUploadedFile(file)
+    setIsProcessing(true)
+    setTimeout(() => {
+      setIsProcessing(false)
+      setIsComplete(true)
+    }, 2000)
+  }
+
+  const handleReset = () => {
+    setUploadedFile(null)
+    setIsProcessing(false)
+    setIsComplete(false)
+  }
+
+  const relatedTools = TOOLS.filter(
+    t => t.category === toolData.category && t.slug !== toolData.slug
+  ).slice(0, 4)
+
+  const toolFaqs = [
+    {
+      question: 'Is my file secure?',
+      answer: 'Yes! All processing happens entirely in your browser. Your files never leave your device.',
+    },
+    {
+      question: 'What formats are supported?',
+      answer: `Input: ${toolData.inputFormats?.map(f => f.toUpperCase()).join(', ') || 'N/A'}\nOutput: ${toolData.outputFormats?.map(f => f.toUpperCase()).join(', ') || 'N/A'}`,
+    },
+    {
+      question: 'Is there a file size limit?',
+      answer: "File sizes are limited by your browser's available memory. Most modern browsers can handle files up to several GB.",
+    },
+  ]
+
+  return (
+    <section className="py-12 px-4">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2">
+          {!uploadedFile ? (
+            <UploadDropzone
+              acceptedFormats={toolData.inputFormats}
+              onFileSelect={handleFileSelect}
+            />
+          ) : isProcessing ? (
+            <ProcessingStatus />
+          ) : isComplete ? (
+            <ResultCard
+              fileName={uploadedFile.name}
+              onDownload={() => {}}
+              onReset={handleReset}
+            />
+          ) : null}
+
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold mb-6">How to {toolData.name}</h2>
+            <ol className="space-y-4">
+              <li className="flex gap-4">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">1</span>
+                <div>
+                  <h4 className="font-semibold">Upload your file</h4>
+                  <p className="text-muted-foreground">Click the upload area above to select your file</p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">2</span>
+                <div>
+                  <h4 className="font-semibold">Configure options</h4>
+                  <p className="text-muted-foreground">Choose your preferred settings on the right panel</p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">3</span>
+                <div>
+                  <h4 className="font-semibold">Download your file</h4>
+                  <p className="text-muted-foreground">After processing, download your converted file instantly</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div className="mt-12">
+            <FAQSection faqs={toolFaqs} title="Frequently Asked Questions" description="" />
+          </div>
+        </div>
+
+        <div className="lg:col-span-1">
+          <div className="sticky top-24">
+            <ToolOptions
+              outputFormats={toolData.outputFormats}
+              disabled={!uploadedFile}
+            />
+            <div className="mt-8">
+              <RelatedTools tools={relatedTools} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** Skeleton shown while a real tool component is being lazy-loaded. */
+function ToolLoading() {
+  return (
+    <section className="py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="animate-pulse space-y-6">
+          <div className="h-64 bg-muted rounded-xl" />
+          <div className="h-8 bg-muted rounded-lg w-1/3" />
+          <div className="h-4 bg-muted rounded w-1/2" />
+        </div>
+      </div>
+    </section>
+  )
+}

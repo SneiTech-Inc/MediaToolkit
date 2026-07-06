@@ -2,55 +2,78 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { ToolDropdown } from '@/components/shared/ToolDropdown'
+import { pdfTools } from '@/constants/tools/pdf'
+import { imageTools } from '@/constants/tools/image'
+
+const NAV_LINKS = [
+  { href: '/', label: 'Home' },
+  { href: '/tools/pdf/compress-pdf', label: 'Compress PDF' },
+  { href: '/tools/image/compress-image', label: 'Compress Image' },
+]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+
+  useEffect(() => { setMounted(true) }, [])
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaveVex-logo-c1xr3UPv1kVKKzEThRXASNEs5481td.png"
+            src="/savevex-logo.png"
             alt="SaveVex"
-            width={150}
-            height={50}
-            className="h-10 w-auto"
+            width={200}
+            height={60}
+            className="h-10 md:h-14 w-auto hover:scale-105 transition-transform"
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-            Home
-          </Link>
-          <Link href="/tools" className="text-sm font-medium hover:text-primary transition-colors">
-            Tools
-          </Link>
-          <Link href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
-            Blog
-          </Link>
-          <Link href="/premium" className="text-sm font-medium hover:text-primary transition-colors">
+        <div className="hidden md:flex items-center gap-6">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          {/* Tool Dropdowns */}
+          <ToolDropdown label="All PDF Tools" category="pdf" tools={pdfTools} />
+          <ToolDropdown label="All Image Tools" category="image" tools={imageTools} />
+
+          <Link
+            href="/premium"
+            className="text-sm font-medium hover:text-primary transition-colors"
+          >
             Premium
           </Link>
         </div>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="p-2 hover:bg-muted rounded-lg transition-colors"
             aria-label="Toggle theme"
+            suppressHydrationWarning
           >
-            {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            {mounted ? (
+              theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />
+            ) : (
+              <div className="w-5 h-5" />
+            )}
           </button>
-
-          <Button className="hidden sm:block bg-primary hover:bg-primary/90">Get Started</Button>
 
           {/* Mobile Menu Button */}
           <button
@@ -66,28 +89,32 @@ export function Header() {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
-          <div className="max-w-7xl mx-auto px-4 py-4 space-y-3">
-            <Link
-              href="/"
-              className="block px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/tools"
-              className="block px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Tools
-            </Link>
-            <Link
-              href="/blog"
-              className="block px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Blog
-            </Link>
+          <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="block px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            {/* Mobile: PDF tools as expandable section */}
+            <MobileToolSection
+              label="All PDF Tools"
+              category="pdf"
+              tools={pdfTools}
+              onClose={() => setMobileMenuOpen(false)}
+            />
+            <MobileToolSection
+              label="All Image Tools"
+              category="image"
+              tools={imageTools}
+              onClose={() => setMobileMenuOpen(false)}
+            />
+
             <Link
               href="/premium"
               className="block px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
@@ -95,10 +122,64 @@ export function Header() {
             >
               Premium
             </Link>
-            <Button className="w-full bg-primary hover:bg-primary/90">Get Started</Button>
           </div>
         </div>
       )}
     </header>
+  )
+}
+
+/** Expandable tool section for mobile menu. */
+function MobileToolSection({
+  label,
+  category,
+  tools,
+  onClose,
+}: {
+  label: string
+  category: string
+  tools: readonly typeof pdfTools
+  onClose: () => void
+}) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
+      >
+        {label}
+        <ChevronDown
+          className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+      {open && (
+        <div className="ml-4 space-y-1 mt-1">
+          {tools.map((tool) => (
+            <Link
+              key={tool.id}
+              href={`/tools/${category}/${tool.slug}`}
+              className="block px-4 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+              onClick={onClose}
+            >
+              {tool.icon} {tool.name}
+              {tool.isComingSoon && (
+                <span className="ml-2 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
+                  Soon
+                </span>
+              )}
+            </Link>
+          ))}
+          <Link
+            href={`/tools/${category}`}
+            className="block px-4 py-1.5 text-sm font-medium text-primary hover:bg-muted rounded-lg transition-colors"
+            onClick={onClose}
+          >
+            View all →
+          </Link>
+        </div>
+      )}
+    </div>
   )
 }

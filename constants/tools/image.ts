@@ -39,7 +39,7 @@ export const imageTools = [
   {
     id: 'blur-image', slug: 'blur-image', name: 'Blur Image', category: 'image',
     description: 'Blur entire image or specific areas', icon: '🌫️', badge: null,
-    dateAdded: '2024-01-06', inputFormats: ['jpg', 'png', 'webp'], outputFormats: ['jpg', 'png', 'webp'], isComingSoon: true,
+    dateAdded: '2024-01-06', inputFormats: ['jpg', 'png', 'webp'], outputFormats: ['jpg', 'png', 'webp'], isComingSoon: false,
   },
   {
     id: 'image-to-pdf', slug: 'image-to-pdf', name: 'Image to PDF', category: 'image',

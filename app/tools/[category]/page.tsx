@@ -4,9 +4,14 @@ import { ToolCard } from '@/components/shared/ToolCard'
 import { EmptyState } from '@/components/shared/EmptyState'
 import { TOOLS, CATEGORIES } from '@/lib/constants'
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
-  const category = CATEGORIES.find(c => c.slug === params.category)
-  const categoryTools = TOOLS.filter(t => t.category === params.category)
+interface CategoryPageProps {
+  params: Promise<{ category: string }>
+}
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { category: categorySlug } = await params
+  const category = CATEGORIES.find(c => c.slug === categorySlug)
+  const categoryTools = TOOLS.filter(t => t.category === categorySlug)
 
   if (!category) {
     return (
@@ -27,7 +32,6 @@ export default function CategoryPage({ params }: { params: { category: string } 
         description={`Free online ${category.name.toLowerCase()} tools for everyone. No signup required, 100% browser-based processing.`}
       />
 
-      {/* Tools Grid */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold mb-8">Available {category.name} Tools ({categoryTools.length})</h2>

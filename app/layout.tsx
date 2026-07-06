@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/savevex-logo.svg',
-        type: 'image/svg+xml',
+        url: '/savevex-favicon.png',
+        type: 'image/img+xml',
       },
     ],
-    apple: '/savevex-logo.svg',
+    apple: '/savevex-favicon.png',
   },
 }
 

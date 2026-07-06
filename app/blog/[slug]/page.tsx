@@ -1,18 +1,19 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { PageLayout } from '@/components/shared/PageLayout'
 import { PageHero } from '@/components/shared/PageHero'
 import { BlogCard } from '@/components/shared/BlogCard'
 import { EmptyState } from '@/components/shared/EmptyState'
 import { BLOG_POSTS } from '@/lib/constants'
 import { getBlogPostMetadata } from '@/lib/metadata'
-import Link from 'next/link'
 
 interface BlogPostPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
-export function generateMetadata({ params }: BlogPostPageProps): Metadata {
-  const post = BLOG_POSTS.find(p => p.slug === params.slug)
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const post = BLOG_POSTS.find(p => p.slug === slug)
   if (!post) return { title: 'Post Not Found — SaveVex' }
   return getBlogPostMetadata(post)
 }
@@ -21,8 +22,9 @@ export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }))
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = BLOG_POSTS.find(p => p.slug === params.slug)
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  const post = BLOG_POSTS.find(p => p.slug === slug)
 
   if (!post) {
     return (
@@ -47,7 +49,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
       <article className="py-16 px-4">
         <div className="max-w-3xl mx-auto">
-          {/* Meta */}
           <div className="flex items-center gap-4 mb-8">
             <span className="inline-block bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">
               {post.category}
@@ -55,7 +56,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <span className="text-sm text-muted-foreground">{post.date}</span>
           </div>
 
-          {/* Content placeholder — full blog content will be added later */}
           <div className="prose prose-neutral dark:prose-invert max-w-none">
             <p>{post.excerpt}</p>
             <p>
@@ -64,7 +64,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             </p>
           </div>
 
-          {/* Related Posts */}
           <div className="mt-16 border-t border-border pt-12">
             <h2 className="text-2xl font-bold mb-8">More Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -75,10 +74,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <div className="mt-12 text-center">
-            <Link
-              href="/blog"
-              className="text-primary hover:underline font-medium"
-            >
+            <Link href="/blog" className="text-primary hover:underline font-medium">
               ← Back to all articles
             </Link>
           </div>
