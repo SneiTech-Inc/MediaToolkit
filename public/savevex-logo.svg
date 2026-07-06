@@ -1,0 +1,15 @@
+<svg width="280" height="120" viewBox="0 0 280 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo from image: SaveVex with download icon -->
+  <g>
+    <!-- Download icon -->
+    <rect x="35" y="30" width="50" height="60" rx="8" fill="none" stroke="#1E40AF" stroke-width="3"/>
+    <path d="M50 45L60 60L70 45" fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50" y1="60" x2="70" y2="60" stroke="#1E40AF" stroke-width="3" stroke-linecap="round"/>
+    <rect x="40" y="65" width="40" height="8" rx="2" fill="#0EA5E9"/>
+    <path d="M42 40L48 30L55 35" fill="#10B981"/>
+  </g>
+  
+  <!-- Text: SaveVex -->
+  <text x="110" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="#1E40AF">Save</text>
+  <text x="260" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="#0EA5E9">Vex</text>
+</svg>
