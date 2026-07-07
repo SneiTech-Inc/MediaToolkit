@@ -67,6 +67,41 @@ const AddBorder = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const MergePDF = dynamic(
+  () => import('@/features/pdf/components/MergePDF').then(m => ({ default: m.MergePDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const SplitPDF = dynamic(
+  () => import('@/features/pdf/components/SplitPDF').then(m => ({ default: m.SplitPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const CompressPDF = dynamic(
+  () => import('@/features/pdf/components/CompressPDF').then(m => ({ default: m.CompressPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const PDFToJPG = dynamic(
+  () => import('@/features/pdf/components/PDFToJPG').then(m => ({ default: m.PDFToJPG })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const JPGToPDF = dynamic(
+  () => import('@/features/pdf/components/JPGToPDF').then(m => ({ default: m.JPGToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const RotatePDF = dynamic(
+  () => import('@/features/pdf/components/RotatePDF').then(m => ({ default: m.RotatePDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const WatermarkPDF = dynamic(
+  () => import('@/features/pdf/components/WatermarkPDF').then(m => ({ default: m.WatermarkPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -78,6 +113,13 @@ const toolComponents: Record<string, React.ComponentType> = {
   'blur-image': ImageBlur,
   'image-to-pdf': ImageToPDF,
   'add-border': AddBorder,
+  'merge-pdf': MergePDF,
+  'split-pdf': SplitPDF,
+  'compress-pdf': CompressPDF,
+  'pdf-to-jpg': PDFToJPG,
+  'jpg-to-pdf': JPGToPDF,
+  'rotate-pdf': RotatePDF,
+  'watermark-pdf': WatermarkPDF,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────

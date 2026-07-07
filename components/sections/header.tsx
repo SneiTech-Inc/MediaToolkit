@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { ToolDropdown } from '@/components/shared/ToolDropdown'
+import type { Tool } from '@/types/tool'
 import { pdfTools } from '@/constants/tools/pdf'
 import { imageTools } from '@/constants/tools/image'
 
@@ -138,7 +139,7 @@ function MobileToolSection({
 }: {
   label: string
   category: string
-  tools: readonly typeof pdfTools
+  tools: readonly Tool[]
   onClose: () => void
 }) {
   const [open, setOpen] = useState(false)

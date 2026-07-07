@@ -38,7 +38,7 @@ export async function convertImagesToPDF(
 }
 
 /** Render any image format onto a Canvas and extract PNG bytes + dimensions. */
-async function fileToPngData(file: File): Promise<{ pngBytes: Uint8Array; width: number; height: number }> {
+export async function fileToPngData(file: File): Promise<{ pngBytes: Uint8Array; width: number; height: number }> {
   const img = new Image()
   const url = URL.createObjectURL(file)
 
