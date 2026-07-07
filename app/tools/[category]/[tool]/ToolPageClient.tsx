@@ -117,6 +117,11 @@ const UnlockPDF = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const CropPDF = dynamic(
+  () => import('@/features/pdf/components/CropPDF').then(m => ({ default: m.CropPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -138,6 +143,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'organize-pdf': OrganizePDF,
   'protect-pdf': ProtectPDF,
   'unlock-pdf': UnlockPDF,
+  'crop-pdf': CropPDF,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────
