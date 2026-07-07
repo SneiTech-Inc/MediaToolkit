@@ -49,12 +49,12 @@ export const pdfTools = [
   {
     id: 'protect-pdf', slug: 'protect-pdf', name: 'Protect PDF', category: 'pdf',
     description: 'Add password protection to PDFs', icon: '🔐', badge: null,
-    dateAdded: '2024-01-03', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: true,
+    dateAdded: '2024-01-03', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: false,
   },
   {
     id: 'unlock-pdf', slug: 'unlock-pdf', name: 'Unlock PDF', category: 'pdf',
-    description: 'Remove password protection from PDFs', icon: '🔓', badge: null,
-    dateAdded: '2024-01-03', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: true,
+    description: 'Remove password protection from PDFs', icon: '🔓', badge: 'new',
+    dateAdded: '2024-01-03', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: false,
   },
   {
     id: 'crop-pdf', slug: 'crop-pdf', name: 'Crop PDF', category: 'pdf',

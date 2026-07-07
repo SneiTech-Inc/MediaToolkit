@@ -102,6 +102,21 @@ const WatermarkPDF = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const OrganizePDF = dynamic(
+  () => import('@/features/pdf/components/OrganizePDF').then(m => ({ default: m.OrganizePDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ProtectPDF = dynamic(
+  () => import('@/features/pdf/components/ProtectPDF').then(m => ({ default: m.ProtectPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const UnlockPDF = dynamic(
+  () => import('@/features/pdf/components/UnlockPDF').then(m => ({ default: m.UnlockPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -120,6 +135,9 @@ const toolComponents: Record<string, React.ComponentType> = {
   'jpg-to-pdf': JPGToPDF,
   'rotate-pdf': RotatePDF,
   'watermark-pdf': WatermarkPDF,
+  'organize-pdf': OrganizePDF,
+  'protect-pdf': ProtectPDF,
+  'unlock-pdf': UnlockPDF,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────
