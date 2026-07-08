@@ -61,4 +61,29 @@ export const pdfTools = [
     description: 'Remove unwanted borders from PDF pages', icon: '🎯', badge: null,
     dateAdded: '2024-01-04', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: false,
   },
+  {
+    id: 'ocr-pdf', slug: 'ocr-pdf', name: 'OCR PDF', category: 'pdf',
+    description: 'Make scanned PDFs searchable with OCR text recognition', icon: '🔍', badge: 'new',
+    dateAdded: '2024-01-05', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: false,
+  },
+  {
+    id: 'repair-pdf', slug: 'repair-pdf', name: 'Repair PDF', category: 'pdf',
+    description: 'Fix corrupt or damaged PDF files', icon: '🔧', badge: 'new',
+    dateAdded: '2024-01-05', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: false,
+  },
+  {
+    id: 'sign-pdf', slug: 'sign-pdf', name: 'Sign PDF', category: 'pdf',
+    description: 'Add digital signatures to PDF documents', icon: '✍️', badge: 'new',
+    dateAdded: '2024-01-05', inputFormats: ['pdf'], outputFormats: ['pdf'], isComingSoon: true,
+  },
+  {
+    id: 'scan-to-pdf', slug: 'scan-to-pdf', name: 'Scan to PDF', category: 'pdf',
+    description: 'Scan documents with your phone and convert to PDF', icon: '📱', badge: 'new',
+    dateAdded: '2024-01-05', inputFormats: ['jpg', 'png', 'webp'], outputFormats: ['pdf'], isComingSoon: false,
+  },
+  {
+    id: 'pdf-to-markdown', slug: 'pdf-to-markdown', name: 'PDF to Markdown', category: 'pdf',
+    description: 'Extract clean Markdown from PDFs for AI, blogs, and docs', icon: '📝', badge: 'new',
+    dateAdded: '2024-01-06', inputFormats: ['pdf'], outputFormats: ['md'], isComingSoon: false,
+  },
 ] as const satisfies Tool[]

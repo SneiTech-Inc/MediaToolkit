@@ -122,6 +122,31 @@ const CropPDF = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const OCRPDF = dynamic(
+  () => import('@/features/pdf/components/OCRPDF').then(m => ({ default: m.OCRPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const RepairPDF = dynamic(
+  () => import('@/features/pdf/components/RepairPDF').then(m => ({ default: m.RepairPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const SignPDF = dynamic(
+  () => import('@/features/pdf/components/SignPDF').then(m => ({ default: m.SignPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ScanToPDF = dynamic(
+  () => import('@/features/pdf/components/ScanToPDF').then(m => ({ default: m.ScanToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const PDFToMarkdown = dynamic(
+  () => import('@/features/pdf/components/PDFToMarkdown').then(m => ({ default: m.PDFToMarkdown })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -144,6 +169,11 @@ const toolComponents: Record<string, React.ComponentType> = {
   'protect-pdf': ProtectPDF,
   'unlock-pdf': UnlockPDF,
   'crop-pdf': CropPDF,
+  'ocr-pdf': OCRPDF,
+  'repair-pdf': RepairPDF,
+  'sign-pdf': SignPDF,
+  'scan-to-pdf': ScanToPDF,
+  'pdf-to-markdown': PDFToMarkdown,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────
