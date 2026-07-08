@@ -9,27 +9,27 @@ export const documentTools = [
   {
     id: 'pdf-to-word', slug: 'pdf-to-word', name: 'PDF to Word', category: 'document',
     description: 'Convert PDF to editable Word documents', icon: '📋', badge: null,
-    dateAdded: '2024-01-13', inputFormats: ['pdf'], outputFormats: ['docx'], isComingSoon: true,
+    dateAdded: '2024-01-13', inputFormats: ['pdf'], outputFormats: ['docx'], isComingSoon: false,
   },
   {
     id: 'excel-to-pdf', slug: 'excel-to-pdf', name: 'Excel to PDF', category: 'document',
     description: 'Convert Excel spreadsheets to PDF', icon: '📊', badge: null,
-    dateAdded: '2024-01-13', inputFormats: ['xls', 'xlsx'], outputFormats: ['pdf'], isComingSoon: true,
+    dateAdded: '2024-01-13', inputFormats: ['xls', 'xlsx'], outputFormats: ['pdf'], isComingSoon: false,
   },
   {
     id: 'pdf-to-excel', slug: 'pdf-to-excel', name: 'PDF to Excel', category: 'document',
     description: 'Convert PDF tables to Excel spreadsheets', icon: '📈', badge: null,
-    dateAdded: '2024-01-14', inputFormats: ['pdf'], outputFormats: ['xlsx'], isComingSoon: true,
+    dateAdded: '2024-01-14', inputFormats: ['pdf'], outputFormats: ['xlsx'], isComingSoon: false,
   },
   {
     id: 'ppt-to-pdf', slug: 'ppt-to-pdf', name: 'PowerPoint to PDF', category: 'document',
     description: 'Convert presentations to PDF', icon: '🎪', badge: null,
-    dateAdded: '2024-01-14', inputFormats: ['ppt', 'pptx'], outputFormats: ['pdf'], isComingSoon: true,
+    dateAdded: '2024-01-14', inputFormats: ['ppt', 'pptx'], outputFormats: ['pdf'], isComingSoon: false,
   },
   {
     id: 'pdf-to-ppt', slug: 'pdf-to-ppt', name: 'PDF to PowerPoint', category: 'document',
     description: 'Convert PDF to editable presentations', icon: '🎨', badge: null,
-    dateAdded: '2024-01-14', inputFormats: ['pdf'], outputFormats: ['pptx'], isComingSoon: true,
+    dateAdded: '2024-01-14', inputFormats: ['pdf'], outputFormats: ['pptx'], isComingSoon: false,
   },
   {
     id: 'text-to-pdf', slug: 'text-to-pdf', name: 'Text to PDF', category: 'document',

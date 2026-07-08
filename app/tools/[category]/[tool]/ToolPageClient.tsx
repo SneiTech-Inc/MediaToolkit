@@ -152,6 +152,36 @@ const WordToPDF = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const PDFToWord = dynamic(
+  () => import('@/features/document/components/PDFToWord').then(m => ({ default: m.PDFToWord })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const PDFToExcel = dynamic(
+  () => import('@/features/document/components/PDFToExcel').then(m => ({ default: m.PDFToExcel })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ExcelToPDF = dynamic(
+  () => import('@/features/document/components/ExcelToPDF').then(m => ({ default: m.ExcelToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const PPTToPDF = dynamic(
+  () => import('@/features/document/components/PPTToPDF').then(m => ({ default: m.PPTToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const PDFToPPT = dynamic(
+  () => import('@/features/document/components/PDFToPPT').then(m => ({ default: m.PDFToPPT })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const TextToPDF = dynamic(
+  () => import('@/features/document/components/TextToPDF').then(m => ({ default: m.TextToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -180,6 +210,12 @@ const toolComponents: Record<string, React.ComponentType> = {
   'scan-to-pdf': ScanToPDF,
   'pdf-to-markdown': PDFToMarkdown,
   'word-to-pdf': WordToPDF,
+  'pdf-to-word': PDFToWord,
+  'pdf-to-excel': PDFToExcel,
+  'excel-to-pdf': ExcelToPDF,
+  'ppt-to-pdf': PPTToPDF,
+  'pdf-to-ppt': PDFToPPT,
+  'text-to-pdf': TextToPDF,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────
