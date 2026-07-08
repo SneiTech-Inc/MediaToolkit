@@ -147,6 +147,11 @@ const PDFToMarkdown = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const WordToPDF = dynamic(
+  () => import('@/features/document/components/WordToPDF').then(m => ({ default: m.WordToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -174,6 +179,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'sign-pdf': SignPDF,
   'scan-to-pdf': ScanToPDF,
   'pdf-to-markdown': PDFToMarkdown,
+  'word-to-pdf': WordToPDF,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────

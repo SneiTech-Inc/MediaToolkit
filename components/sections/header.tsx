@@ -9,6 +9,8 @@ import { ToolDropdown } from '@/components/shared/ToolDropdown'
 import type { Tool } from '@/types/tool'
 import { pdfTools } from '@/constants/tools/pdf'
 import { imageTools } from '@/constants/tools/image'
+import { documentTools } from '@/constants/tools/document'
+import { textTools } from '@/constants/tools/text'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -52,6 +54,8 @@ export function Header() {
           {/* Tool Dropdowns */}
           <ToolDropdown label="All PDF Tools" category="pdf" tools={pdfTools} />
           <ToolDropdown label="All Image Tools" category="image" tools={imageTools} />
+          <ToolDropdown label="All Document Tools" category="document" tools={documentTools} />
+          <ToolDropdown label="All Text Tools" category="text" tools={textTools} />
 
           <Link
             href="/premium"
@@ -113,6 +117,18 @@ export function Header() {
               label="All Image Tools"
               category="image"
               tools={imageTools}
+              onClose={() => setMobileMenuOpen(false)}
+            />
+            <MobileToolSection
+              label="All Document Tools"
+              category="document"
+              tools={documentTools}
+              onClose={() => setMobileMenuOpen(false)}
+            />
+            <MobileToolSection
+              label="All Text Tools"
+              category="text"
+              tools={textTools}
               onClose={() => setMobileMenuOpen(false)}
             />
 

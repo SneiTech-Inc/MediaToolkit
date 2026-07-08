@@ -5,6 +5,7 @@ import {
   Lock, Unlock, Droplets, Crop, FileText, Hash,
   WrapText, ArrowLeftRight, QrCode, Palette,
   Fingerprint, GripHorizontal, FileArchive,
+  FileSpreadsheet, Presentation, Globe, Code, Table,
 } from 'lucide-react'
 import type { Tool } from '@/types/tool'
 
@@ -30,6 +31,11 @@ const ICON_MAP: Record<string, LucideIcon> = {
   'json-formatter': FileText, 'base64-encode': Lock,
 
   'qr-generator': QrCode, 'color-picker': Palette, 'hash-generator': Fingerprint,
+
+  // Document tools
+  'word-to-pdf': FileText, 'pdf-to-word': FileText, 'excel-to-pdf': FileSpreadsheet,
+  'pdf-to-excel': FileSpreadsheet, 'ppt-to-pdf': Presentation, 'pdf-to-ppt': Presentation,
+  'text-to-pdf': FileText, 'html-to-pdf': Globe, 'markdown-to-pdf': Code, 'csv-to-pdf': Table,
 }
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {

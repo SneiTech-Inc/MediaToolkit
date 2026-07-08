@@ -4,7 +4,7 @@ export const documentTools = [
   {
     id: 'word-to-pdf', slug: 'word-to-pdf', name: 'Word to PDF', category: 'document',
     description: 'Convert Word documents to PDF', icon: '📄', badge: null,
-    dateAdded: '2024-01-13', inputFormats: ['doc', 'docx'], outputFormats: ['pdf'], isComingSoon: true,
+    dateAdded: '2024-01-13', inputFormats: ['doc', 'docx'], outputFormats: ['pdf'], isComingSoon: false,
   },
   {
     id: 'pdf-to-word', slug: 'pdf-to-word', name: 'PDF to Word', category: 'document',
