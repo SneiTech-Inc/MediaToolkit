@@ -114,9 +114,7 @@ export function UploadDropzone({ acceptedFormats, onFileSelect, disabled = false
       />
 
       <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>
-        <Button asChild disabled={disabled}>
-          <span>Select File</span>
-        </Button>
+        <Button disabled={disabled}>Select File</Button>
       </label>
     </div>
   )
