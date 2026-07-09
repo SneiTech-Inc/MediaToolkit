@@ -197,6 +197,46 @@ const CSVToPDF = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const WordCounter = dynamic(
+  () => import('@/features/text/components/WordCounter').then(m => ({ default: m.WordCounter })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const CaseConverter = dynamic(
+  () => import('@/features/text/components/CaseConverter').then(m => ({ default: m.CaseConverter })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const RemoveDuplicates = dynamic(
+  () => import('@/features/text/components/RemoveDuplicates').then(m => ({ default: m.RemoveDuplicates })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const SortLines = dynamic(
+  () => import('@/features/text/components/SortLines').then(m => ({ default: m.SortLines })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const JSONFormatter = dynamic(
+  () => import('@/features/text/components/JSONFormatter').then(m => ({ default: m.JSONFormatter })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const Base64Encoder = dynamic(
+  () => import('@/features/text/components/Base64Encoder').then(m => ({ default: m.Base64Encoder })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const UrlEncoder = dynamic(
+  () => import('@/features/text/components/UrlEncoder').then(m => ({ default: m.UrlEncoder })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const PasswordGenerator = dynamic(
+  () => import('@/features/text/components/PasswordGenerator').then(m => ({ default: m.PasswordGenerator })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -224,6 +264,14 @@ const toolComponents: Record<string, React.ComponentType> = {
   'sign-pdf': SignPDF,
   'scan-to-pdf': ScanToPDF,
   'pdf-to-markdown': PDFToMarkdown,
+  'base64-encoder': Base64Encoder,
+  'case-converter': CaseConverter,
+  'json-formatter': JSONFormatter,
+  'password-generator': PasswordGenerator,
+  'remove-duplicates': RemoveDuplicates,
+  'sort-lines': SortLines,
+  'url-encoder': UrlEncoder,
+  'word-counter': WordCounter,
   'word-to-pdf': WordToPDF,
   'pdf-to-word': PDFToWord,
   'pdf-to-excel': PDFToExcel,

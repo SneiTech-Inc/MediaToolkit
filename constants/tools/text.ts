@@ -27,7 +27,7 @@ export const textTools = [
     dateAdded: '2024-01-17', inputFormats: ['json'], outputFormats: ['json'], isComingSoon: false,
   },
   {
-    id: 'base64-encode', slug: 'base64-encode', name: 'Base64 Encoder', category: 'text',
+    id: 'base64-encoder', slug: 'base64-encoder', name: 'Base64 Encoder', category: 'text',
     description: 'Encode text to Base64 format', icon: '🔐', badge: null,
     dateAdded: '2024-01-18', inputFormats: ['txt'], outputFormats: ['txt'], isComingSoon: false,
   },
