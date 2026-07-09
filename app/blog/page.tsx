@@ -1,9 +1,11 @@
 import { PageLayout } from '@/components/shared/PageLayout'
 import { PageHero } from '@/components/shared/PageHero'
 import { BlogCard } from '@/components/shared/BlogCard'
-import { BLOG_POSTS } from '@/lib/constants'
+import { getAllPosts } from '@/lib/blog'
 
 export default function BlogPage() {
+  const posts = getAllPosts()
+
   return (
     <PageLayout>
       <PageHero
@@ -15,7 +17,7 @@ export default function BlogPage() {
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BLOG_POSTS.map((post) => (
+            {posts.map((post) => (
               <BlogCard key={post.slug} post={post} variant="default" />
             ))}
           </div>

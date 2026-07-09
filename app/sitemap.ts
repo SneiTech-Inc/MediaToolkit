@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { TOOLS } from '@/constants/tools'
 import { CATEGORIES } from '@/constants/categories'
+import { getPostSlugs } from '@/lib/blog'
 
 const SITE_URL = 'https://savevex.com'
 
@@ -13,10 +14,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/premium`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${SITE_URL}/press`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/legal/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/legal/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
   ]
+
+  const blogRoutes: MetadataRoute.Sitemap = getPostSlugs().map((slug) => ({
+    url: `${SITE_URL}/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
 
   const categoryRoutes: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({
     url: `${SITE_URL}/tools/${cat.slug}`,
@@ -32,5 +41,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: tool.isComingSoon ? 0.4 : 0.8,
   }))
 
-  return [...staticRoutes, ...categoryRoutes, ...toolRoutes]
+  return [...staticRoutes, ...blogRoutes, ...categoryRoutes, ...toolRoutes]
 }

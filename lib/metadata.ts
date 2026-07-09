@@ -113,6 +113,10 @@ const staticPageMeta: Record<string, { title: string; description: string }> = {
     title: `DMCA Notice — SaveVex`,
     description: 'Copyright infringement notification procedures for SaveVex.',
   },
+  press: {
+    title: `Press & Media Kit — SaveVex`,
+    description: 'Download SaveVex logos, brand assets, and press resources. Information for journalists, bloggers, and partners.',
+  },
 }
 
 export function getStaticPageMetadata(page: string): Metadata {
@@ -134,6 +138,7 @@ export function getStaticPageMetadata(page: string): Metadata {
     terms: '/legal/terms',
     cookies: '/legal/cookies',
     dmca: '/legal/dmca',
+    press: '/press',
   }
 
   return buildMetadata({

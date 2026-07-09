@@ -135,6 +135,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/press" className="text-sm opacity-75 hover:opacity-100 transition-opacity">
+                  Press
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="text-sm opacity-75 hover:opacity-100 transition-opacity">
                   Contact
                 </Link>

@@ -17,6 +17,8 @@ import { utilityTools } from '@/constants/tools/utility'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/press', label: 'Press' },
 ]
 
 export function Header() {
@@ -42,15 +44,18 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          {/* {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))} */}
+          {/* <Link
+            href="/"
+            className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap"
+          >
+            Home
+          </Link>
+          <Link
+            href="/blog"
+            className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap"
+          >
+            Blog
+          </Link> */}
 
           {/* Tool Dropdowns */}
           <ToolDropdown label="All PDF Tools" category="pdf" tools={pdfTools} />

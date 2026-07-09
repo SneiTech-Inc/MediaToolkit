@@ -8,10 +8,16 @@ import { TrustBadge } from '@/components/shared/TrustBadge'
 import { Button } from '@/components/ui/button'
 import { TOOLS, CATEGORIES, BLOG_POSTS, TRUST_BADGES } from '@/lib/constants'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function Page() {
+  const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState('all')
+
+  const scrollToTools = () => {
+    document.getElementById('tools-section')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   const filteredTools = selectedCategory === 'all'
     ? TOOLS
@@ -31,10 +37,10 @@ export default function Page() {
             SaveVex: Your all-in-one file & media toolkit. 100% free, no signup required, entirely in your browser.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
+            <Button size="lg" onClick={scrollToTools} className="bg-primary hover:bg-primary/90">
               Explore Tools
             </Button>
-            <Button size="lg" variant="outline">
+            <Button size="lg" variant="outline" onClick={() => router.push('/blog')}>
               Learn More
             </Button>
           </div>
@@ -57,7 +63,7 @@ export default function Page() {
       </section>
 
       {/* Category Tabs & Tool Grid */}
-      <section className="py-16 px-4">
+      <section id="tools-section" className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col gap-8">
             {/* Category Tabs */}

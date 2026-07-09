@@ -22,6 +22,8 @@ export interface BlogPost {
   date: string
   category: string
   slug: string
+  content: string
+  readingTime: string
 }
 
 export interface TrustBadge {
