@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     icon: [
       {
         url: '/savevex-favicon.png',
-        type: 'image/img+xml',
+        type: 'image/png',
       },
     ],
     apple: '/savevex-favicon.png',

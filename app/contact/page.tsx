@@ -41,7 +41,7 @@ export default function ContactPage() {
                   placeholder="Tell us what's on your mind..."
                 />
               </div>
-              <Button type="submit" className="bg-primary hover:bg-primary/90 w-full">
+              <Button type="submit" disabled className="bg-primary hover:bg-primary/90 w-full">
                 Send Message
               </Button>
             </form>
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 <Mail className="w-6 h-6 text-primary mt-1" />
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <p className="text-muted-foreground">hello@savevex.com</p>
+                  <p className="text-muted-foreground">support@savevex.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">

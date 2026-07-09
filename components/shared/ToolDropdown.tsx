@@ -16,21 +16,33 @@ const ICON_MAP: Record<string, LucideIcon> = {
   'protect-pdf': Lock, 'unlock-pdf': Unlock, 'organize-pdf': GripHorizontal,
   'pdf-to-jpg': FileImage, 'jpg-to-pdf': Image,
   'pdf-page-numbers': Hash,
+  'ocr-pdf': FileText, 'repair-pdf': FileText,
+  'sign-pdf': FileText, 'scan-to-pdf': FileText,
+  'pdf-to-markdown': FileText,
 
   'compress-image': FileDown, 'resize-image': Crop, 'convert-image': ArrowLeftRight,
   'crop-image': Crop, 'rotate-image': RotateCw, 'flip-image': WrapText,
   'watermark-image': Droplets, 'blur-image': Droplets,
   'image-to-pdf': FileText, 'add-border': Crop,
+  'remove-background': FileText,
 
   'compress-video': FileDown, 'convert-video': ArrowLeftRight,
   'trim-video': Scissors, 'merge-video': Merge,
+  'crop-video': Crop, 'rotate-video': RotateCw,
+  'resize-video': FileDown, 'video-speed': FileText,
+  'reverse-video': ArrowLeftRight, 'extract-audio': FileText,
+  'video-to-gif': FileText,
 
   'convert-audio': ArrowLeftRight, 'merge-audio': Merge, 'trim-audio': Scissors,
+  'change-volume': FileText,
 
   'word-counter': FileText, 'case-converter': FileText,
-  'json-formatter': FileText, 'base64-encode': Lock,
+  'json-formatter': FileText, 'base64-encoder': Lock,
+  'remove-duplicates': FileText, 'sort-lines': FileText,
+  'url-encoder': Globe, 'password-generator': Lock,
 
   'qr-generator': QrCode, 'color-picker': Palette, 'hash-generator': Fingerprint,
+  'uuid-generator': Fingerprint, 'timestamp-converter': FileText,
 
   // Document tools
   'word-to-pdf': FileText, 'pdf-to-word': FileText, 'excel-to-pdf': FileSpreadsheet,

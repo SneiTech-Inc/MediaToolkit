@@ -19,7 +19,7 @@ const LEVELS: { value: CompressionLevel; label: string; desc: string }[] = [
 ]
 
 const TOOL_FAQS = [
-  { question: 'How does PDF compression work?', answer: 'SaveVex finds images embedded in your PDF and recompresses them at lower JPEG quality using your browser\'s Canvas API. It also applies structural optimization via object streams. All processing happens locally in your browser.' },
+  { question: 'How does PDF compression work?', answer: 'SaveVex finds images embedded in your PDF and recompresses them at lower JPEG quality using your browser. It also applies structural optimization via object streams. All processing happens locally in your browser.' },
   { question: 'What compression levels are available?', answer: 'Low (85% JPEG quality, original size), Medium (50% quality, max 2000px — recommended), and High (25% quality, max 1440px). Medium balances size and quality for most use cases, while High prioritizes maximum reduction.' },
   { question: 'Will compression affect quality?', answer: 'Yes — images are re-encoded as JPEG at reduced quality. Low preserves most detail, Medium visibly reduces quality but keeps images readable, and High may show noticeable JPEG artifacts. Text and vector graphics are never modified.' },
   { question: 'Why didn\'t my file shrink much?', answer: 'Text-heavy PDFs have few or no images to compress. Scanned documents and image-heavy files will see the biggest reductions — often 60–80% at High compression.' },
