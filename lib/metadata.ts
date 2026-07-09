@@ -105,6 +105,14 @@ const staticPageMeta: Record<string, { title: string; description: string }> = {
     title: `Terms of Service — SaveVex`,
     description: 'Read the terms and conditions for using SaveVex services.',
   },
+  cookies: {
+    title: `Cookie Policy — SaveVex`,
+    description: 'Learn how SaveVex uses cookies and similar technologies.',
+  },
+  dmca: {
+    title: `DMCA Notice — SaveVex`,
+    description: 'Copyright infringement notification procedures for SaveVex.',
+  },
 }
 
 export function getStaticPageMetadata(page: string): Metadata {
@@ -124,6 +132,8 @@ export function getStaticPageMetadata(page: string): Metadata {
     contact: '/contact',
     privacy: '/legal/privacy',
     terms: '/legal/terms',
+    cookies: '/legal/cookies',
+    dmca: '/legal/dmca',
   }
 
   return buildMetadata({

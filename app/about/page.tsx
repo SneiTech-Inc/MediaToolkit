@@ -28,7 +28,7 @@ export default function AboutPage() {
             description="SaveVex was built to give everyone access to powerful file processing tools without compromising privacy or requiring payment."
           />
 
-          <div className="prose prose-neutral dark:prose-invert max-w-none mb-16">
+          <div className="prose max-w-none mb-16">
             <p>
               Every day, millions of people need to compress a PDF, convert an image, or trim a video.
               Most existing tools either require uploading files to remote servers, charge subscription fees,

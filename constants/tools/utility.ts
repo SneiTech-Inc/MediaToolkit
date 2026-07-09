@@ -4,17 +4,17 @@ export const utilityTools = [
   {
     id: 'qr-generator', slug: 'qr-generator', name: 'QR Code Generator', category: 'utility',
     description: 'Generate QR codes from text or URLs', icon: '📲', badge: null,
-    dateAdded: '2024-01-19', inputFormats: [], outputFormats: ['png', 'jpg'], isComingSoon: false,
+    dateAdded: '2024-01-19', inputFormats: [], outputFormats: ['png', 'jpg'], isComingSoon: true,
   },
   {
     id: 'color-picker', slug: 'color-picker', name: 'Color Picker', category: 'utility',
     description: 'Pick and convert colors between formats', icon: '🎨', badge: null,
-    dateAdded: '2024-01-19', inputFormats: [], outputFormats: ['txt'], isComingSoon: false,
+    dateAdded: '2024-01-19', inputFormats: [], outputFormats: ['txt'], isComingSoon: true,
   },
   {
     id: 'hash-generator', slug: 'hash-generator', name: 'Hash Generator', category: 'utility',
     description: 'Generate MD5, SHA hashes from text', icon: '🔏', badge: null,
-    dateAdded: '2024-01-19', inputFormats: ['txt'], outputFormats: ['txt'], isComingSoon: false,
+    dateAdded: '2024-01-19', inputFormats: ['txt'], outputFormats: ['txt'], isComingSoon: true,
   },
   {
     id: 'uuid-generator', slug: 'uuid-generator', name: 'UUID Generator', category: 'utility',

@@ -56,6 +56,7 @@ interface ToolDropdownProps {
  */
 export function ToolDropdown({ label, category, tools }: ToolDropdownProps) {
   const CategoryIcon = CATEGORY_ICONS[category]
+  const allComingSoon = tools.every(t => t.isComingSoon)
 
   return (
     <div className="relative group before:content-[''] before:absolute before:top-full before:left-0 before:w-full before:h-5">
@@ -75,45 +76,53 @@ export function ToolDropdown({ label, category, tools }: ToolDropdownProps) {
             <span className="text-xs text-muted-foreground">({tools.length} tools)</span>
           </div>
 
-          {/* Tool grid — 2 columns */}
-          <div className="p-3 max-h-[420px] overflow-y-auto">
-            <div className="grid grid-cols-2 gap-1">
-              {tools.map((tool) => {
-                const Icon = ICON_MAP[tool.slug]
-                return (
-                  <Link
-                    key={tool.id}
-                    href={tool.isComingSoon ? '#' : `/tools/${category}/${tool.slug}`}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors group/item ${
-                      tool.isComingSoon
-                        ? 'opacity-50 cursor-not-allowed'
-                        : 'hover:bg-accent/10 hover:text-accent-foreground cursor-pointer'
-                    }`}
-                    onClick={(e) => tool.isComingSoon && e.preventDefault()}
-                    tabIndex={tool.isComingSoon ? -1 : 0}
-                  >
-                    <span className="shrink-0 w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover/item:bg-primary/10 transition-colors">
-                      {Icon ? (
-                        <Icon className="w-4 h-4 text-muted-foreground group-hover/item:text-primary transition-colors" />
-                      ) : (
-                        <span className="text-base">{tool.icon}</span>
-                      )}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <span className="font-medium text-foreground text-sm block truncate group-hover/item:text-primary transition-colors">
-                        {tool.name}
-                      </span>
-                    </div>
-                    {tool.isComingSoon && (
-                      <span className="shrink-0 text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
-                        Soon
-                      </span>
-                    )}
-                  </Link>
-                )
-              })}
+          {/* Tool grid — 2 columns, or "Coming Soon" placeholder */}
+          {allComingSoon ? (
+            <div className="p-6 text-center">
+              <p className="text-sm text-muted-foreground">
+                Coming Soon — Tools are on their way.
+              </p>
             </div>
-          </div>
+          ) : (
+            <div className="p-3 max-h-[420px] overflow-y-auto">
+              <div className="grid grid-cols-2 gap-1">
+                {tools.map((tool) => {
+                  const Icon = ICON_MAP[tool.slug]
+                  return (
+                    <Link
+                      key={tool.id}
+                      href={tool.isComingSoon ? '#' : `/tools/${category}/${tool.slug}`}
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors group/item ${
+                        tool.isComingSoon
+                          ? 'opacity-50 cursor-not-allowed'
+                          : 'hover:bg-accent/10 hover:text-accent-foreground cursor-pointer'
+                      }`}
+                      onClick={(e) => tool.isComingSoon && e.preventDefault()}
+                      tabIndex={tool.isComingSoon ? -1 : 0}
+                    >
+                      <span className="shrink-0 w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover/item:bg-primary/10 transition-colors">
+                        {Icon ? (
+                          <Icon className="w-4 h-4 text-muted-foreground group-hover/item:text-primary transition-colors" />
+                        ) : (
+                          <span className="text-base">{tool.icon}</span>
+                        )}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <span className="font-medium text-foreground text-sm block truncate group-hover/item:text-primary transition-colors">
+                          {tool.name}
+                        </span>
+                      </div>
+                      {tool.isComingSoon && (
+                        <span className="shrink-0 text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+                          Soon
+                        </span>
+                      )}
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          )}
 
           {/* View All footer */}
           <Link

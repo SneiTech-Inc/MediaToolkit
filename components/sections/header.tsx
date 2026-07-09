@@ -11,11 +11,12 @@ import { pdfTools } from '@/constants/tools/pdf'
 import { imageTools } from '@/constants/tools/image'
 import { documentTools } from '@/constants/tools/document'
 import { textTools } from '@/constants/tools/text'
+import { videoTools } from '@/constants/tools/video'
+import { audioTools } from '@/constants/tools/audio'
+import { utilityTools } from '@/constants/tools/utility'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
-  { href: '/tools/pdf/compress-pdf', label: 'Compress PDF' },
-  { href: '/tools/image/compress-image', label: 'Compress Image' },
 ]
 
 export function Header() {
@@ -41,7 +42,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          {NAV_LINKS.map((link) => (
+          {/* {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -49,20 +50,16 @@ export function Header() {
             >
               {link.label}
             </Link>
-          ))}
+          ))} */}
 
           {/* Tool Dropdowns */}
           <ToolDropdown label="All PDF Tools" category="pdf" tools={pdfTools} />
           <ToolDropdown label="All Image Tools" category="image" tools={imageTools} />
           <ToolDropdown label="All Document Tools" category="document" tools={documentTools} />
+          <ToolDropdown label="All Video Tools" category="video" tools={videoTools} />
+          <ToolDropdown label="All Audio Tools" category="audio" tools={audioTools} />
           <ToolDropdown label="All Text Tools" category="text" tools={textTools} />
-
-          <Link
-            href="/premium"
-            className="text-sm font-medium hover:text-primary transition-colors"
-          >
-            Premium
-          </Link>
+          <ToolDropdown label="All Utility Tools" category="utility" tools={utilityTools} />
         </div>
 
         {/* Right Side Actions */}
@@ -126,19 +123,29 @@ export function Header() {
               onClose={() => setMobileMenuOpen(false)}
             />
             <MobileToolSection
+              label="All Video Tools"
+              category="video"
+              tools={videoTools}
+              onClose={() => setMobileMenuOpen(false)}
+            />
+            <MobileToolSection
+              label="All Audio Tools"
+              category="audio"
+              tools={audioTools}
+              onClose={() => setMobileMenuOpen(false)}
+            />
+            <MobileToolSection
               label="All Text Tools"
               category="text"
               tools={textTools}
               onClose={() => setMobileMenuOpen(false)}
             />
-
-            <Link
-              href="/premium"
-              className="block px-4 py-2 text-sm font-medium hover:bg-muted rounded-lg transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Premium
-            </Link>
+            <MobileToolSection
+              label="All Utility Tools"
+              category="utility"
+              tools={utilityTools}
+              onClose={() => setMobileMenuOpen(false)}
+            />
           </div>
         </div>
       )}

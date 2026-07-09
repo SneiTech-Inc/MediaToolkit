@@ -5,8 +5,8 @@ import '@/lib/pdfjsSetup'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'SaveVex - Save & Download Videos Instantly',
-  description: 'Save your favorite videos from any platform with SaveVex. Fast, secure, and easy-to-use video downloader.',
+  title: 'SaveVex — Free Online File & Media Toolkit',
+  description: 'Compress, convert, edit, and optimize your files and media — 100% free, no signup, entirely in your browser.',
   metadataBase: new URL('https://savevex.com'),
   generator: 'v0.app',
   icons: {

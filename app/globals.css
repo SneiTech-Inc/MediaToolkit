@@ -160,4 +160,36 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Prose content styling (replaces @tailwindcss/typography) */
+  .prose {
+    @apply text-foreground leading-relaxed;
+  }
+  .prose h1 {
+    @apply text-3xl font-bold mb-6;
+  }
+  .prose h2 {
+    @apply text-2xl font-semibold mt-12 mb-4;
+  }
+  .prose h3 {
+    @apply text-xl font-semibold mt-8 mb-3;
+  }
+  .prose p {
+    @apply leading-relaxed mb-4;
+  }
+  .prose ul {
+    @apply list-disc pl-6 mb-4;
+  }
+  .prose ol {
+    @apply list-decimal pl-6 mb-4;
+  }
+  .prose li {
+    @apply leading-relaxed mb-1;
+  }
+  .prose strong {
+    @apply font-semibold;
+  }
+  .prose a {
+    @apply text-primary underline hover:opacity-80;
+  }
 }

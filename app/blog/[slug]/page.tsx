@@ -56,7 +56,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <span className="text-sm text-muted-foreground">{post.date}</span>
           </div>
 
-          <div className="prose prose-neutral dark:prose-invert max-w-none">
+          <div className="prose max-w-none">
             <p>{post.excerpt}</p>
             <p>
               This is a placeholder for the full blog post content. Detailed articles with step-by-step
