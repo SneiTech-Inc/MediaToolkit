@@ -39,16 +39,16 @@ export const documentTools = [
   {
     id: 'html-to-pdf', slug: 'html-to-pdf', name: 'HTML to PDF', category: 'document',
     description: 'Convert HTML pages to PDF documents', icon: '🌐', badge: null,
-    dateAdded: '2024-01-15', inputFormats: ['html'], outputFormats: ['pdf'], isComingSoon: true,
+    dateAdded: '2024-01-15', inputFormats: ['html'], outputFormats: ['pdf'], isComingSoon: false,
   },
   {
     id: 'markdown-to-pdf', slug: 'markdown-to-pdf', name: 'Markdown to PDF', category: 'document',
     description: 'Convert Markdown files to PDF', icon: '⌨️', badge: null,
-    dateAdded: '2024-01-15', inputFormats: ['md'], outputFormats: ['pdf'], isComingSoon: true,
+    dateAdded: '2024-01-15', inputFormats: ['md'], outputFormats: ['pdf'], isComingSoon: false,
   },
   {
     id: 'csv-to-pdf', slug: 'csv-to-pdf', name: 'CSV to PDF', category: 'document',
     description: 'Convert CSV files to PDF tables', icon: '📊', badge: null,
-    dateAdded: '2024-01-16', inputFormats: ['csv'], outputFormats: ['pdf'], isComingSoon: true,
+    dateAdded: '2024-01-16', inputFormats: ['csv'], outputFormats: ['pdf'], isComingSoon: false,
   },
 ] as const satisfies Tool[]

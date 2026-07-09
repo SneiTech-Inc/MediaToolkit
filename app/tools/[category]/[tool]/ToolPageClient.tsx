@@ -182,6 +182,21 @@ const TextToPDF = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const HTMLToPDF = dynamic(
+  () => import('@/features/document/components/HTMLToPDF').then(m => ({ default: m.HTMLToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const MarkdownToPDF = dynamic(
+  () => import('@/features/document/components/MarkdownToPDF').then(m => ({ default: m.MarkdownToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const CSVToPDF = dynamic(
+  () => import('@/features/document/components/CSVToPDF').then(m => ({ default: m.CSVToPDF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -216,6 +231,9 @@ const toolComponents: Record<string, React.ComponentType> = {
   'ppt-to-pdf': PPTToPDF,
   'pdf-to-ppt': PDFToPPT,
   'text-to-pdf': TextToPDF,
+  'html-to-pdf': HTMLToPDF,
+  'markdown-to-pdf': MarkdownToPDF,
+  'csv-to-pdf': CSVToPDF,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────
