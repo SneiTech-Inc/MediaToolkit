@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback } from 'react'
 import { Download, RotateCcw, FileSpreadsheet } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -105,7 +106,7 @@ export function PDFToExcel() {
     const baseName = file?.name.replace(/\.pdf$/i, '') || 'document'
     const a = document.createElement('a')
     a.href = url
-    a.download = `${baseName}.xlsx`
+    a.download = getSaveVexFileName(`${baseName}.xlsx`)
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useEffect } from 'react'
 import { Download, RotateCcw, FlipHorizontal, FlipVertical } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -145,13 +146,11 @@ export function ImageFlip() {
 
     const ext = outputFormat === 'image/jpeg' ? 'jpg' : outputFormat === 'image/webp' ? 'webp' : 'png'
     const baseName = originalFile.name.replace(/\.[^.]+$/, '')
-    const flipLabel = flipH && flipV ? 'flipped-both' : flipH ? 'flipped-h' : 'flipped-v'
-    const fileName = `${baseName}-${flipLabel}.${ext}`
 
     const url = URL.createObjectURL(result.blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = fileName
+    a.download = getSaveVexFileName(`${baseName}.${ext}`)
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

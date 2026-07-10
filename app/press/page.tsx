@@ -152,7 +152,7 @@ export default function PressPage() {
               SaveVex is developed and maintained by Sneitech Inc., a software company focused on
               building privacy-respecting, browser-based productivity tools. Our team believes that
               powerful software doesn&apos;t need to collect your data to work well. We&apos;re
-              headquartered in the Ghana and are always working on new tools and
+              headquartered in Ghana and are always working on new tools and
               improvements.
             </p>
           </div>

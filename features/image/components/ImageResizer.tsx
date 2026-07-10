@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Download, RotateCcw, Lock, Unlock } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -139,12 +140,11 @@ export function ImageResizer() {
 
     const ext = outputFormat === 'image/jpeg' ? 'jpg' : outputFormat === 'image/webp' ? 'webp' : 'png'
     const baseName = originalFile?.name?.replace(/\.[^.]+$/, '') || 'image'
-    const fileName = `${baseName}-resized.${ext}`
 
     const url = URL.createObjectURL(result.blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = fileName
+    a.download = getSaveVexFileName(`${baseName}.${ext}`)
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

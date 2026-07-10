@@ -10,6 +10,7 @@ import { FAQSection } from '@/components/shared/FAQSection'
 import { Button } from '@/components/ui/button'
 import { convertJPGToPDF } from '@/features/pdf/utils/jpgToPDF'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
@@ -137,7 +138,7 @@ export function ScanToPDF() {
     if (!pdfBlob) return
     const url = URL.createObjectURL(pdfBlob)
     const a = document.createElement('a')
-    a.href = url; a.download = 'scanned-document.pdf'
+    a.href = url; a.download = getSaveVexFileName('scanned-document.pdf')
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [pdfBlob])

@@ -15,6 +15,7 @@ import { ProgressBar } from '@/components/shared/ProgressBar'
 import { Button } from '@/components/ui/button'
 import { mergePDFs, getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexMergedFileName } from '@/utils/fileNames'
 
 const TOOL_FAQS = [
   { question: 'How many PDFs can I merge?', answer: 'There is no hard limit — you can merge as many PDFs as you need. All processing happens locally in your browser so performance depends on your device.' },
@@ -129,7 +130,7 @@ export function MergePDF() {
     if (!pdfBlob) return
     const url = URL.createObjectURL(pdfBlob)
     const a = document.createElement('a')
-    a.href = url; a.download = 'merged.pdf'
+    a.href = url; a.download = getSaveVexMergedFileName('pdf')
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [pdfBlob])

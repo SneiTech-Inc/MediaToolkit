@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useMemo } from 'react'
 import { Download, RotateCcw, FileText } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -64,7 +65,7 @@ export function MarkdownToPDF() {
 
   const handleDownload = useCallback(() => {
     if (!pdfBlob) return; const u = URL.createObjectURL(pdfBlob)
-    const a = document.createElement('a'); a.href = u; a.download = 'document.pdf'
+    const a = document.createElement('a'); a.href = u; a.download = getSaveVexFileName('document.pdf')
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(u), 1000)
   }, [pdfBlob])

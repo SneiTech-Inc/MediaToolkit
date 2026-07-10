@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { parsePageInput, parseRangeInput, extractPages, splitByRanges } from '@/features/pdf/utils/pdfSplitter'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexSplitFileName } from '@/utils/fileNames'
 
 const TOOL_FAQS = [
   { question: 'How do I split a PDF?', answer: 'Upload your PDF, choose Extract Pages (to pull out specific pages into one new PDF) or Split by Range (to create multiple PDFs from different page ranges). Enter your page numbers and click the action button.' },
@@ -154,7 +155,7 @@ export function SplitPDF() {
                       <p className="font-medium">Extracted PDF</p>
                       <p className="text-sm text-muted-foreground">{formatBytes(resultBlob.size)}</p>
                     </div>
-                    <Button size="sm" className="bg-primary" onClick={() => downloadBlob(resultBlob, `${file.name.replace('.pdf','')}-extracted.pdf`)}>
+                    <Button size="sm" className="bg-primary" onClick={() => downloadBlob(resultBlob, getSaveVexSplitFileName(file.name, 'extracted'))}>
                       <Download className="w-4 h-4 mr-1" />Download
                     </Button>
                   </div>
@@ -170,7 +171,7 @@ export function SplitPDF() {
                         <p className="font-medium text-sm">{r.pages}</p>
                         <p className="text-xs text-muted-foreground">{formatBytes(r.blob.size)}</p>
                       </div>
-                      <Button size="sm" variant="outline" onClick={() => downloadBlob(r.blob, r.name)}>
+                      <Button size="sm" variant="outline" onClick={() => downloadBlob(r.blob, getSaveVexSplitFileName(file.name, `part-${i + 1}`))}>
                         <Download className="w-4 h-4 mr-1" />Download
                       </Button>
                     </div>

@@ -13,6 +13,7 @@ import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { rotatePDFPages } from '@/features/pdf/utils/pdfRotator'
 import type { PageRotation } from '@/features/pdf/utils/pdfRotator'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`
@@ -136,7 +137,7 @@ export function RotatePDF() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = file.name.replace('.pdf', '-rotated.pdf')
+      a.download = getSaveVexFileName(file.name)
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)

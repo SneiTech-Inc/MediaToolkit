@@ -13,6 +13,7 @@ import { parsePageInput } from '@/features/pdf/utils/pdfSplitter'
 import { addTextWatermark, addImageWatermark } from '@/features/pdf/utils/pdfWatermark'
 import type { WatermarkPosition } from '@/features/pdf/utils/pdfWatermark'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`
@@ -234,7 +235,7 @@ export function WatermarkPDF() {
       const url = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }))
       const a = document.createElement('a')
       a.href = url
-      a.download = file.name.replace('.pdf', '-watermarked.pdf')
+      a.download = getSaveVexFileName(file.name)
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)

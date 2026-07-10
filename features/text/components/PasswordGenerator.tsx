@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useEffect, useRef } from 'react'
 import {
   Copy,
@@ -123,7 +124,7 @@ export function PasswordGenerator() {
     const blob = new Blob([result.password], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
-    a.href = url; a.download = 'password.txt'
+    a.href = url; a.download = getSaveVexFileName('password.txt')
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [result])

@@ -11,6 +11,7 @@ import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { repairPDF } from '@/features/pdf/utils/pdfRepairer'
 import type { RepairReport } from '@/features/pdf/utils/pdfRepairer'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
@@ -62,7 +63,7 @@ export function RepairPDF() {
     const blob = new Blob([repairedData], { type: 'application/pdf' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
-    a.href = url; a.download = file.name.replace('.pdf', '-repaired.pdf')
+    a.href = url; a.download = getSaveVexFileName(file.name)
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [repairedData, file])

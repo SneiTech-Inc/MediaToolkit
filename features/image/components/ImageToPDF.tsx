@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useMemo } from 'react'
 import { Download, RotateCcw, X, GripVertical, FileText } from 'lucide-react'
 import {
@@ -125,7 +126,7 @@ export function ImageToPDF() {
     if (!pdfBlob) return
     const url = URL.createObjectURL(pdfBlob)
     const a = document.createElement('a')
-    a.href = url; a.download = 'images.pdf'
+    a.href = url; a.download = getSaveVexFileName('images.pdf')
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [pdfBlob])

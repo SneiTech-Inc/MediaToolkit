@@ -13,6 +13,7 @@ import { parsePageInput } from '@/features/pdf/utils/pdfSplitter'
 import { convertPDFToJPG } from '@/features/pdf/utils/pdfToJPG'
 import type { PDFToJPGResult } from '@/features/pdf/utils/pdfToJPG'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexSplitFileName } from '@/utils/fileNames'
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
@@ -164,7 +165,7 @@ export function PDFToJPG() {
     const url = result.previewUrl
     const a = document.createElement('a')
     a.href = url
-    a.download = `page-${result.pageNumber}.jpg`
+    a.download = getSaveVexSplitFileName(file.name, `page-${result.pageNumber}`, 'jpg')
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -186,7 +187,7 @@ export function PDFToJPG() {
       const url = URL.createObjectURL(zipBlob)
       const a = document.createElement('a')
       a.href = url
-      a.download = file!.name.replace('.pdf', '-pages.zip')
+      a.download = getSaveVexSplitFileName(file!.name, 'all-pages', 'zip')
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)

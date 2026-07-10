@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useMemo, useRef } from 'react'
 import {
   RotateCcw,
@@ -159,7 +160,7 @@ export function UrlEncoder() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = mode === 'encode' ? 'encoded-url.txt' : 'decoded-url.txt'
+    a.download = getSaveVexFileName(mode === 'encode' ? 'encoded-url.txt' : 'decoded-url.txt')
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [result.output, mode])

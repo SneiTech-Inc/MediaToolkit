@@ -11,6 +11,7 @@ import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { protectPDF, checkPasswordStrength } from '@/features/pdf/utils/pdfProtector'
 import type { ProtectOptions } from '@/features/pdf/utils/pdfProtector'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
@@ -114,7 +115,7 @@ export function ProtectPDF() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = file.name.replace('.pdf', '-protected.svpx')
+    a.download = getSaveVexFileName(file.name.replace('.pdf', '.svpx'))
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

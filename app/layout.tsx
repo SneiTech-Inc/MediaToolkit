@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata, Viewport } from 'next'
 import { ThemeProvider } from 'next-themes'
 import '@/lib/pdfjsSetup'
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     "compress video",
     "Michael Schneider",
   ],
-  generator: 'v0.app',
+  generator: 'sneitech inc',
   authors: [{ name: "SneiTech Inc" }],
   creator: "SneiTech Inc",
   publisher: "SneiTech Inc",
@@ -94,6 +95,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
+          {process.env.NODE_ENV === 'production' && <SpeedInsights />}
         </ThemeProvider>
       </body>
     </html>

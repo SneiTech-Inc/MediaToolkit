@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Download, RotateCcw, FileText } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -164,7 +165,7 @@ export function WordToPDF() {
     const baseName = file?.name.replace(/\.docx?$/i, '') || 'document'
     const a = document.createElement('a')
     a.href = url
-    a.download = `${baseName}.pdf`
+    a.download = getSaveVexFileName(`${baseName}.pdf`)
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

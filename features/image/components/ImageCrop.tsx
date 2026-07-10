@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useRef, useEffect } from 'react'
 import ReactCrop, { centerCrop, makeAspectCrop, convertToPixelCrop } from 'react-image-crop'
 import type { Crop, PixelCrop, PercentCrop } from 'react-image-crop'
@@ -171,12 +172,11 @@ export function ImageCrop() {
 
     const ext = outputFormat === 'image/jpeg' ? 'jpg' : outputFormat === 'image/webp' ? 'webp' : 'png'
     const baseName = originalFile.name.replace(/\.[^.]+$/, '')
-    const fileName = `${baseName}-cropped.${ext}`
 
     const url = URL.createObjectURL(result.blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = fileName
+    a.download = getSaveVexFileName(`${baseName}.${ext}`)
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

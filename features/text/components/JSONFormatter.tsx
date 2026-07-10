@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useMemo, useRef } from 'react'
 import {
   RotateCcw,
@@ -165,7 +166,7 @@ export function JSONFormatter() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = fileName || 'formatted.json'
+    a.download = getSaveVexFileName(fileName || 'formatted.json')
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useMemo } from 'react'
 import { Download, RotateCcw, FileText, Type, Settings2 } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -57,7 +58,7 @@ export function TextToPDF() {
     if (!pdfBlob) return
     const url = URL.createObjectURL(pdfBlob)
     const a = document.createElement('a')
-    a.href = url; a.download = 'text.pdf'
+    a.href = url; a.download = getSaveVexFileName('text.pdf')
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [pdfBlob])

@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Download, RotateCcw } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -118,12 +119,11 @@ export function ImageCompressor() {
     const ext = outputFormat === 'image/jpeg' ? 'jpg' : outputFormat === 'image/webp' ? 'webp' : 'png'
     const originalName = originalFile?.name || 'image'
     const baseName = originalName.replace(/\.[^.]+$/, '')
-    const fileName = `${baseName}-compressed.${ext}`
 
     const url = URL.createObjectURL(result.blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = fileName
+    a.download = getSaveVexFileName(`${baseName}.${ext}`)
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

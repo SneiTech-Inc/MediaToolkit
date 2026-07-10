@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { unlockPDF } from '@/features/pdf/utils/pdfUnlocker'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
@@ -99,8 +100,7 @@ export function UnlockPDF() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    const name = file.name.replace('.svpx', '').replace('.pdf', '-unlocked.pdf')
-    a.download = name.endsWith('.pdf') ? name : name + '.pdf'
+    a.download = getSaveVexFileName(file.name.replace(/\.(svpx|pdf)$/i, '.pdf'))
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

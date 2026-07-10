@@ -11,6 +11,7 @@ import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { compressPDF } from '@/features/pdf/utils/pdfCompressor'
 import type { CompressionLevel, CompressionResult } from '@/features/pdf/utils/pdfCompressor'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 const LEVELS: { value: CompressionLevel; label: string; desc: string }[] = [
   { value: 'low', label: 'Low', desc: 'Mild JPEG recompression, best quality' },
@@ -56,7 +57,7 @@ export function CompressPDF() {
     const blob = new Blob([result.data], { type: 'application/pdf' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
-    a.href = url; a.download = file.name.replace('.pdf', '-compressed.pdf')
+    a.href = url; a.download = getSaveVexFileName(file.name)
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [result, file])

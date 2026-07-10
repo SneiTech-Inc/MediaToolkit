@@ -12,6 +12,7 @@ import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { ocrPDF, OCR_LANGUAGES } from '@/features/pdf/utils/ocrProcessor'
 import type { OCRLanguage, OCRProgress, OCRResult } from '@/features/pdf/utils/ocrProcessor'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
@@ -70,7 +71,7 @@ export function OCRPDF() {
     const blob = new Blob([result.data], { type: 'application/pdf' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
-    a.href = url; a.download = file.name.replace('.pdf', '-ocr.pdf')
+    a.href = url; a.download = getSaveVexFileName(file.name)
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [result, file])

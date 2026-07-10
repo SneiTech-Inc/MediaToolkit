@@ -13,6 +13,7 @@ import { getPdfPageCount } from '@/features/pdf/utils/pdfMerger'
 import { convertPDFToMarkdown } from '@/features/pdf/utils/pdfToMarkdown'
 import type { MarkdownResult } from '@/features/pdf/utils/pdfToMarkdown'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`
@@ -99,7 +100,7 @@ export function PDFToMarkdown() {
     const blob = new Blob([result.markdown], { type: 'text/markdown' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
-    a.href = url; a.download = file.name.replace(/\.pdf$/i, '') + '.md'
+    a.href = url; a.download = getSaveVexFileName(file.name.replace(/\.pdf$/i, '.md'))
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [result, file])

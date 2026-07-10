@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback } from 'react'
 import { Download, RotateCcw, Presentation } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -75,7 +76,7 @@ export function PDFToPPT() {
     const url = URL.createObjectURL(pptxBlob)
     const base = file?.name.replace(/\.pdf$/i, '') || 'presentation'
     const a = document.createElement('a')
-    a.href = url; a.download = `${base}.pptx`
+    a.href = url; a.download = getSaveVexFileName(`${base}.pptx`)
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }, [pptxBlob, file])

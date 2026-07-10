@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { Download, RotateCcw } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
@@ -132,7 +133,7 @@ export function ImageBlur() {
       const baseName = originalFile.name.replace(/\.[^.]+$/, '')
       const url = URL.createObjectURL(res.blob)
       const a = document.createElement('a')
-      a.href = url; a.download = `${baseName}-blurred.${ext}`
+      a.href = url; a.download = getSaveVexFileName(`${baseName}.${ext}`)
       document.body.appendChild(a); a.click(); document.body.removeChild(a)
       setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch (err) {

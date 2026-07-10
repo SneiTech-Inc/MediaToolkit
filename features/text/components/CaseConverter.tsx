@@ -1,5 +1,6 @@
 'use client'
 
+import { getSaveVexFileName } from '@/utils/fileNames'
 import { useState, useCallback, useMemo, useRef } from 'react'
 import {
   RotateCcw,
@@ -160,7 +161,7 @@ export function CaseConverter() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'converted-text.txt'
+    a.download = getSaveVexFileName('converted-text.txt')
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

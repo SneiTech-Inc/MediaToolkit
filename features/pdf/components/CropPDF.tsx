@@ -13,6 +13,7 @@ import { parsePageInput } from '@/features/pdf/utils/pdfSplitter'
 import { cropPDF, detectWhiteMargins } from '@/features/pdf/utils/pdfCropper'
 import type { CropMargins } from '@/features/pdf/utils/pdfCropper'
 import { formatBytes } from '@/utils/formatBytes'
+import { getSaveVexFileName } from '@/utils/fileNames'
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`
@@ -182,7 +183,7 @@ export function CropPDF() {
       const blob = new Blob([data], { type: 'application/pdf' })
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
-      a.href = url; a.download = file.name.replace('.pdf', '-cropped.pdf')
+      a.href = url; a.download = getSaveVexFileName(file.name)
       document.body.appendChild(a); a.click(); document.body.removeChild(a)
       setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch (err) {
