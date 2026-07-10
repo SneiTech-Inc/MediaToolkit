@@ -87,6 +87,14 @@ export default function RootLayout({
             gtag('config', 'G-GJBDWNSKBB');
           `}
         </Script>
+
+        {/* Google AdSense — Add this */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4116402342121729"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body className="antialiased bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
