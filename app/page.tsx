@@ -10,6 +10,7 @@ import { TOOLS, CATEGORIES, BLOG_POSTS, TRUST_BADGES } from '@/lib/constants'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 
 export default function Page() {
   const router = useRouter()
@@ -24,6 +25,7 @@ export default function Page() {
     : TOOLS.filter(tool => tool.category === selectedCategory)
 
   const recentlyAdded = TOOLS.slice(0, 4)
+  const featuredPosts = BLOG_POSTS.slice(0, 4)
 
   return (
     <PageLayout>
@@ -168,9 +170,15 @@ export default function Page() {
             description="Tips, tutorials, and news about file processing"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {BLOG_POSTS.map((post) => (
+            {featuredPosts.map((post) => (
               <BlogCard key={post.slug} post={post} variant="compact" />
             ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              View All Blog Posts
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
