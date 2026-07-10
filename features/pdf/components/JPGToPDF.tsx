@@ -41,10 +41,10 @@ const IMAGE_FIT_OPTIONS: { value: JPGToPDFOptions['imageFit']; label: string }[]
 ]
 
 const TOOL_FAQS = [
-  { question: 'What image formats are supported?', answer: 'JPG, PNG, WebP, GIF, and BMP. JPG and PNG images are embedded directly. WebP, GIF, and BMP are automatically converted to PNG via Canvas API before embedding.' },
+  { question: 'What image formats are supported?', answer: 'JPG, PNG, WebP, GIF, and BMP. JPG and PNG images are embedded directly. WebP, GIF, and BMP are automatically converted to PNG via the browser\'s rendering engine before embedding.' },
   { question: 'Can I choose the page size?', answer: 'Yes! Select from Fit to Image (each page matches the image dimensions), A4, Letter, or Legal. You can also switch between portrait and landscape orientation.' },
   { question: 'How do I reorder images before converting?', answer: 'Drag the grip handle on any image tile to rearrange the order. Images appear in the PDF in the order shown in the list.' },
-  { question: 'Is my data uploaded to a server?', answer: 'No! All processing happens entirely in your browser using pdf-lib. Your images never leave your device.' },
+  { question: 'Is my data uploaded to a server?', answer: 'No! All processing happens entirely in your browser using advanced PDF processing technology. Your images never leave your device.' },
 ]
 
 // ─── Entry Model ───────────────────────────────────────────────────────────

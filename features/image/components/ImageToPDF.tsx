@@ -21,7 +21,7 @@ const TOOL_FAQS = [
   { question: 'How many images can I convert to PDF?', answer: 'There is no hard limit — you can add as many images as you like. Each image becomes one page in the PDF. Keep in mind that very large PDFs may use significant browser memory.' },
   { question: 'Can I reorder images before converting?', answer: 'Yes! Drag the grip handle (⠿) on each thumbnail to rearrange the page order. The final PDF will use your custom order.' },
   { question: 'What image formats are supported?', answer: 'JPEG, PNG, WebP, GIF, SVG, and BMP. Non-JPEG/PNG formats are automatically converted before embedding in the PDF.' },
-  { question: 'Is my data uploaded to a server?', answer: 'No! All processing happens entirely in your browser using pdf-lib and Canvas API. Your images never leave your device.' },
+  { question: 'Is my data uploaded to a server?', answer: 'No! All processing happens entirely in your browser using advanced PDF and image processing technology. Your images never leave your device.' },
 ]
 
 interface ImageEntry {

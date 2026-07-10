@@ -15,7 +15,7 @@ const TOOL_FAQS = [
   { question: 'How do I split a PDF?', answer: 'Upload your PDF, choose Extract Pages (to pull out specific pages into one new PDF) or Split by Range (to create multiple PDFs from different page ranges). Enter your page numbers and click the action button.' },
   { question: 'Can I extract specific pages?', answer: 'Yes! In Extract Pages mode, type page numbers like "1, 3, 5-7" to pull those pages into a new PDF. Pages are kept in the order you specify.' },
   { question: 'Can I split by page ranges?', answer: 'Yes! In Split by Range mode, enter ranges like "1-3, 4-6, 7-10" to create separate PDFs — one per range. Each range becomes its own downloadable file.' },
-  { question: 'Is my PDF uploaded to a server?', answer: 'No! All splitting happens entirely in your browser using pdf-lib. Your PDF never leaves your device.' },
+  { question: 'Is my PDF uploaded to a server?', answer: 'No! All splitting happens entirely in your browser using advanced PDF processing technology. Your PDF never leaves your device.' },
 ]
 
 type Mode = 'extract' | 'split'

@@ -19,7 +19,7 @@ import { formatBytes } from '@/utils/formatBytes'
 const TOOL_FAQS = [
   { question: 'How many PDFs can I merge?', answer: 'There is no hard limit — you can merge as many PDFs as you need. All processing happens locally in your browser so performance depends on your device.' },
   { question: 'Can I reorder PDFs before merging?', answer: 'Yes! Drag the grip handle on each tile to rearrange the order. The final merged PDF will use your custom page order.' },
-  { question: 'Is my data uploaded to a server?', answer: 'No! All merging happens entirely in your browser using pdf-lib. Your PDFs never leave your device — 100% private and secure.' },
+  { question: 'Is my data uploaded to a server?', answer: 'No! All merging happens entirely in your browser using advanced PDF processing technology. Your PDFs never leave your device — 100% private and secure.' },
   { question: 'Are there file size limits?', answer: 'File size is limited by your browser\'s available memory. For best performance, keep individual PDFs under 50 MB and total files under 200 MB.' },
 ]
 

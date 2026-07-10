@@ -33,7 +33,7 @@ const ASPECT_RATIOS: { label: string; value: number | undefined }[] = [
 const TOOL_FAQS = [
   {
     question: 'How does image cropping work?',
-    answer: 'SaveVex crops your images entirely in your browser using the native Canvas API. You select the area you want to keep, and the rest is trimmed away. No image data is ever uploaded to any server — your files remain 100% private and secure.',
+    answer: 'SaveVex crops your images entirely in your browser using browser-native rendering technology. You select the area you want to keep, and the rest is trimmed away. No image data is ever uploaded to any server — your files remain 100% private and secure.',
   },
   {
     question: 'Can I crop to a specific aspect ratio?',

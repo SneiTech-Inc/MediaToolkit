@@ -23,7 +23,7 @@ const OUTPUT_FORMATS: { value: OutputFormat; label: string }[] = [
 const TOOL_FAQS = [
   {
     question: 'How does image flipping work?',
-    answer: 'SaveVex flips your images entirely in your browser using the native Canvas API. The image is mirrored using mathematical transforms — no data is ever uploaded to any server. Your files remain 100% private and secure.',
+    answer: 'SaveVex flips your images entirely in your browser using browser-native rendering technology. The image is mirrored using mathematical transforms — no data is ever uploaded to any server. Your files remain 100% private and secure.',
   },
   {
     question: 'What does flipping an image do?',

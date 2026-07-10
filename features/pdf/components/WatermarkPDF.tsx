@@ -31,7 +31,7 @@ const TOOL_FAQS = [
   { question: 'What types of watermarks can I add?', answer: 'Text watermarks (custom text with configurable font size, color, and rotation) or image watermarks (upload a logo or icon — PNG with transparency is recommended for best results).' },
   { question: 'Can I use a transparent PNG as a logo watermark?', answer: 'Yes! PNG images with transparency work best for logo watermarks. Non-PNG formats are automatically converted via Canvas before embedding.' },
   { question: 'Can I apply watermarks to specific pages only?', answer: 'Yes! Toggle "Specific pages" and enter page numbers like "1,3,5-7" to watermark only those pages.' },
-  { question: 'Is my PDF uploaded to a server?', answer: 'No! All processing happens entirely in your browser using pdf-lib. Your PDF and watermark never leave your device.' },
+  { question: 'Is my PDF uploaded to a server?', answer: 'No! All processing happens entirely in your browser using advanced PDF processing technology. Your PDF and watermark never leave your device.' },
 ]
 
 // ─── Helpers ───────────────────────────────────────────────────────────────

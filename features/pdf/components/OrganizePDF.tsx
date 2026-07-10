@@ -42,7 +42,7 @@ const TOOL_FAQS = [
   { question: 'Can I delete multiple pages at once?', answer: 'Yes — delete individual pages with the trash button. Deleted pages can be restored via the Undo button until you reset or upload a new file.' },
   { question: 'Can I rotate pages while organizing?', answer: 'Yes! Each page has a rotate button that rotates in 90° increments. Use "Rotate All" to rotate every non-deleted page at once.' },
   { question: 'What happens to page numbers after reorganization?', answer: 'Pages are renumbered based on their new order. Original page numbers are discarded — the final PDF reflects exactly what you see.' },
-  { question: 'Is my PDF uploaded to a server?', answer: 'No! All processing happens entirely in your browser using pdf-lib. Your PDF never leaves your device.' },
+  { question: 'Is my PDF uploaded to a server?', answer: 'No! All processing happens entirely in your browser using advanced PDF processing technology. Your PDF never leaves your device.' },
 ]
 
 // ─── Sortable Tile ─────────────────────────────────────────────────────────

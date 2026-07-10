@@ -33,7 +33,7 @@ const POSITIONS: { value: WatermarkPosition; label: string }[] = [
 const TOOL_FAQS = [
   {
     question: 'How does watermarking work?',
-    answer: 'SaveVex applies watermarks entirely in your browser using the native Canvas API. Your image and watermark are composited locally — no data is ever uploaded to any server. Your files remain 100% private and secure.',
+    answer: 'SaveVex applies watermarks entirely in your browser using browser-native rendering technology. Your image and watermark are composited locally — no data is ever uploaded to any server. Your files remain 100% private and secure.',
   },
   {
     question: 'What types of watermarks can I add?',

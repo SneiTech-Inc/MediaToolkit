@@ -15,7 +15,7 @@ import { formatBytes } from '@/utils/formatBytes'
 // ─── Constants ─────────────────────────────────────────────────────────────
 
 const TOOL_FAQS = [
-  { question: 'What types of PDF issues can be repaired?', answer: 'This tool can fix broken cross-reference tables, invalid object streams, minor structural corruption, and optimize poorly-saved PDFs. It rebuilds the PDF structure using pdf-lib\'s error-recovery parser.' },
+  { question: 'What types of PDF issues can be repaired?', answer: 'This tool can fix broken cross-reference tables, invalid object streams, minor structural corruption, and optimize poorly-saved PDFs. It rebuilds the PDF structure using advanced error-recovery parsing.' },
   { question: 'Can all PDFs be repaired?', answer: 'No. Severely corrupted PDFs where the header, trailer, or critical objects are missing may not be repairable. Encrypted PDFs must be unlocked first using the Unlock PDF tool.' },
   { question: 'Is my PDF uploaded to a server?', answer: 'No! All repair processing happens entirely in your browser. Your PDF never leaves your device.' },
 ]

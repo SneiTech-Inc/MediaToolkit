@@ -22,7 +22,7 @@ const OUTPUT_FORMATS: { value: OutputFormat; label: string }[] = [
 const TOOL_FAQS = [
   {
     question: 'How does image conversion work?',
-    answer: 'SaveVex converts your images entirely in your browser using the native Canvas API. Your image is drawn onto a canvas and exported in the target format. No image data is ever uploaded to any server — your files remain 100% private and secure.',
+    answer: 'SaveVex converts your images entirely in your browser using browser-native rendering technology. Your image is drawn and exported in the target format. No image data is ever uploaded to any server — your files remain 100% private and secure.',
   },
   {
     question: 'What formats can I convert between?',

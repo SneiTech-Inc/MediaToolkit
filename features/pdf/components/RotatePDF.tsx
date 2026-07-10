@@ -32,7 +32,7 @@ const TOOL_FAQS = [
   { question: 'Can I rotate specific pages only?', answer: 'Yes! Each page has individual rotate left, rotate right, and rotate 180° buttons. Only the pages you click are affected.' },
   { question: 'Can I rotate all pages at once?', answer: 'Yes! Use the "Apply to All" buttons at the top to rotate every page in the document simultaneously.' },
   { question: 'What rotation options are available?', answer: 'Rotate 90° clockwise, 90° counter-clockwise, or 180°. Each click adds to the current rotation, so you can achieve any 90° increment (0°, 90°, 180°, 270°).' },
-  { question: 'Is my PDF uploaded to a server?', answer: 'No! All processing happens entirely in your browser using pdf-lib. Your PDF never leaves your device.' },
+  { question: 'Is my PDF uploaded to a server?', answer: 'No! All processing happens entirely in your browser using advanced PDF processing technology. Your PDF never leaves your device.' },
 ]
 
 // ─── Thumbnail Generation ──────────────────────────────────────────────────

@@ -28,7 +28,7 @@ const OUTPUT_FORMATS: { value: OutputFormat; label: string }[] = [
 ]
 
 const TOOL_FAQS = [
-  { question: 'How does adding a border work?', answer: 'SaveVex adds borders entirely in your browser using the native Canvas API. The image is drawn centered on a larger canvas filled with your chosen border color. No data is ever uploaded to any server.' },
+  { question: 'How does adding a border work?', answer: 'SaveVex adds borders entirely in your browser using browser-native rendering technology. The image is drawn centered on a larger canvas filled with your chosen border color. No data is ever uploaded to any server.' },
   { question: 'What border styles are available?', answer: 'Solid (continuous line), Dashed (long dashes), and Dotted (small dots). You can also round the corners using the radius slider for a softer, frame-like look.' },
   { question: 'Can I make rounded corners with the border?', answer: 'Yes! Use the Corner Radius slider to curve the border corners. The image itself will also be clipped to match, giving a polished rounded look.' },
   { question: 'Does adding a border reduce image quality?', answer: 'The inner image is drawn at its original resolution — no quality is lost. The final dimensions increase by (border width × 2), so very thick borders create larger output files.' },

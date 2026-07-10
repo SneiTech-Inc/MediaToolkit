@@ -7,6 +7,37 @@ import type { BlogPost } from '@/types/common'
  * Update this array when adding new posts to keep client components in sync.
  */
 export const BLOG_POSTS = [
+  // ── July 10, 2026 ──
+  {
+    title: 'Why SaveVex is the Best and Most Secure Media Toolkit',
+    excerpt:
+      'Discover why SaveVex is the most secure, private, and capable free media toolkit available. Browser-based processing, no uploads, zero compromise on quality.',
+    date: 'Jul 10, 2026',
+    category: 'Guide',
+    slug: 'why-savevex-best-secure-toolkit',
+    content: '',
+    readingTime: '5 min read',
+  },
+  {
+    title: 'Does SaveVex Collect or Record User Data?',
+    excerpt:
+      'A clear explanation of SaveVex privacy practices. Learn what data we do and do not collect, how local processing keeps your files safe, and what you can expect.',
+    date: 'Jul 10, 2026',
+    category: 'Guide',
+    slug: 'savevex-privacy-data-policy',
+    content: '',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'The Complete Guide to SaveVex Image Tools',
+    excerpt:
+      'Your comprehensive guide to all SaveVex image tools: compress, resize, crop, convert, rotate, flip, watermark, blur, add border, and image to PDF. Learn when and how to use each one.',
+    date: 'Jul 10, 2026',
+    category: 'Guide',
+    slug: 'savevex-image-tools-guide',
+    content: '',
+    readingTime: '5 min read',
+  },
   // ── July 9, 2026 ──
   {
     title: 'How to Compress PDF Files Without Losing Quality',

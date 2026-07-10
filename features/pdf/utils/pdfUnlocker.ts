@@ -117,7 +117,7 @@ async function unlockStandard(
       throw err
     }
     throw new Error(
-      'This PDF uses standard encryption which pdf-lib cannot fully decrypt. ' +
+      'This PDF uses standard encryption which cannot be fully decrypted at this time. ' +
       'For best results, re-protect the file using the Protect PDF tool first, ' +
       'then unlock it here. Standard encryption removal is coming in Phase 2.',
     )

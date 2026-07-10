@@ -15,7 +15,7 @@ Today, we're excited to announce the official launch of SaveVex — a free, all-
 
 The idea for SaveVex came from a simple frustration: why is basic file processing still so painful? Need to compress a PDF? You're directed to sketchy sites that watermark your document or limit you to two free uses per day. Want to convert an image? You have to upload it to some server, wait for it to process, and hope your file isn't stored or misused. Resize a video? That requires downloading heavy desktop software.
 
-We looked at this landscape and thought: it shouldn't be this hard. Modern browsers are powerful enough to handle complex file processing locally. WebAssembly, the File API, and Canvas API have reached a point where you can compress, convert, edit, and optimize files without ever sending them across the network. So we built SaveVex to do exactly that.
+We looked at this landscape and thought: it shouldn't be this hard. Modern browsers are powerful enough to handle complex file processing locally. WebAssembly, the File API, and browser-native rendering engines have reached a point where you can compress, convert, edit, and optimize files without ever sending them across the network. So we built SaveVex to do exactly that.
 
 ## What Sets SaveVex Apart
 

@@ -24,7 +24,7 @@ const OUTPUT_FORMATS: { value: OutputFormat; label: string }[] = [
 const TOOL_FAQS = [
   {
     question: 'How does SaveVex compress my images?',
-    answer: 'SaveVex compresses your images entirely in your browser using the native Third-Party API. No image data is ever uploaded to any server — everything stays on your device. This means your images are 100% private and secure.',
+    answer: 'SaveVex compresses your images entirely in your browser using browser-native rendering. No image data is ever uploaded to any server — everything stays on your device. This means your images are 100% private and secure.',
   },
   {
     question: 'Which format should I choose?',
@@ -40,7 +40,7 @@ const TOOL_FAQS = [
   },
   {
     question: 'What happens with animated GIFs?',
-    answer: 'Canvas API only captures the first frame of animated GIFs. If you upload an animated GIF, the output will be a still image showing only the first frame.',
+    answer: 'The browser\'s image engine only captures the first frame of animated GIFs. If you upload an animated GIF, the output will be a still image showing only the first frame.',
   },
 ]
 
@@ -170,7 +170,7 @@ export function ImageCompressor() {
                 <ProgressBar
                   percent={progress}
                   label="Compressing"
-                  detail={progress < 100 ? 'Rendering with Canvas API...' : 'Finalizing...'}
+                  detail={progress < 100 ? 'Rendering with browser-native engine...' : 'Finalizing...'}
                 />
               </div>
             ) : result ? (

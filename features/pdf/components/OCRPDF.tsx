@@ -17,8 +17,8 @@ import { formatBytes } from '@/utils/formatBytes'
 
 const TOOL_FAQS = [
   { question: 'What languages are supported?', answer: 'English, Spanish, French, German, Italian, Portuguese, Russian, Japanese, Chinese (Simplified), and Chinese (Traditional). Select your language from the dropdown before processing.' },
-  { question: 'How accurate is the OCR?', answer: 'Tesseract.js provides good accuracy for clear, printed text at reasonable resolutions. Handwriting, stylized fonts, and low-resolution scans may have reduced accuracy.' },
-  { question: 'Can I OCR PDFs with handwriting?', answer: 'Tesseract is optimized for printed text. Handwriting recognition is limited and may produce inaccurate results.' },
+  { question: 'How accurate is the OCR?', answer: 'Our OCR engine provides good accuracy for clear, printed text at reasonable resolutions. Handwriting, stylized fonts, and low-resolution scans may have reduced accuracy.' },
+  { question: 'Can I OCR PDFs with handwriting?', answer: 'Our OCR technology is optimized for printed text. Handwriting recognition is limited and may produce inaccurate results.' },
   { question: 'Is my PDF uploaded to a server?', answer: 'No! All OCR processing happens entirely in your browser. Your PDF never leaves your device.' },
 ]
 
@@ -223,7 +223,7 @@ export function OCRPDF() {
                   )}
                 </div>
               ) : (
-                <p className="text-sm text-muted-foreground">Upload a scanned PDF to make it searchable. Tesseract.js will extract text and embed it as an invisible searchable layer.</p>
+                <p className="text-sm text-muted-foreground">Upload a scanned PDF to make it searchable. Our OCR engine will extract text and embed it as an invisible searchable layer.</p>
               )}
             </div>
           </div>

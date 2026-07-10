@@ -19,7 +19,7 @@ const TOOL_FAQS = [
   { question: 'How does the QR code scanner work?', answer: 'Scan the QR code with your phone camera to open a mobile scanner page. Capture document pages on your phone, then tap Upload to send them to your desktop browser via local storage.' },
   { question: 'Is my data uploaded to a server?', answer: 'No! Images are stored temporarily in your browser\'s localStorage and processed entirely on your device. They never leave your computer.' },
   { question: 'What if I don\'t want to use my phone?', answer: 'You can also upload existing JPG, PNG or WebP images directly using the upload area below the QR code.' },
-  { question: 'Is my PDF uploaded to a server?', answer: 'No! All PDF conversion happens entirely in your browser using pdf-lib. Your documents never leave your device.' },
+  { question: 'Is my PDF uploaded to a server?', answer: 'No! All PDF conversion happens entirely in your browser using advanced PDF processing technology. Your documents never leave your device.' },
 ]
 
 // ─── Helpers ───────────────────────────────────────────────────────────────

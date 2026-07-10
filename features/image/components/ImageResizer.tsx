@@ -22,7 +22,7 @@ const OUTPUT_FORMATS: { value: OutputFormat; label: string }[] = [
 const TOOL_FAQS = [
   {
     question: 'How does SaveVex resize my images?',
-    answer: 'SaveVex resizes your images entirely in your browser using the native Canvas API. No image data is ever uploaded to any server — everything stays on your device. Your images are 100% private and secure.',
+    answer: 'SaveVex resizes your images entirely in your browser using browser-native rendering technology. No image data is ever uploaded to any server — everything stays on your device. Your images are 100% private and secure.',
   },
   {
     question: 'What happens if I change only one dimension?',

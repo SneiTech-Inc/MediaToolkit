@@ -46,7 +46,7 @@ const TOOL_FAQS: FAQItem[] = [
   {
     question: 'Is my PDF uploaded to a server?',
     answer:
-      'No! All processing happens entirely in your browser using pdfjs-dist. Your PDF never leaves your device — 100% private and secure.',
+      'No! All processing happens entirely in your browser using advanced document processing technology. Your PDF never leaves your device — 100% private and secure.',
   },
   {
     question: 'Can I convert image-based PDFs?',
