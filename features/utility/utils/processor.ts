@@ -1,19 +1,26 @@
 /**
  * Utility tool helpers.
  * Mostly pure functions — no heavy dependencies needed.
+ *
+ * NOTE: Hash generation has been implemented in `./hashGenerator.ts`.
+ * The functions below delegate there for backward compatibility.
  */
 
-export function generateQrDataUrl(_text: string): string {
-  // TODO: Lazy-load qrcode library when implemented
-  throw new Error('QR code generation is not yet implemented.')
-}
+import { generateHashes, type HashAlgorithm } from '@/features/utility/utils/hashGenerator'
 
-export function generateHash(text: string, _algorithm: 'md5' | 'sha1' | 'sha256' = 'sha256'): Promise<string> {
-  const encoder = new TextEncoder()
-  const data = encoder.encode(text)
-  return crypto.subtle.digest('SHA-256', data).then((buffer) =>
-    Array.from(new Uint8Array(buffer))
-      .map((b) => b.toString(16).padStart(2, '0'))
-      .join('')
-  )
+export { generateHashes, type HashAlgorithm } from '@/features/utility/utils/hashGenerator'
+
+export async function generateHash(
+  text: string,
+  algorithm: 'md5' | 'sha1' | 'sha256' | 'sha384' | 'sha512' = 'sha256',
+): Promise<string> {
+  const algoMap: Record<string, HashAlgorithm> = {
+    md5: 'MD5',
+    sha1: 'SHA-1',
+    sha256: 'SHA-256',
+    sha384: 'SHA-384',
+    sha512: 'SHA-512',
+  }
+  const results = await generateHashes(text, [algoMap[algorithm] || 'SHA-256'])
+  return results[0]?.hash || ''
 }

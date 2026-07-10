@@ -36,9 +36,4 @@ export const textTools = [
     description: 'Encode and decode URLs', icon: '🌐', badge: null,
     dateAdded: '2024-01-18', inputFormats: ['txt'], outputFormats: ['txt'], isComingSoon: false,
   },
-  {
-    id: 'password-generator', slug: 'password-generator', name: 'Password Generator', category: 'text',
-    description: 'Generate strong, random passwords', icon: '🔑', badge: null,
-    dateAdded: '2024-01-18', inputFormats: [], outputFormats: ['txt'], isComingSoon: false,
-  },
 ] as const satisfies Tool[]
