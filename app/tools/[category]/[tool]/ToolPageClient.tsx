@@ -237,6 +237,7 @@ const PasswordGenerator = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+
 const ConvertAudio = dynamic(
   () => import('@/features/audio/components/ConvertAudio').then(m => ({ default: m.ConvertAudio })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -254,6 +255,36 @@ const TrimAudio = dynamic(
 
 const ChangeVolume = dynamic(
   () => import('@/features/audio/components/ChangeVolume').then(m => ({ default: m.ChangeVolume })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const QRCodeGenerator = dynamic(
+  () => import('@/features/utility/components/QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const ColorPicker = dynamic(
+  () => import('@/features/utility/components/ColorPicker').then(m => ({ default: m.ColorPicker })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const TimestampConverter = dynamic(
+  () => import('@/features/utility/components/TimestampConverter').then(m => ({ default: m.TimestampConverter })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const UUIDGenerator = dynamic(
+  () => import('@/features/utility/components/UUIDGenerator').then(m => ({ default: m.UUIDGenerator })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const HashGenerator = dynamic(
+  () => import('@/features/utility/components/HashGenerator').then(m => ({ default: m.HashGenerator })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const LoremIpsumGenerator = dynamic(
+  () => import('@/features/utility/components/LoremIpsumGenerator').then(m => ({ default: m.LoremIpsumGenerator })),
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
@@ -306,6 +337,12 @@ const toolComponents: Record<string, React.ComponentType> = {
   'html-to-pdf': HTMLToPDF,
   'markdown-to-pdf': MarkdownToPDF,
   'csv-to-pdf': CSVToPDF,
+  'qr-generator': QRCodeGenerator,
+  'color-picker': ColorPicker,
+  'timestamp-converter': TimestampConverter,
+  'uuid-generator': UUIDGenerator,
+  'hash-generator': HashGenerator,
+  'lorem-ipsum-generator': LoremIpsumGenerator,
 }
 
 // ─── Generic Fallback (placeholder for tools without real logic yet) ─────────

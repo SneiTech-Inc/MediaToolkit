@@ -7,6 +7,17 @@ import type { BlogPost } from '@/types/common'
  * Update this array when adding new posts to keep client components in sync.
  */
 export const BLOG_POSTS = [
+  // ── July 11, 2026 ──
+  {
+    title: 'SaveVex Utility Tools: Now Available — Everything You Need in One Place',
+    excerpt:
+      'Announcing the launch of SaveVex Utility Tools: QR Code Generator, Color Picker, Timestamp Converter, UUID Generator, Hash Generator, Lorem Ipsum Generator, and Password Generator. Free, private, and entirely browser-based.',
+    date: 'Jul 11, 2026',
+    category: 'News',
+    slug: 'savevex-utility-tools-now-available',
+    content: '',
+    readingTime: '5 min read',
+  },
   // ── July 10, 2026 ──
   {
     title: 'Why SaveVex is the Best and Most Secure Media Toolkit',
