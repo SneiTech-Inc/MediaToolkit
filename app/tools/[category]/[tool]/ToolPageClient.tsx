@@ -252,6 +252,11 @@ const TrimAudio = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const ChangeVolume = dynamic(
+  () => import('@/features/audio/components/ChangeVolume').then(m => ({ default: m.ChangeVolume })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -269,6 +274,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'convert-audio': ConvertAudio,
   'merge-audio': MergeAudio,
   'trim-audio': TrimAudio,
+  'change-volume': ChangeVolume,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,
   'rotate-pdf': RotatePDF,

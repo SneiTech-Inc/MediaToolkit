@@ -21,7 +21,8 @@ export const audioTools = [
   },
   {
     id: 'change-volume', slug: 'change-volume', name: 'Change Volume', category: 'audio',
-    description: 'Adjust audio volume levels', icon: '🔊', badge: null,
-    dateAdded: '2024-01-12', inputFormats: ['mp3', 'wav', 'aac'], outputFormats: ['mp3', 'wav'], isComingSoon: true,
+    description: 'Adjust audio volume levels — boost, reduce, or normalize. Free, fast, and entirely in your browser.',
+    icon: '🔊', badge: null,
+    dateAdded: '2024-01-12', inputFormats: ['mp3', 'wav', 'aac', 'ogg', 'flac', 'm4a'], outputFormats: ['mp3', 'wav', 'aac', 'ogg', 'flac', 'm4a'], isComingSoon: false,
   },
 ] as const satisfies Tool[]
