@@ -127,9 +127,9 @@ export function Header() {
 
           <ToolDropdown label="All PDF Tools" category="pdf" tools={pdfTools} />
           <ToolDropdown label="All Image Tools" category="image" tools={imageTools} />
-          <ToolDropdown label="All Document Tools" category="document" tools={documentTools} />
           <ToolDropdown label="All Video Tools" category="video" tools={videoTools} />
           <ToolDropdown label="All Audio Tools" category="audio" tools={audioTools} />
+          <ToolDropdown label="All Document Tools" category="document" tools={documentTools} />
           <ToolDropdown label="All Text Tools" category="text" tools={textTools} />
           <ToolDropdown label="All Utility Tools" category="utility" tools={utilityTools} />
         </div>

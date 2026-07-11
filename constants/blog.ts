@@ -18,6 +18,16 @@ export const BLOG_POSTS = [
     content: '',
     readingTime: '5 min read',
   },
+  {
+    title: 'SaveVex Audio Tools: Now Available — Convert, Merge, Trim, and Boost Your Audio',
+    excerpt:
+      'Announcing the launch of SaveVex Audio Tools: Convert Audio, Merge Audio, Trim Audio, and Change Volume. Process audio entirely in your browser — free, fast, and private.',
+    date: 'Jul 11, 2026',
+    category: 'News',
+    slug: 'savevex-audio-tools-now-available',
+    content: '',
+    readingTime: '3 min read',
+  },
   // ── July 10, 2026 ──
   {
     title: 'Why SaveVex is the Best and Most Secure Media Toolkit',
