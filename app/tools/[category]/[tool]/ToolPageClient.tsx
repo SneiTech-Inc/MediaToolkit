@@ -237,6 +237,21 @@ const PasswordGenerator = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const ConvertAudio = dynamic(
+  () => import('@/features/audio/components/ConvertAudio').then(m => ({ default: m.ConvertAudio })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const MergeAudio = dynamic(
+  () => import('@/features/audio/components/MergeAudio').then(m => ({ default: m.MergeAudio })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
+const TrimAudio = dynamic(
+  () => import('@/features/audio/components/TrimAudio').then(m => ({ default: m.TrimAudio })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const toolComponents: Record<string, React.ComponentType> = {
   'compress-image': ImageCompressor,
   'resize-image': ImageResizer,
@@ -251,6 +266,9 @@ const toolComponents: Record<string, React.ComponentType> = {
   'merge-pdf': MergePDF,
   'split-pdf': SplitPDF,
   'compress-pdf': CompressPDF,
+  'convert-audio': ConvertAudio,
+  'merge-audio': MergeAudio,
+  'trim-audio': TrimAudio,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,
   'rotate-pdf': RotatePDF,
