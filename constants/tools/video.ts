@@ -3,8 +3,8 @@ import type { Tool } from '@/types/tool'
 export const videoTools = [
   {
     id: 'compress-video', slug: 'compress-video', name: 'Compress Video', category: 'video',
-    description: 'Reduce video file size without quality loss', icon: '📉', badge: 'popular',
-    dateAdded: '2024-01-08', inputFormats: ['mp4', 'mov', 'webm', 'mkv'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    description: 'Reduce video file size without sacrificing quality. Free, fast, and entirely in your browser.', icon: '📉', badge: 'popular',
+    dateAdded: '2024-01-08', inputFormats: ['mp4', 'mov', 'webm', 'mkv'], outputFormats: ['mp4'], isComingSoon: false,
   },
   {
     id: 'convert-video', slug: 'convert-video', name: 'Convert Video', category: 'video',

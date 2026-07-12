@@ -258,6 +258,11 @@ const ChangeVolume = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const CompressVideo = dynamic(
+  () => import('@/features/video/components/CompressVideo').then(m => ({ default: m.CompressVideo })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const QRCodeGenerator = dynamic(
   () => import('@/features/utility/components/QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -306,6 +311,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'merge-audio': MergeAudio,
   'trim-audio': TrimAudio,
   'change-volume': ChangeVolume,
+  'compress-video': CompressVideo,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,
   'rotate-pdf': RotatePDF,
