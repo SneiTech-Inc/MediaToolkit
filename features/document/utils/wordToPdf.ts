@@ -4,33 +4,25 @@ import { PDFDocument } from 'pdf-lib'
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-/** Container width in pixels — matches A4 at ~96dpi */
-const CONTAINER_WIDTH = 800
-
-/** Container padding to add white space around the rendered content */
-const CONTAINER_PADDING = 40
-
-/** PDF page size — A4 in points */
-const PAGE_WIDTH_PT = 595.28
-const PAGE_HEIGHT_PT = 841.89
-
 /** Dots-per-inch for pixel ↔ point conversion */
 const DPI = 96
 
 /** JPEG quality (0-1) for page images embedded in the PDF */
 const JPEG_QUALITY = 0.92
 
-/** Height of one PDF page in pixels at 96dpi */
-const PAGE_HEIGHT_PX = (PAGE_HEIGHT_PT / 72) * DPI
-
 // ─── Public API ─────────────────────────────────────────────────────────────
 
 /**
  * Convert a Word (.docx) file to PDF using docx-preview + html2canvas.
  *
- * The .docx is rendered into the browser DOM (preserving images, tables,
- * fonts, and layout), captured as canvas images, and assembled into a
- * multi-page PDF via pdf-lib.
+ * The .docx is rendered with native pagination (breakPages: true) so that
+ * each page is a separate <section> element sized to the document's actual
+ * page dimensions.  Every page element is captured individually with
+ * html2canvas and assembled into a multi-page PDF via pdf-lib.
+ *
+ * Unlike the previous approach of capturing one giant canvas and slicing it
+ * at a fixed pixel height, this method respects the document's own page
+ * boundaries — paragraphs, table rows, and images are never cut in half.
  *
  * @param file - The .docx File object
  * @param onProgress - Optional callback receiving progress percentage (0-100)
@@ -42,7 +34,7 @@ export async function convertWordToPDF(
 ): Promise<Uint8Array> {
   onProgress?.(0)
 
-  // ── Step 1: Render .docx into hidden container ──────────────────────
+  // ── Step 1: Render .docx with native pagination ──────────────────────
   onProgress?.(10)
   const buffer = await file.arrayBuffer()
   const container = createRenderContainer()
@@ -54,7 +46,7 @@ export async function convertWordToPDF(
       inWrapper: false,
       ignoreWidth: false,
       ignoreHeight: false,
-      breakPages: false,
+      breakPages: true, // each page is a <section> sized to the doc's real dimensions
     })
   } catch (err) {
     container.remove()
@@ -64,33 +56,61 @@ export async function convertWordToPDF(
   }
   onProgress?.(40)
 
-  // ── Step 2: Capture as canvas via html2canvas ───────────────────────
-  const canvas = await html2canvas(container, {
-    scale: 2, // 2× for sharp text
-    useCORS: true,
-    logging: false,
-    backgroundColor: '#ffffff',
-    width: CONTAINER_WIDTH,
-    height: container.scrollHeight,
-  })
-  onProgress?.(60)
+  // ── Step 2: Locate individual page elements ──────────────────────────
+  const pageElements = Array.from(
+    container.querySelectorAll<HTMLElement>('section'),
+  )
 
-  // ── Step 3: Clean up hidden container ───────────────────────────────
-  container.remove() // safe — no-op if already detached
+  if (pageElements.length === 0) {
+    container.remove()
+    throw new Error('No pages were rendered from this document.')
+  }
 
-  // ── Step 4: Split canvas into pages and assemble PDF ────────────────
-  const pdfBytes = await assemblePDF(canvas, onProgress)
+  // ── Step 3: Capture each page & assemble PDF ─────────────────────────
+  const pdfDoc = await PDFDocument.create()
+
+  for (let i = 0; i < pageElements.length; i++) {
+    onProgress?.(40 + Math.round(((i + 1) / pageElements.length) * 55))
+
+    const pageEl = pageElements[i]
+    const canvas = await html2canvas(pageEl, {
+      scale: 2, // 2× for sharp text
+      useCORS: true,
+      logging: false,
+      backgroundColor: '#ffffff',
+    })
+
+    const dataUrl = canvas.toDataURL('image/jpeg', JPEG_QUALITY)
+    const response = await fetch(dataUrl)
+    const imageBytes = await response.arrayBuffer()
+    const image = await pdfDoc.embedJpg(imageBytes)
+
+    // Page dimensions come from the ACTUAL rendered element, not a
+    // hardcoded A4/Letter constant. Works with any document page size.
+    const widthPt = (pageEl.offsetWidth / DPI) * 72
+    const heightPt = (pageEl.offsetHeight / DPI) * 72
+
+    const page = pdfDoc.addPage([widthPt, heightPt])
+    page.drawImage(image, { x: 0, y: 0, width: widthPt, height: heightPt })
+
+    canvas.remove()
+  }
+  onProgress?.(95)
+
+  // ── Step 4: Clean up hidden container ────────────────────────────────
+  container.remove()
+
+  const pdfBytes = await pdfDoc.save()
   onProgress?.(100)
-
-  // Clean up the full canvas
-  canvas.remove()
 
   return pdfBytes
 }
 
 /**
- * Render a .docx file into a visible container element for preview.
- * Returns the container so the caller can insert it into the DOM.
+ * Render a .docx file into a visible container element for live preview.
+ *
+ * Uses continuous scroll (breakPages: false) — this is deliberate:
+ * the preview is a single scrollable view, NOT the paginated export.
  */
 export async function renderDocxPreview(
   file: File,
@@ -104,83 +124,32 @@ export async function renderDocxPreview(
     inWrapper: false,
     ignoreWidth: true,
     ignoreHeight: true,
-    breakPages: false,
+    breakPages: false, // continuous scroll preview
   })
   console.log('[WordToPDF] renderAsync completed')
 }
 
 // ─── Internal Helpers ──────────────────────────────────────────────────────
 
-/** Create a hidden, off-screen container for rendering. */
+/**
+ * Create a hidden, off-screen container for the paginated export render.
+ *
+ * Styled to match docx-preview's own `.docx-wrapper` behaviour — gray
+ * background, flex column, centered pages — so that the section elements
+ * render at their natural document size without being constrained by any
+ * hardcoded pixel width.
+ */
 function createRenderContainer(): HTMLDivElement {
   const container = document.createElement('div')
   container.style.position = 'absolute'
   container.style.left = '-9999px'
   container.style.top = '0'
-  container.style.width = `${CONTAINER_WIDTH}px`
-  container.style.padding = `${CONTAINER_PADDING}px`
-  container.style.background = 'white'
+  container.style.display = 'flex'
+  container.style.flexDirection = 'column'
+  container.style.alignItems = 'center'
+  container.style.background = 'gray'
+  container.style.padding = '30px'
+  container.style.paddingBottom = '0px'
   container.style.fontFamily = 'Arial, sans-serif'
   return container
-}
-
-/** Split the full canvas into page-sized images and assemble into a PDF. */
-async function assemblePDF(
-  fullCanvas: HTMLCanvasElement,
-  onProgress?: (percent: number) => void,
-): Promise<Uint8Array> {
-  const pdfDoc = await PDFDocument.create()
-
-  const totalHeight = fullCanvas.height
-  const pageCount = Math.ceil(totalHeight / PAGE_HEIGHT_PX)
-
-  for (let i = 0; i < pageCount; i++) {
-    onProgress?.(60 + Math.round(((i + 1) / pageCount) * 35))
-
-    const yOffset = i * PAGE_HEIGHT_PX
-    const cropHeight = Math.min(PAGE_HEIGHT_PX, totalHeight - yOffset)
-
-    // Create a temporary canvas for this page slice
-    const pageCanvas = document.createElement('canvas')
-    pageCanvas.width = CONTAINER_WIDTH * 2 // scale ×2 to match html2canvas
-    pageCanvas.height = cropHeight * 2
-    const ctx = pageCanvas.getContext('2d')!
-
-    // Copy the relevant portion of the full canvas
-    ctx.drawImage(
-      fullCanvas,
-      0,
-      yOffset * 2, // compensate for 2× scale
-      CONTAINER_WIDTH * 2,
-      cropHeight * 2,
-      0,
-      0,
-      CONTAINER_WIDTH * 2,
-      cropHeight * 2,
-    )
-
-    // Convert to JPEG and embed in PDF
-    const dataUrl = pageCanvas.toDataURL('image/jpeg', JPEG_QUALITY)
-    const response = await fetch(dataUrl)
-    const imageBytes = await response.arrayBuffer()
-    const image = await pdfDoc.embedJpg(imageBytes)
-
-    // Add page and draw the image scaled to fit
-    const page = pdfDoc.addPage([PAGE_WIDTH_PT, PAGE_HEIGHT_PT])
-    const scaleFactor = PAGE_WIDTH_PT / CONTAINER_WIDTH
-    const imgWidth = PAGE_WIDTH_PT
-    const imgHeight = cropHeight * scaleFactor
-
-    page.drawImage(image, {
-      x: 0,
-      y: PAGE_HEIGHT_PT - imgHeight,
-      width: imgWidth,
-      height: imgHeight,
-    })
-
-    // Clean up temporary canvas
-    pageCanvas.remove()
-  }
-
-  return await pdfDoc.save()
 }
