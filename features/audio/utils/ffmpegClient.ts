@@ -10,6 +10,30 @@ import type { AudioFormat } from '@/features/audio/types'
 let ffmpegInstance: FFmpeg | null = null
 let ffmpegLoading: Promise<FFmpeg> | null = null
 
+// ─── Exclusive execution lock ──────────────────────────────────────────────
+
+/**
+ * Promise chain that serializes all ffmpeg operations.
+ *
+ * ffmpeg.wasm cannot safely run concurrent writeFile/exec/readFile/deleteFile
+ * cycles on the shared virtual filesystem. Every caller (audio tools, video
+ * tools, background metadata probing) goes through this single queue.
+ */
+let currentOperation: Promise<unknown> = Promise.resolve()
+
+/**
+ * Run an ffmpeg operation exclusively — the next operation will not start
+ * until the current one completes (success or failure).
+ *
+ * Wrap the *entire* operation (writeFile → exec → readFile → cleanup), not
+ * just exec(), to prevent virtual filesystem races.
+ */
+export function runExclusive<T>(fn: () => Promise<T>): Promise<T> {
+  const result = currentOperation.then(fn, fn)
+  currentOperation = result.catch(() => {})
+  return result
+}
+
 /**
  * Returns a lazily-initialized, shared ffmpeg.wasm instance.
  *
@@ -42,6 +66,32 @@ export async function getFFmpeg(): Promise<FFmpeg> {
   })()
 
   return ffmpegLoading
+}
+
+/**
+ * Terminate the current ffmpeg.wasm worker and null out the singleton.
+ *
+ * Call on cancellation to stop CPU work. The next call to getFFmpeg()
+ * will automatically re-initialize a fresh instance.
+ *
+ * Uses feature detection — if the installed @ffmpeg/ffmpeg version does
+ * not expose terminate(), the instance is still nulled out and the current
+ * operation's result is discarded by the caller.
+ */
+export async function terminateFFmpeg(): Promise<void> {
+  if (!ffmpegInstance) return
+
+  // Feature-detect: @ffmpeg/ffmpeg 0.12.x supports terminate()
+  if (typeof (ffmpegInstance as any).terminate === 'function') {
+    try {
+      ;(ffmpegInstance as any).terminate()
+    } catch {
+      // Best-effort — worker may already be in a bad state
+    }
+  }
+
+  ffmpegInstance = null
+  ffmpegLoading = null
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

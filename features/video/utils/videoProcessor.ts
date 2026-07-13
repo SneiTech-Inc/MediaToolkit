@@ -5,11 +5,18 @@
  * that every video tool reimplements. Each tool provides a buildArgs callback;
  * this module handles everything else: validation, ffmpeg lifecycle, progress
  * tracking, cancellation, cleanup.
+ *
+ * All ffmpeg operations are serialized through runExclusive() to prevent
+ * virtual filesystem races on the shared ffmpeg.wasm singleton.
  */
 
-import { getFFmpeg, normalizeProgress } from '@/features/audio/utils/ffmpegClient'
+import {
+  getFFmpeg,
+  normalizeProgress,
+  runExclusive,
+  terminateFFmpeg,
+} from '@/features/audio/utils/ffmpegClient'
 import { validateFileSize, validateInputFormat } from '@/features/video/utils/videoValidation'
-import type { FFmpeg } from '@ffmpeg/ffmpeg'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -83,6 +90,9 @@ function tempName(prefix: string, suffix: string): string {
  * a buildArgs callback that constructs tool-specific ffmpeg arguments.
  * Everything else (validation, ffmpeg lifecycle, progress, cleanup) is handled here.
  *
+ * All ffmpeg file operations are serialized through runExclusive() to prevent
+ * concurrent writeFile/exec/readFile/deleteFile races on the virtual filesystem.
+ *
  * @example
  * // Trim tool usage:
  * const result = await processVideo({
@@ -111,30 +121,20 @@ export async function processVideo(options: ProcessOptions): Promise<ProcessResu
     signal,
   } = options
 
-  // ── Validation ──────────────────────────────────────────────────────────
+  // ── Validation (runs outside the lock — no ffmpeg needed) ───────────────
   validateFileSize(file, maxSize)
   validateInputFormat(file, acceptedFormats)
 
-  // Check for early cancellation
   if (signal?.aborted) {
     throw new DOMException('Processing cancelled.', 'AbortError')
   }
 
-  // ── ffmpeg setup ────────────────────────────────────────────────────────
+  // ── ffmpeg setup (outside the lock — just gets the instance) ────────────
   const ffmpeg = await getFFmpeg()
 
-  // Re-check after awaiting (could have been cancelled during load)
   if (signal?.aborted) {
     throw new DOMException('Processing cancelled.', 'AbortError')
   }
-
-  const inputExt = file.name.split('.').pop()?.toLowerCase() ?? 'mp4'
-  const inputName = tempName('vproc_in', inputExt)
-  const outputName = tempName('vproc_out', outputExt)
-
-  // Write the source file into ffmpeg's virtual filesystem
-  const fileBuffer = new Uint8Array(await file.arrayBuffer())
-  await ffmpeg.writeFile(inputName, fileBuffer)
 
   // ── Progress tracking ───────────────────────────────────────────────────
   const started = performance.now()
@@ -151,33 +151,67 @@ export async function processVideo(options: ProcessOptions): Promise<ProcessResu
   // ── Cancellation ────────────────────────────────────────────────────────
   const onAbort = () => {
     cancelled = true
+    // Terminate the worker to actually stop CPU work
+    terminateFFmpeg().catch(() => {})
   }
 
   signal?.addEventListener('abort', onAbort)
 
-  // ── Execution ───────────────────────────────────────────────────────────
+  // Register progress listener outside the lock so it tracks from the start
+  ffmpeg.on('progress', progressHandler)
+
+  // ── Serialized ffmpeg operation ─────────────────────────────────────────
   try {
-    ffmpeg.on('progress', progressHandler)
+    const result = await runExclusive(async () => {
+      // Check cancellation before starting the locked work
+      if (cancelled) {
+        throw new DOMException('Processing cancelled.', 'AbortError')
+      }
 
-    const args = buildArgs(inputName, outputName)
+      const inputExt = file.name.split('.').pop()?.toLowerCase() ?? 'mp4'
+      const inputName = tempName('vproc_in', inputExt)
+      const outputName = tempName('vproc_out', outputExt)
 
-    const exitCode = await ffmpeg.exec(args)
+      // Write the source file into ffmpeg's virtual filesystem
+      const fileBuffer = new Uint8Array(await file.arrayBuffer())
+      await ffmpeg.writeFile(inputName, fileBuffer)
 
-    if (cancelled) {
-      throw new DOMException('Processing cancelled.', 'AbortError')
-    }
+      try {
+        // Build tool-specific args and execute
+        const args = buildArgs(inputName, outputName)
+        const exitCode = await ffmpeg.exec(args)
 
-    if (exitCode !== 0) {
-      throw new Error(
-        `Processing failed (exit code ${exitCode}). The file may be corrupted or in an unsupported format. Try a different video file.`
-      )
-    }
+        if (cancelled) {
+          throw new DOMException('Processing cancelled.', 'AbortError')
+        }
 
-    // Read the output from the virtual filesystem
-    const outputData = (await ffmpeg.readFile(outputName)) as Uint8Array
-    const blob = new Blob([outputData], { type: outputMime })
+        if (exitCode !== 0) {
+          throw new Error(
+            `Processing failed (exit code ${exitCode}). The file may be corrupted or in an unsupported format. Try a different video file.`
+          )
+        }
 
-    return { blob, mimeType: outputMime }
+        // Read the output from the virtual filesystem
+        const outputData = (await ffmpeg.readFile(outputName)) as Uint8Array
+        const blob = new Blob([outputData], { type: outputMime })
+
+        return { blob, mimeType: outputMime }
+      } finally {
+        // Clean up virtual files — always, even on error or cancellation
+        try {
+          await ffmpeg.deleteFile(inputName)
+        } catch {
+          // Best-effort
+        }
+        try {
+          await ffmpeg.deleteFile(outputName)
+        } catch {
+          // Best-effort
+        }
+      }
+    })
+
+    return result
   } catch (err) {
     // Re-throw AbortError as-is so the caller can distinguish cancellation from failure
     if (err instanceof DOMException && err.name === 'AbortError') {
@@ -185,20 +219,8 @@ export async function processVideo(options: ProcessOptions): Promise<ProcessResu
     }
     throw err
   } finally {
-    // ── Cleanup ──────────────────────────────────────────────────────────
+    // ── Always remove the progress listener and abort handler ────────────
     ffmpeg.off('progress', progressHandler)
     signal?.removeEventListener('abort', onAbort)
-
-    try {
-      await ffmpeg.deleteFile(inputName)
-    } catch {
-      // Best-effort
-    }
-
-    try {
-      await ffmpeg.deleteFile(outputName)
-    } catch {
-      // Best-effort
-    }
   }
 }

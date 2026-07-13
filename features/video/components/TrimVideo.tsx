@@ -187,6 +187,7 @@ export function TrimVideo() {
 
   // ── Preview state ───────────────────────────────────────────────────────
   const [isLoopPreview, setIsLoopPreview] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
   const [isVideoFocused, setIsVideoFocused] = useState(false)
   const [thumbnails, setThumbnails] = useState<ThumbnailData[]>([])
   const [isGeneratingThumbs, setIsGeneratingThumbs] = useState(false)
@@ -196,6 +197,7 @@ export function TrimVideo() {
   const previewUrlRef = useRef<string | null>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
   const timeUpdateHandlerRef = useRef<(() => void) | null>(null)
+  const metadataRef = useRef<VideoMetadata | null>(null)
 
   // ── Derived ─────────────────────────────────────────────────────────────
   const metadataAvailable = videoMetadata !== null
@@ -222,6 +224,7 @@ export function TrimVideo() {
     const handleTimeUpdate = () => {
       if (video.currentTime >= endTime) {
         video.pause()
+        setIsPlaying(false)
         if (isLoopPreview) {
           video.currentTime = startTime
           video.play().catch(() => {})
@@ -301,6 +304,7 @@ export function TrimVideo() {
     // Phase 1: Immediate metadata (no ffmpeg needed)
     const metadata = await getBasicMetadata(file)
     setVideoMetadata(metadata)
+    metadataRef.current = metadata
     if (metadata && metadata.duration > 0) {
       setEndTime(metadata.duration)
       setEndInput(formatTime(metadata.duration))
@@ -335,11 +339,13 @@ export function TrimVideo() {
 
     const loadAdvanced = async () => {
       try {
+        const basic = metadataRef.current
+        if (!basic || cancelled) return
         // getFFmpeg is a singleton — if already loaded, returns immediately
         const { getFFmpeg: getFFmpegInstance } = await import('@/features/audio/utils/ffmpegClient')
         const ffmpeg = await getFFmpegInstance()
         if (cancelled) return
-        const advanced = await getAdvancedMetadata(ffmpeg, originalFile)
+        const advanced = await getAdvancedMetadata(ffmpeg, originalFile, basic)
         if (!cancelled) setAdvancedMetadata(advanced)
       } catch {
         // Silently ignore — advanced metadata is a nice-to-have
@@ -697,6 +703,9 @@ export function TrimVideo() {
                   className="w-full max-h-96"
                   preload="auto"
                   controls={false}
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onEnded={() => setIsPlaying(false)}
                   onFocus={() => setIsVideoFocused(true)}
                   onBlur={() => setIsVideoFocused(false)}
                   onKeyDown={handleVideoKeyDown}
@@ -711,10 +720,14 @@ export function TrimVideo() {
                   <button
                     onClick={handleTogglePlay}
                     className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors"
-                    aria-label="Play selected segment"
+                    aria-label={isPlaying ? 'Pause' : 'Play selected segment'}
                   >
                     <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center">
-                      <Play className="w-8 h-8 text-primary-foreground ml-1" />
+                      {isPlaying ? (
+                        <Pause className="w-8 h-8 text-primary-foreground" />
+                      ) : (
+                        <Play className="w-8 h-8 text-primary-foreground ml-1" />
+                      )}
                     </div>
                   </button>
                 )}
@@ -814,8 +827,8 @@ export function TrimVideo() {
 
                   {/* Playback controls */}
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="icon-sm" onClick={handleTogglePlay} disabled={isProcessing} aria-label="Play segment">
-                      <Play className="w-4 h-4" />
+                    <Button variant="outline" size="icon-sm" onClick={handleTogglePlay} disabled={isProcessing} aria-label={isPlaying ? 'Pause' : 'Play segment'}>
+                      {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                     </Button>
                     <Button
                       variant={isLoopPreview ? 'default' : 'outline'}
