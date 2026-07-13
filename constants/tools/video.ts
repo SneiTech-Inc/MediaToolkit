@@ -8,13 +8,13 @@ export const videoTools = [
   },
   {
     id: 'convert-video', slug: 'convert-video', name: 'Convert Video', category: 'video',
-    description: 'Convert between MP4, WebM, MOV formats', icon: '🔄', badge: null,
-    dateAdded: '2024-01-08', inputFormats: ['mp4', 'mov', 'webm', 'mkv', 'avi'], outputFormats: ['mp4', 'webm', 'mov'], isComingSoon: true,
+    description: 'Convert video files between MP4, MOV, AVI, and MKV formats. Free, fast, and entirely in your browser.', icon: '🔄', badge: 'new',
+    dateAdded: '2024-01-08', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'mov', 'avi', 'mkv'], isComingSoon: false,
   },
   {
     id: 'trim-video', slug: 'trim-video', name: 'Trim Video', category: 'video',
-    description: 'Cut and trim video clips to specific segments', icon: '✂️', badge: 'popular',
-    dateAdded: '2024-01-08', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    description: 'Cut and trim video clips to extract the perfect segment. Free, fast, and entirely in your browser.', icon: '✂️', badge: 'new',
+    dateAdded: '2024-01-08', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'mov', 'avi', 'mkv'], isComingSoon: false,
   },
   {
     id: 'merge-video', slug: 'merge-video', name: 'Merge Video', category: 'video',

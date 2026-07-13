@@ -72,3 +72,131 @@ export const RESOLUTION_HEIGHT: Record<Exclude<VideoResolution, 'original'>, num
   '480p': 480,
   '360p': 360,
 }
+
+// ─── Conversion Types ───────────────────────────────────────────────────────
+
+/** Output container formats supported by Convert Video (v1 — H.264 only, no WebM). */
+export type VideoOutputFormat = 'mp4' | 'mov' | 'avi' | 'mkv'
+
+/** Encoding preset: speed vs. compression efficiency tradeoff. */
+export type VideoPreset = 'fast' | 'medium' | 'slow'
+
+/** CRF bounds (H.264). */
+export const MIN_CRF = 18
+export const MAX_CRF = 32
+export const DEFAULT_CRF = 23
+
+/** Maps each output format to its container, MIME type, and audio codec. */
+export const FORMAT_CONFIG: Record<
+  VideoOutputFormat,
+  { ext: string; mime: string; audioCodec: string; audioBitrate: string }
+> = {
+  mp4: { ext: 'mp4', mime: 'video/mp4', audioCodec: 'aac', audioBitrate: '128k' },
+  mov: { ext: 'mov', mime: 'video/quicktime', audioCodec: 'aac', audioBitrate: '128k' },
+  avi: { ext: 'avi', mime: 'video/x-msvideo', audioCodec: 'mp3', audioBitrate: '128k' },
+  mkv: { ext: 'mkv', mime: 'video/x-matroska', audioCodec: 'aac', audioBitrate: '128k' },
+}
+
+/** User-facing conversion options. */
+export interface ConversionOptions {
+  /** Target output container format. */
+  targetFormat: VideoOutputFormat
+  /** Encoding speed preset (fast/medium/slow). */
+  preset: VideoPreset
+  /** CRF quality value (18–32, lower = better quality + larger file). */
+  crf: number
+  /** Target output resolution (or "original" to preserve dimensions). */
+  resolution: VideoResolution
+  /** Target output frame rate (or "original" to preserve frame rate). */
+  frameRate: VideoFrameRate
+}
+
+/** Result returned after a successful conversion. */
+export interface ConversionResult {
+  /** The converted video as a Blob. */
+  blob: Blob
+  /** MIME type of the output (e.g. "video/mp4"). */
+  mimeType: string
+  /** The output container format used. */
+  targetFormat: VideoOutputFormat
+  /** Original file size in bytes (from File.size). */
+  originalSize: number
+  /** Converted output file size in bytes (from Blob.size). */
+  convertedSize: number
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+}
+
+// ─── Extended Video Metadata ────────────────────────────────────────────────
+
+/** Rich metadata extracted from a video file (for Trim Video and future tools). */
+export interface ExtendedVideoMetadata {
+  /** Duration in seconds. */
+  duration: number
+  /** Width in pixels. */
+  width: number
+  /** Height in pixels. */
+  height: number
+  /** Frames per second (for frame stepping). Falls back to 30 if unreadable. */
+  fps: number
+  /** Video codec string (e.g. "avc1", "vp09"). */
+  codec: string
+  /** Estimated video bitrate in bits per second. */
+  bitrate: number
+  /** Audio codec string (e.g. "mp4a", "opus"). */
+  audioCodec: string
+  /** Display aspect ratio (e.g. "16:9", "4:3"). */
+  aspectRatio: string
+}
+
+// ─── Trim Types ─────────────────────────────────────────────────────────────
+
+/** Options for the Trim Video tool. */
+export interface TrimOptions {
+  /** Start time in seconds. */
+  startTime: number
+  /** End time in seconds. */
+  endTime: number
+  /** Target output container format. */
+  targetFormat: VideoOutputFormat
+  /** Whether to use stream copy (fast trim). False forces re-encode for frame accuracy. */
+  useFastTrim: boolean
+  /** Encoding preset (only used when re-encoding). */
+  preset: VideoPreset
+  /** CRF quality value 18–32 (only used when re-encoding). */
+  crf: number
+  /** Target output resolution (only used when re-encoding). */
+  resolution: VideoResolution
+  /** Target output frame rate (only used when re-encoding). */
+  frameRate: VideoFrameRate
+}
+
+/** Result returned after a successful trim. */
+export interface TrimResult {
+  /** The trimmed video as a Blob. */
+  blob: Blob
+  /** MIME type of the output. */
+  mimeType: string
+  /** The output container format used. */
+  targetFormat: VideoOutputFormat
+  /** Original file size in bytes. */
+  originalSize: number
+  /** Trimmed output file size in bytes. */
+  trimmedSize: number
+  /** Duration of the trimmed segment in seconds. */
+  trimmedDuration: number
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+  /** Whether stream copy was used (fast, keyframe-aligned) vs re-encode (frame-accurate). */
+  usedStreamCopy: boolean
+}
+
+// ─── Thumbnail Types ────────────────────────────────────────────────────────
+
+/** A single timeline thumbnail. */
+export interface ThumbnailData {
+  /** Timestamp in seconds this thumbnail represents. */
+  time: number
+  /** Base64-encoded data URL of the thumbnail image. */
+  dataUrl: string
+}
