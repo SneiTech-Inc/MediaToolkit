@@ -42,7 +42,7 @@ const TOOL_FAQS: FAQItem[] = [
   {
     question: 'What formatting is preserved?',
     answer:
-      'Headings, bold, italic, bullet lists, and numbered lists are preserved as best-effort text extraction. Complex layouts like multi-column text, tables, and embedded images are not preserved in v1.',
+      'Headings, bold, italic, bullet lists, and numbered lists are preserved as best-effort text extraction. Bold, short lines (≤12 words) are detected as sub-headings (Heading 3). An entirely bold short sentence within a paragraph may be classified as a heading — this is a known limitation. Complex layouts like multi-column text, tables, and embedded images are not preserved in v1.',
   },
   {
     question: 'Is my PDF uploaded to a server?',
@@ -75,6 +75,8 @@ export function PDFToWord() {
   const [docxBlob, setDocxBlob] = useState<Blob | null>(null)
   const [error, setError] = useState<string | null>(null)
 
+  const [hasImages, setHasImages] = useState(false)
+
   // ─── Handlers ───────────────────────────────────────────────────────────
 
   const handleFileSelect = useCallback((selectedFile: File) => {
@@ -90,11 +92,11 @@ export function PDFToWord() {
     setProgress(0)
 
     try {
-      const blob = await convertPDFToWord(file, (pct) => setProgress(pct))
-      setDocxBlob(blob)
+      const result = await convertPDFToWord(file, (pct) => setProgress(pct))
+      setDocxBlob(result.blob)
+      setHasImages(result.hasImages)
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : 'PDF conversion failed.'
+      const message = err instanceof Error ? err.message : 'PDF conversion failed.'
       setError(message)
     } finally {
       setIsProcessing(false)
@@ -120,6 +122,7 @@ export function PDFToWord() {
     setDocxBlob(null)
     setError(null)
     setProgress(0)
+    setHasImages(false) // add this line
   }, [])
 
   // ─── Render ─────────────────────────────────────────────────────────────
@@ -200,6 +203,11 @@ export function PDFToWord() {
                 <p className="text-xs text-muted-foreground mb-6">
                   Best-effort text extraction — some formatting may differ from the original PDF
                 </p>
+                {hasImages && (
+                  <p className="text-xs text-amber-600 dark:text-amber-400 mb-6">
+                    ⚠ This PDF contains images that were not included in the Word document — image support is coming in a future update.
+                  </p>
+                )}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button
                     size="lg"
