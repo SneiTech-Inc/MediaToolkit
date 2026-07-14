@@ -18,8 +18,8 @@ export const videoTools = [
   },
   {
     id: 'merge-video', slug: 'merge-video', name: 'Merge Video', category: 'video',
-    description: 'Combine multiple videos into one seamless file', icon: '🔗', badge: null,
-    dateAdded: '2024-01-09', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    description: 'Combine multiple videos into one seamless file. Free, fast, and entirely in your browser.', icon: '🔗', badge: 'new',
+    dateAdded: '2024-01-09', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'mov', 'avi', 'mkv'], isComingSoon: false,
   },
   {
     id: 'crop-video', slug: 'crop-video', name: 'Crop Video', category: 'video',

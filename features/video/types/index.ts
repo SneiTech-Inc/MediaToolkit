@@ -200,3 +200,31 @@ export interface ThumbnailData {
   /** Base64-encoded data URL of the thumbnail image. */
   dataUrl: string
 }
+
+// ─── Merge Types ─────────────────────────────────────────────────────────────
+
+/** Per-file info used by the Merge Video tool. */
+export interface MergeFileInfo {
+  /** The source file. */
+  file: File
+  /** Basic metadata from HTML5 <video> element (available immediately). */
+  metadata: VideoMetadata
+  /** Advanced metadata from ffmpeg probe (populated async, may be undefined). */
+  advanced?: ExtendedVideoMetadata
+}
+
+/** Options for the Merge Video tool. */
+export interface MergeOptions {
+  /** Target output container format. */
+  outputFormat: VideoOutputFormat
+  /** Encoding speed preset (only used when re-encoding). */
+  preset: VideoPreset
+  /** CRF quality value 18–32 (only used when re-encoding). */
+  crf: number
+  /** Target output resolution (only used when re-encoding). */
+  resolution: VideoResolution
+  /** Target output frame rate (only used when re-encoding). */
+  frameRate: VideoFrameRate
+  /** Use stream copy when files are compatible. Default true. */
+  fastMerge: boolean
+}

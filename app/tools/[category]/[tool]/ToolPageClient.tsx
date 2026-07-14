@@ -273,6 +273,11 @@ const TrimVideo = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const MergeVideo = dynamic(
+  () => import('@/features/video/components/MergeVideo').then(m => ({ default: m.MergeVideo })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const QRCodeGenerator = dynamic(
   () => import('@/features/utility/components/QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -324,6 +329,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'compress-video': CompressVideo,
   'convert-video': ConvertVideo,
   'trim-video': TrimVideo,
+  'merge-video': MergeVideo,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,
   'rotate-pdf': RotatePDF,
