@@ -25,7 +25,9 @@ export default function Page() {
     : TOOLS.filter(tool => tool.category === selectedCategory)
 
   const recentlyAdded = TOOLS.slice(0, 4)
-  const featuredPosts = BLOG_POSTS.slice(0, 4)
+  const featuredPosts = [...BLOG_POSTS]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 4)
 
   return (
     <PageLayout>

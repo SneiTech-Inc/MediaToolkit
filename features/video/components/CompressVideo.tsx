@@ -49,17 +49,17 @@ const TOOL_FAQS = [
   {
     question: 'What video formats are supported?',
     answer:
-      'You can compress MP4, MOV, WebM, and MKV files. The compressed output is always MP4 (H.264 video + AAC audio), which offers the widest compatibility across devices, browsers, and media players.',
+      'You can compress MP4, MOV, WebM, and MKV files. The compressed output is always MP4 with industry-standard compression and high-quality audio, which offers the widest compatibility across devices, browsers, and media players.',
   },
   {
     question: 'How much will my video be compressed?',
     answer:
-      'Compression results vary significantly by video content. A talking-head video or screen recording compresses far more than an action scene or music video at the same CRF setting. Typically, you can expect 40–70% size reduction, but the actual result is shown only after processing completes — we show you the real before-and-after numbers, never a guess.',
+      'Compression results vary significantly by video content. A talking-head video or screen recording compresses far more than an action scene or music video at the same quality level. Typically, you can expect 40–70% size reduction, but the actual result is shown only after processing completes — we show you the real before-and-after numbers, never a guess.',
   },
   {
     question: 'Is my video uploaded to a server?',
     answer:
-      'No. All video compression happens entirely in your browser using ffmpeg.wasm technology. Your videos never leave your device — they remain 100% private and secure. Because everything runs locally, there are no server uploads, no queues, and no file size limits beyond what your browser can handle.',
+      'No. All video compression happens entirely in your browser using advanced video processing technology. Your videos never leave your device — they remain 100% private and secure. Because everything runs locally, there are no server uploads, no queues, and no file size limits beyond what your browser can handle.',
   },
   {
     question: 'How long does video compression take?',
@@ -367,7 +367,7 @@ export function CompressVideo() {
                   progress < 5
                     ? 'Analyzing video...'
                     : progress < 95
-                      ? 'Encoding video stream...'
+                      ? 'Processing video...'
                       : 'Finalizing output...'
                 }
               />
@@ -418,7 +418,7 @@ export function CompressVideo() {
                   </div>
                   <div className="p-3 rounded-lg bg-muted/30">
                     <div className="text-xs text-muted-foreground mb-1">Format</div>
-                    <div className="font-semibold text-sm">MP4 (H.264)</div>
+                    <div className="font-semibold text-sm">MP4</div>
                   </div>
                 </div>
 

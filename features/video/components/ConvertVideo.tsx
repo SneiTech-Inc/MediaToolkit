@@ -33,16 +33,16 @@ const ACCEPTED_FORMATS = ['mp4', 'webm', 'mov', 'mkv', 'avi']
 const MAX_FILE_SIZE = 300 * 1024 * 1024 // 300 MB
 
 const OUTPUT_FORMAT_OPTIONS: { value: VideoOutputFormat; label: string }[] = [
-  { value: 'mp4', label: 'MP4 (H.264 + AAC)' },
-  { value: 'mov', label: 'MOV (H.264 + AAC)' },
-  { value: 'avi', label: 'AVI (H.264 + MP3)' },
-  { value: 'mkv', label: 'MKV (H.264 + AAC)' },
+  { value: 'mp4', label: 'MP4' },
+  { value: 'mov', label: 'MOV' },
+  { value: 'avi', label: 'AVI' },
+  { value: 'mkv', label: 'MKV' },
 ]
 
 const PRESET_OPTIONS: { value: VideoPreset; label: string; description: string }[] = [
-  { value: 'fast', label: 'Fast', description: 'Faster encoding, larger file size' },
+  { value: 'fast', label: 'Fast', description: 'Faster processing, larger file size' },
   { value: 'medium', label: 'Medium', description: 'Balanced speed and file size' },
-  { value: 'slow', label: 'Slow', description: 'Slower encoding, smallest file size' },
+  { value: 'slow', label: 'Slow', description: 'Slower processing, smallest file size' },
 ]
 
 const RESOLUTION_OPTIONS: { value: VideoResolution; label: string }[] = [
@@ -63,17 +63,17 @@ const TOOL_FAQS = [
   {
     question: 'What video formats are supported?',
     answer:
-      'You can upload MP4, WebM, MOV, AVI, and MKV files. Output formats are MP4, MOV, AVI, and MKV — all using H.264 video encoding for wide compatibility. WebM (VP9) output support is coming in a future update.',
+      'You can upload MP4, WebM, MOV, AVI, and MKV files. Output formats are MP4, MOV, AVI, and MKV — all using industry-standard compression for wide compatibility. WebM output support is coming in a future update.',
   },
   {
-    question: 'What does the CRF slider do?',
+    question: 'What does the quality slider do?',
     answer:
-      'CRF (Constant Rate Factor) controls the balance between quality and file size. Lower values (18) produce the best quality and largest files. Higher values (32) produce smaller files with lower quality. The default of 23 is a well-balanced setting suitable for most videos.',
+      'The quality slider controls the balance between quality and file size. Lower values produce the best quality and largest files. Higher values produce smaller files with lower quality. The default setting is well-balanced and suitable for most videos.',
   },
   {
     question: 'Is my video uploaded to a server?',
     answer:
-      'No. All video conversion happens entirely in your browser using ffmpeg.wasm technology. Your videos never leave your device — they remain 100% private and secure. Because everything runs locally, there are no server uploads, no queues, and no file size limits beyond what your browser can handle.',
+      'No. All video conversion happens entirely in your browser using advanced video processing technology. Your videos never leave your device — they remain 100% private and secure. Because everything runs locally, there are no server uploads, no queues, and no file size limits beyond what your browser can handle.',
   },
   {
     question: 'How long does video conversion take?',
@@ -91,7 +91,7 @@ const HOW_TO_STEPS = [
   {
     step: 2,
     title: 'Choose your output settings',
-    desc: 'Select your target format, quality (CRF), encoding preset, resolution, and frame rate. An estimated output size is shown before you start processing.',
+    desc: 'Select your target format, quality setting, processing speed, resolution, and frame rate. An estimated output size is shown before you start processing.',
   },
   {
     step: 3,
@@ -415,8 +415,8 @@ export function ConvertVideo() {
                 <p className="text-muted-foreground text-sm">
                   Convert Video changes your video&apos;s format to{' '}
                   <strong className="text-foreground">MP4, MOV, AVI, or MKV</strong>. Use the
-                  CRF slider to balance quality and file size (lower = better quality, larger).
-                  The preset controls encoding speed vs. efficiency. All processing happens
+                  quality slider to balance quality and file size (lower = better quality, larger).
+                  The speed setting controls processing speed vs. file size. All processing happens
                   locally in your browser — your videos never leave your device.{' '}
                   <strong className="text-foreground">WebM support is planned</strong> for a
                   future update.
@@ -443,11 +443,11 @@ export function ConvertVideo() {
                 label="Conversion Progress"
                 detail={
                   progress < 5
-                    ? 'Initializing encoder...'
+                    ? 'Initializing...'
                     : progress < 10
                       ? 'Analyzing video...'
                       : progress < 95
-                        ? 'Converting video stream...'
+                        ? 'Processing video...'
                         : 'Finalizing output...'
                 }
               />
@@ -481,11 +481,11 @@ export function ConvertVideo() {
                     <div className="font-semibold text-sm uppercase">{result.targetFormat}</div>
                   </div>
                   <div className="p-3 rounded-lg bg-muted/30">
-                    <div className="text-xs text-muted-foreground mb-1">Preset</div>
+                    <div className="text-xs text-muted-foreground mb-1">Speed</div>
                     <div className="font-semibold text-sm capitalize">{preset}</div>
                   </div>
                   <div className="p-3 rounded-lg bg-muted/30">
-                    <div className="text-xs text-muted-foreground mb-1">CRF</div>
+                    <div className="text-xs text-muted-foreground mb-1">Quality</div>
                     <div className="font-semibold text-sm">{crf}</div>
                   </div>
                   <div className="p-3 rounded-lg bg-muted/30">
@@ -606,10 +606,10 @@ export function ConvertVideo() {
                   </select>
                 </div>
 
-                {/* Preset selector */}
+                {/* Speed selector */}
                 <div className="mb-6">
                   <label className="text-sm font-medium flex justify-between">
-                    <span>Preset</span>
+                    <span>Speed</span>
                     <span className="text-primary font-semibold capitalize">{preset}</span>
                   </label>
                   <select
@@ -635,7 +635,7 @@ export function ConvertVideo() {
                 {/* CRF slider */}
                 <div className="mb-6">
                   <label className="text-sm font-medium flex justify-between">
-                    <span>Quality (CRF)</span>
+                    <span>Quality</span>
                     <span className="text-primary font-semibold">{crf}</span>
                   </label>
                   <input
@@ -762,13 +762,13 @@ export function ConvertVideo() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium">Preset</label>
+                    <label className="text-sm font-medium">Speed</label>
                     <div className="w-full mt-2 px-3 py-2 border border-border rounded-lg bg-background text-sm capitalize">
                       {preset}
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium">CRF</label>
+                    <label className="text-sm font-medium">Quality</label>
                     <div className="w-full mt-2 px-3 py-2 border border-border rounded-lg bg-background text-sm">
                       {crf}
                     </div>

@@ -39,16 +39,16 @@ import { DEFAULT_CRF, MIN_CRF, MAX_CRF } from '@/features/video/types'
 const ACCEPTED_FORMATS = ['mp4', 'webm', 'mov', 'mkv', 'avi']
 
 const OUTPUT_FORMAT_OPTIONS: { value: VideoOutputFormat; label: string }[] = [
-  { value: 'mp4', label: 'MP4 (H.264 + AAC)' },
-  { value: 'mov', label: 'MOV (H.264 + AAC)' },
-  { value: 'avi', label: 'AVI (H.264 + MP3)' },
-  { value: 'mkv', label: 'MKV (H.264 + AAC)' },
+  { value: 'mp4', label: 'MP4' },
+  { value: 'mov', label: 'MOV' },
+  { value: 'avi', label: 'AVI' },
+  { value: 'mkv', label: 'MKV' },
 ]
 
 const PRESET_OPTIONS: { value: VideoPreset; label: string; description: string }[] = [
-  { value: 'fast', label: 'Fast', description: 'Faster encoding, larger file size' },
+  { value: 'fast', label: 'Fast', description: 'Faster processing, larger file size' },
   { value: 'medium', label: 'Medium', description: 'Balanced speed and file size' },
-  { value: 'slow', label: 'Slow', description: 'Slower encoding, smallest file size' },
+  { value: 'slow', label: 'Slow', description: 'Slower processing, smallest file size' },
 ]
 
 const RESOLUTION_OPTIONS: { value: VideoResolution; label: string }[] = [
@@ -69,22 +69,22 @@ const TOOL_FAQS = [
   {
     question: 'What video formats are supported?',
     answer:
-      'You can upload MP4, WebM, MOV, AVI, and MKV files. Output formats are MP4, MOV, AVI, and MKV — all using H.264 video encoding for wide compatibility.',
+      'You can upload MP4, WebM, MOV, AVI, and MKV files. Output formats are MP4, MOV, AVI, and MKV — all using industry-standard compression for wide compatibility.',
   },
   {
     question: 'How accurate is the trimming?',
     answer:
-      'With Fast Trim (stream copy), trimming occurs on the nearest keyframe rather than the exact frame — this is nearly instant but may be off by a few frames. For frame-accurate cuts, disable Fast Trim to re-encode. Use the frame stepping buttons for precision when setting trim points.',
+      'With Fast Trim, trimming occurs on the nearest keyframe rather than the exact frame — this is nearly instant but may be off by a few frames. For frame-accurate cuts, disable Fast Trim to use standard processing. Use the frame stepping buttons for precision when setting trim points.',
   },
   {
     question: 'Is my video uploaded to a server?',
     answer:
-      'No. All video trimming happens entirely in your browser using ffmpeg.wasm technology. Your videos never leave your device — they remain 100% private and secure.',
+      'No. All video trimming happens entirely in your browser using advanced video processing technology. Your videos never leave your device — they remain 100% private and secure.',
   },
   {
     question: 'Why is trimming so fast sometimes?',
     answer:
-      'Fast Trim uses stream copy (`-c copy`) which avoids re-encoding entirely — ffmpeg simply copies the selected segment. Re-encoding only happens when you change the output format, resolution, frame rate, or disable Fast Trim for frame-accurate cuts.',
+      'Fast Trim uses advanced processing which copies the selected segment directly without re-processing. Standard processing only happens when you change the output format, resolution, frame rate, or disable Fast Trim for frame-accurate cuts.',
   },
 ]
 
@@ -92,7 +92,7 @@ const HOW_TO_STEPS = [
   {
     step: 1,
     title: 'Upload your video',
-    desc: 'Click or drag and drop a video file (up to 500 MB). Preview and basic info appear instantly — no waiting for ffmpeg to load.',
+    desc: 'Click or drag and drop a video file (up to 500 MB). Preview and basic info appear instantly — no waiting for the processing engine to load.',
   },
   {
     step: 2,
@@ -867,7 +867,7 @@ export function TrimVideo() {
                         : progress < 95
                           ? effectiveFastTrim
                             ? 'Copying selected segment...'
-                            : 'Encoding video...'
+                            : 'Processing video...'
                           : 'Finalizing output...'
                     }
                   />
@@ -918,7 +918,7 @@ export function TrimVideo() {
                       <div className="p-3 rounded-lg bg-muted/30">
                         <div className="text-xs text-muted-foreground mb-1">Method</div>
                         <div className="font-semibold text-sm">
-                          {result.usedStreamCopy ? '⚡ Fast Trim' : 'Re-encoded'}
+                          {result.usedStreamCopy ? 'Fast Trim' : 'Standard'}
                         </div>
                       </div>
                       <div className="p-3 rounded-lg bg-muted/30">
@@ -1011,7 +1011,7 @@ export function TrimVideo() {
                           disabled={!isStreamCopyPossible}
                         />
                         <div>
-                          <span className="text-sm font-medium">Fast Trim (stream copy)</span>
+                          <span className="text-sm font-medium">Fast Trim (instant processing)</span>
                           {!isStreamCopyPossible && (
                             <p className="text-xs text-muted-foreground">
                               Unavailable — input format differs from output format.
@@ -1034,7 +1034,7 @@ export function TrimVideo() {
                       <>
                         <div className="border-t border-border pt-4">
                           <p className="text-xs text-muted-foreground mb-4">
-                            Re-encoding is needed for this trim. Configure quality options below.
+                            Standard processing is needed for this trim. Configure quality options below.
                           </p>
 
                           {/* Preset */}
@@ -1062,7 +1062,7 @@ export function TrimVideo() {
                           {/* CRF */}
                           <div className="mb-4">
                             <label className="text-sm font-medium flex justify-between">
-                              <span>Quality (CRF)</span>
+                              <span>Quality</span>
                               <span className="text-primary font-semibold">{crf}</span>
                             </label>
                             <input
@@ -1166,7 +1166,7 @@ export function TrimVideo() {
                       <div>
                         <label className="text-sm font-medium">Method</label>
                         <div className="w-full mt-1 px-3 py-2 border border-border rounded-lg bg-background text-sm">
-                          {effectiveFastTrim ? 'Fast Trim (stream copy)' : 'Re-encode'}
+                          {effectiveFastTrim ? 'Fast Trim' : 'Standard Processing'}
                         </div>
                       </div>
                       <div>

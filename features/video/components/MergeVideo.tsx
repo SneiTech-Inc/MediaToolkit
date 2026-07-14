@@ -49,16 +49,16 @@ const MAX_FILE_COUNT = 20
 const MAX_FILE_SIZE = 500 * 1024 * 1024 // 500 MB
 
 const OUTPUT_FORMAT_OPTIONS: { value: VideoOutputFormat; label: string }[] = [
-  { value: 'mp4', label: 'MP4 (H.264 + AAC)' },
-  { value: 'mov', label: 'MOV (H.264 + AAC)' },
-  { value: 'avi', label: 'AVI (H.264 + MP3)' },
-  { value: 'mkv', label: 'MKV (H.264 + AAC)' },
+  { value: 'mp4', label: 'MP4' },
+  { value: 'mov', label: 'MOV' },
+  { value: 'avi', label: 'AVI' },
+  { value: 'mkv', label: 'MKV' },
 ]
 
 const PRESET_OPTIONS: { value: VideoPreset; label: string; description: string }[] = [
-  { value: 'fast', label: 'Fast', description: 'Faster encoding, larger file size' },
+  { value: 'fast', label: 'Fast', description: 'Faster processing, larger file size' },
   { value: 'medium', label: 'Medium', description: 'Balanced speed and file size' },
-  { value: 'slow', label: 'Slow', description: 'Slower encoding, smallest file size' },
+  { value: 'slow', label: 'Slow', description: 'Slower processing, smallest file size' },
 ]
 
 const RESOLUTION_OPTIONS: { value: VideoResolution; label: string }[] = [
@@ -79,7 +79,7 @@ const TOOL_FAQS = [
   {
     question: 'What video formats are supported for merging?',
     answer:
-      'You can merge MP4, WebM, MOV, AVI, and MKV files. Output formats include MP4, MOV, AVI, and MKV — all using H.264 video encoding for wide compatibility.',
+      'You can merge MP4, WebM, MOV, AVI, and MKV files. Output formats include MP4, MOV, AVI, and MKV — all using industry-standard compression for wide compatibility.',
   },
   {
     question: 'How many videos can I merge?',
@@ -89,12 +89,12 @@ const TOOL_FAQS = [
   {
     question: 'Why is merging sometimes instant?',
     answer:
-      'When all videos share the same format, video codec, audio codec, resolution, and frame rate, we use stream copy — which splices the files together without re-encoding. This is nearly instant. Re-encoding only happens when files are incompatible or when you change the output format, resolution, or frame rate.',
+      'When all videos share the same format, type, resolution, and frame rate, we use fast processing — which combines the files together without re-processing. This is nearly instant. Standard processing only happens when files are incompatible or when you change the output format, resolution, or frame rate.',
   },
   {
     question: 'Is my video uploaded to a server?',
     answer:
-      'No! All processing happens entirely in your browser using ffmpeg.wasm technology. Your videos never leave your device — they remain 100% private and secure.',
+      'No! All processing happens entirely in your browser using advanced video processing technology. Your videos never leave your device — they remain 100% private and secure.',
   },
 ]
 
@@ -685,7 +685,7 @@ export function MergeVideo() {
                     : progress < 95
                       ? effectiveFastMerge
                         ? 'Copying video streams...'
-                        : 'Encoding merged video...'
+                        : 'Processing merged video...'
                       : 'Finalizing output...'
                 }
               />
@@ -736,7 +736,7 @@ export function MergeVideo() {
                   <div className="p-3 rounded-lg bg-muted/30">
                     <div className="text-xs text-muted-foreground mb-1">Method</div>
                     <div className="font-semibold text-sm">
-                      {result.usedStreamCopy ? '⚡ Fast Merge' : 'Re-encoded'}
+                      {result.usedStreamCopy ? 'Fast Merge' : 'Standard'}
                     </div>
                   </div>
                   <div className="p-3 rounded-lg bg-muted/30">
@@ -854,10 +854,10 @@ export function MergeVideo() {
                       disabled={!isStreamCopyPossible}
                     />
                     <div>
-                      <span className="text-sm font-medium">Fast Merge (stream copy)</span>
+                      <span className="text-sm font-medium">Fast Merge (instant processing)</span>
                       {!isStreamCopyPossible && fileInfos.length >= 2 && (
                         <p className="text-xs text-muted-foreground">
-                          Unavailable — files have different codecs, resolutions, or formats.
+                          Unavailable — files have different types, resolutions, or formats.
                         </p>
                       )}
                     </div>
@@ -876,7 +876,7 @@ export function MergeVideo() {
                   <>
                     <div className="border-t border-border pt-4">
                       <p className="text-xs text-muted-foreground mb-4">
-                        Files need re-encoding. Configure quality options below.
+                        Files need standard processing. Configure quality options below.
                       </p>
 
                       {/* Preset */}
@@ -904,7 +904,7 @@ export function MergeVideo() {
                       {/* CRF */}
                       <div className="mb-4">
                         <label className="text-sm font-medium flex justify-between">
-                          <span>Quality (CRF)</span>
+                          <span>Quality</span>
                           <span className="text-primary font-semibold">{crf}</span>
                         </label>
                         <input
@@ -1010,7 +1010,7 @@ export function MergeVideo() {
                   <div>
                     <label className="text-sm font-medium">Method</label>
                     <div className="w-full mt-1 px-3 py-2 border border-border rounded-lg bg-background text-sm">
-                      {effectiveFastMerge ? 'Fast Merge (stream copy)' : 'Re-encode'}
+                      {effectiveFastMerge ? 'Fast Merge' : 'Standard Processing'}
                     </div>
                   </div>
                   <div>

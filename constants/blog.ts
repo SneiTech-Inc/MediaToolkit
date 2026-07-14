@@ -28,6 +28,47 @@ export const BLOG_POSTS = [
     content: '',
     readingTime: '3 min read',
   },
+  // ── July 14, 2026 (Video Tools) ──
+  {
+    title: 'How to Compress Video Files Without Losing Quality — Free Online Tool',
+    excerpt:
+      'Learn how to compress video files without sacrificing quality using our free online tool. Fast, secure, and entirely in your browser.',
+    date: 'Jul 14, 2026',
+    category: 'Guide',
+    slug: 'compress-video-guide',
+    content: '',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'How to Convert Video Files to Any Format — Free Online Converter',
+    excerpt:
+      'Learn how to convert video files between formats with our free online converter. Support for MP4, MOV, AVI, and MKV. Fast, secure, and entirely in your browser.',
+    date: 'Jul 14, 2026',
+    category: 'Guide',
+    slug: 'convert-video-guide',
+    content: '',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'How to Trim Video Clips Like a Pro — Free Online Video Trimmer',
+    excerpt:
+      'Learn how to trim video clips with precision using our free online trimmer. Frame-accurate cuts, instant preview, and entirely browser-based.',
+    date: 'Jul 14, 2026',
+    category: 'Guide',
+    slug: 'trim-video-guide',
+    content: '',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'How to Merge Videos into One Seamless File — Free Online Video Merger',
+    excerpt:
+      'Learn how to combine multiple videos into one seamless file with our free online video merger. Drag to reorder, instant merging, entirely browser-based.',
+    date: 'Jul 14, 2026',
+    category: 'Guide',
+    slug: 'merge-video-guide',
+    content: '',
+    readingTime: '4 min read',
+  },
   // ── July 10, 2026 ──
   {
     title: 'Why SaveVex is the Best and Most Secure Media Toolkit',
