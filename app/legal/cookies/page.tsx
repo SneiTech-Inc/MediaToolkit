@@ -21,7 +21,7 @@ export default function CookiesPage() {
           >
             <h1 className="text-3xl font-bold mb-2">Cookie Policy</h1>
             <p className="text-sm text-muted-foreground mb-8 !mt-0">
-              <strong>Last updated:</strong> January 2024
+              <strong>Last updated:</strong> July 2026
             </p>
 
             <h2>1. What Are Cookies</h2>
@@ -105,7 +105,7 @@ export default function CookiesPage() {
             <h2>8. Contact</h2>
             <p>
               If you have any questions about our use of cookies or this policy, please
-              contact us at hello@savevex.com.
+              contact us at sneitechinc@gmail.com.
             </p>
           </article>
         </div>

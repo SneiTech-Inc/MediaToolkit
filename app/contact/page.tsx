@@ -55,7 +55,7 @@ export default function ContactPage() {
                 <Mail className="w-6 h-6 text-primary mt-1" />
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <p className="text-muted-foreground">support@savevex.com</p>
+                  <p className="text-muted-foreground">sneitechinc@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">

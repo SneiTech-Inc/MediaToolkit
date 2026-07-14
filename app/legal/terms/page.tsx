@@ -21,7 +21,7 @@ export default function TermsPage() {
           >
             <h1 className="text-3xl font-bold mb-2">Terms of Service</h1>
             <p className="text-sm text-muted-foreground mb-8 !mt-0">
-              <strong>Last updated:</strong> January 2024
+              <strong>Last updated:</strong> July 2026
             </p>
 
             <h2>1. Acceptance of Terms</h2>
@@ -71,7 +71,7 @@ export default function TermsPage() {
 
             <h2>8. Contact</h2>
             <p>
-              For questions about these terms, please contact us at hello@savevex.com.
+              For questions about these terms, please contact us at sneitechinc@gmail.com.
             </p>
           </article>
         </div>

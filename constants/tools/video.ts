@@ -24,7 +24,7 @@ export const videoTools = [
   {
     id: 'crop-video', slug: 'crop-video', name: 'Crop Video', category: 'video',
     description: 'Remove unwanted edges from videos', icon: '🎯', badge: null,
-    dateAdded: '2024-01-09', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    dateAdded: '2024-01-09', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'webm'], isComingSoon: false,
   },
   {
     id: 'rotate-video', slug: 'rotate-video', name: 'Rotate Video', category: 'video',

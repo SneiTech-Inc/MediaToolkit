@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           >
             <h1 className="text-3xl font-bold mb-2">Privacy Policy</h1>
             <p className="text-sm text-muted-foreground mb-8 !mt-0">
-              <strong>Last updated:</strong> January 2024
+              <strong>Last updated:</strong> July 2026
             </p>
 
             <h2>1. Our Privacy Commitment</h2>
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             <h2>7. Contact</h2>
             <p>
               If you have questions about this privacy policy, please contact us at
-              hello@savevex.com.
+              sneitechinc@gmail.com.
             </p>
           </article>
         </div>

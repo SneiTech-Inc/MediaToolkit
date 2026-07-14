@@ -191,6 +191,38 @@ export interface TrimResult {
   usedStreamCopy: boolean
 }
 
+// ─── Crop Types ──────────────────────────────────────────────────────────────
+
+/** A rectangular region, typically in display coordinates (relative to a container element). */
+export interface CropArea {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+/** Result returned after a successful crop operation. */
+export interface CropResult {
+  /** The cropped video as a Blob. */
+  blob: Blob
+  /** MIME type of the output. */
+  mimeType: string
+  /** The output container format used. */
+  targetFormat: VideoOutputFormat
+  /** Original file size in bytes. */
+  originalSize: number
+  /** Cropped output file size in bytes. */
+  croppedSize: number
+  /** The crop rectangle in native video pixels. */
+  cropRegion: { x: number; y: number; width: number; height: number }
+  /** Width of the cropped output in pixels (always even). */
+  outputWidth: number
+  /** Height of the cropped output in pixels (always even). */
+  outputHeight: number
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+}
+
 // ─── Thumbnail Types ────────────────────────────────────────────────────────
 
 /** A single timeline thumbnail. */

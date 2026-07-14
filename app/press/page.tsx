@@ -177,7 +177,7 @@ export default function PressPage() {
                   href="mailto:press@savevex.com"
                   className="text-primary font-medium hover:underline text-sm"
                 >
-                  support@savevex.com
+                  sneitechinc@gmail.com
                 </a>
               </div>
             </div>
