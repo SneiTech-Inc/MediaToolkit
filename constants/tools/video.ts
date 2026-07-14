@@ -28,8 +28,8 @@ export const videoTools = [
   },
   {
     id: 'rotate-video', slug: 'rotate-video', name: 'Rotate Video', category: 'video',
-    description: 'Rotate videos 90°, 180°, or 270°', icon: '🔁', badge: null,
-    dateAdded: '2024-01-09', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    description: 'Rotate videos 90°, 180°, or any angle. Flip horizontal and vertical.', icon: '🔁', badge: null,
+    dateAdded: '2024-01-09', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'webm'], isComingSoon: false,
   },
   {
     id: 'resize-video', slug: 'resize-video', name: 'Resize Video', category: 'video',

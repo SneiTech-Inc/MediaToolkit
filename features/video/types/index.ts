@@ -223,6 +223,44 @@ export interface CropResult {
   metadata: VideoMetadata | null
 }
 
+// ─── Rotate Types ─────────────────────────────────────────────────────────────
+
+/** Options for the Rotate Video tool. */
+export interface RotateOptions {
+  /** Rotation angle in degrees (0–360). */
+  angle: number
+  /** Whether to flip horizontally. */
+  flipH: boolean
+  /** Whether to flip vertically. */
+  flipV: boolean
+  /** Fill color for border areas at non-90° angles (default "black"). */
+  fillColor?: string
+  /** Whether to auto-crop empty borders after rotation. */
+  autoCrop?: boolean
+}
+
+/** Result returned after a successful rotation. */
+export interface RotateResult {
+  /** The rotated video as a Blob. */
+  blob: Blob
+  /** MIME type of the output. */
+  mimeType: string
+  /** The output container format used. */
+  targetFormat: VideoOutputFormat
+  /** Original file size in bytes. */
+  originalSize: number
+  /** Rotated output file size in bytes. */
+  rotatedSize: number
+  /** Actual rotation angle applied (0–360). */
+  angle: number
+  /** Whether horizontal flip was applied. */
+  flipH: boolean
+  /** Whether vertical flip was applied. */
+  flipV: boolean
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+}
+
 // ─── Thumbnail Types ────────────────────────────────────────────────────────
 
 /** A single timeline thumbnail. */
