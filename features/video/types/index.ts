@@ -285,6 +285,30 @@ export interface ResizeResult {
   metadata: VideoMetadata | null
 }
 
+// ─── Speed Types ──────────────────────────────────────────────────────────────
+
+/** Result returned after a successful speed change operation. */
+export interface SpeedResult {
+  /** The speed-adjusted video as a Blob. */
+  blob: Blob
+  /** MIME type of the output. */
+  mimeType: string
+  /** The output container format used. */
+  targetFormat: VideoOutputFormat
+  /** Original file size in bytes. */
+  originalSize: number
+  /** Speed-adjusted output file size in bytes. */
+  outputSize: number
+  /** The playback speed multiplier applied (0.25–4.0). */
+  speed: number
+  /** Original duration in seconds. */
+  originalDuration: number
+  /** New duration in seconds (originalDuration / speed). */
+  outputDuration: number
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+}
+
 // ─── Thumbnail Types ────────────────────────────────────────────────────────
 
 /** A single timeline thumbnail. */

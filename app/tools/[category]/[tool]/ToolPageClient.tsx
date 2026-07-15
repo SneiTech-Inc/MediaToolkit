@@ -293,6 +293,11 @@ const ResizeVideo = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const SpeedController = dynamic(
+  () => import('@/features/video/components/SpeedController').then(m => ({ default: m.SpeedController })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const QRCodeGenerator = dynamic(
   () => import('@/features/utility/components/QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -348,6 +353,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'crop-video': CropVideo,
   'rotate-video': RotateVideo,
   'resize-video': ResizeVideo,
+  'video-speed': SpeedController,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,
   'rotate-pdf': RotatePDF,

@@ -38,8 +38,8 @@ export const videoTools = [
   },
   {
     id: 'video-speed', slug: 'video-speed', name: 'Video Speed Controller', category: 'video',
-    description: 'Adjust video playback speed (0.5x to 4x)', icon: '⚡', badge: null,
-    dateAdded: '2024-01-10', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    description: 'Adjust video playback speed from 0.25x to 4x', icon: '⚡', badge: null,
+    dateAdded: '2024-01-10', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'webm'], isComingSoon: false,
   },
   {
     id: 'reverse-video', slug: 'reverse-video', name: 'Reverse Video', category: 'video',

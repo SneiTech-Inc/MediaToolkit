@@ -28,6 +28,57 @@ export const BLOG_POSTS = [
     content: '',
     readingTime: '3 min read',
   },
+  // ── July 15, 2026 ──
+  {
+    title: 'SaveVex Video Tools: Now Available — Compress, Convert, Trim, Merge, Crop, Rotate, Resize, and Speed Control',
+    excerpt:
+      'Announcing the launch of all 8 SaveVex video tools. Compress, convert, trim, merge, crop, rotate, resize, and adjust video speed — all free, private, and entirely in your browser.',
+    date: 'Jul 15, 2026',
+    category: 'News',
+    slug: 'savevex-video-tools-launch',
+    content: '',
+    readingTime: '6 min read',
+  },
+  {
+    title: 'How to Crop Video: Remove Unwanted Edges and Focus on What Matters',
+    excerpt:
+      'Learn how to crop videos to remove unwanted edges, reframe shots, and fit social media formats. Free, private, and entirely in your browser.',
+    date: 'Jul 15, 2026',
+    category: 'Guide',
+    slug: 'how-to-crop-video',
+    content: '',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'How to Rotate Video: Fix Orientation and Get Creative',
+    excerpt:
+      'Learn how to rotate videos to fix orientation, create artistic angles, and flip footage. Free, private, and entirely in your browser.',
+    date: 'Jul 15, 2026',
+    category: 'Guide',
+    slug: 'how-to-rotate-video',
+    content: '',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'How to Resize Video: Change Resolution and Aspect Ratio',
+    excerpt:
+      'Learn how to resize videos for any platform — scale to 1080p, fit Instagram dimensions, or reduce file size. Free, private, and entirely in your browser.',
+    date: 'Jul 15, 2026',
+    category: 'Guide',
+    slug: 'how-to-resize-video',
+    content: '',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'How to Change Video Speed: Slow Motion, Fast Motion, and Everything In Between',
+    excerpt:
+      'Learn how to speed up or slow down any video while keeping audio pitch natural. Perfect for slow motion, time-lapse, and fast-forward. Free and private.',
+    date: 'Jul 15, 2026',
+    category: 'Guide',
+    slug: 'video-speed-controller-guide',
+    content: '',
+    readingTime: '4 min read',
+  },
   // ── July 14, 2026 (Video Tools) ──
   {
     title: 'How to Compress Video Files Without Losing Quality — Free Online Tool',

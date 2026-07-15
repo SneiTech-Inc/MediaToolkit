@@ -24,7 +24,7 @@ export default function Page() {
     ? TOOLS
     : TOOLS.filter(tool => tool.category === selectedCategory)
 
-  const recentlyAdded = TOOLS.slice(0, 4)
+  const recentlyAdded = TOOLS.filter(t => t.category === 'video' && !t.isComingSoon).slice(0, 4)
   const featuredPosts = [...BLOG_POSTS]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4)
