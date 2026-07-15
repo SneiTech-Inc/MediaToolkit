@@ -309,6 +309,26 @@ export interface SpeedResult {
   metadata: VideoMetadata | null
 }
 
+// ─── Reverse Types ────────────────────────────────────────────────────────────
+
+/** Result returned after a successful reverse operation. */
+export interface ReverseResult {
+  /** The reversed video as a Blob. */
+  blob: Blob
+  /** MIME type of the output. */
+  mimeType: string
+  /** The output container format used. */
+  targetFormat: VideoOutputFormat
+  /** Original file size in bytes. */
+  originalSize: number
+  /** Reversed output file size in bytes. */
+  outputSize: number
+  /** Whether the source had an audio track that was also reversed. */
+  hasAudio: boolean
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+}
+
 // ─── Thumbnail Types ────────────────────────────────────────────────────────
 
 /** A single timeline thumbnail. */

@@ -298,6 +298,11 @@ const SpeedController = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const ReverseVideo = dynamic(
+  () => import('@/features/video/components/ReverseVideo').then(m => ({ default: m.ReverseVideo })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const QRCodeGenerator = dynamic(
   () => import('@/features/utility/components/QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -353,6 +358,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'crop-video': CropVideo,
   'rotate-video': RotateVideo,
   'resize-video': ResizeVideo,
+  'reverse-video': ReverseVideo,
   'video-speed': SpeedController,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,

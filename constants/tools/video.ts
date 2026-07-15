@@ -43,8 +43,8 @@ export const videoTools = [
   },
   {
     id: 'reverse-video', slug: 'reverse-video', name: 'Reverse Video', category: 'video',
-    description: 'Play videos backwards for creative effects', icon: '↩️', badge: null,
-    dateAdded: '2024-01-10', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    description: 'Play videos backwards for creative effects. Free, fast, and entirely in your browser.', icon: '↩️', badge: null,
+    dateAdded: '2024-01-10', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'mov', 'avi', 'mkv'], isComingSoon: false,
   },
   {
     id: 'extract-audio', slug: 'extract-audio', name: 'Extract Audio', category: 'video',
