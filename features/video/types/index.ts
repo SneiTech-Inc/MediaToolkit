@@ -261,6 +261,30 @@ export interface RotateResult {
   metadata: VideoMetadata | null
 }
 
+// ─── Resize Types ─────────────────────────────────────────────────────────────
+
+/** Result returned after a successful resize operation. */
+export interface ResizeResult {
+  /** The resized video as a Blob. */
+  blob: Blob
+  /** MIME type of the output. */
+  mimeType: string
+  /** The output container format used. */
+  targetFormat: VideoOutputFormat
+  /** Original file size in bytes. */
+  originalSize: number
+  /** Resized output file size in bytes. */
+  resizedSize: number
+  /** Target width in pixels (always even). */
+  targetWidth: number
+  /** Target height in pixels (always even). */
+  targetHeight: number
+  /** Scale method used: 'fit' = letterbox, 'fill' = cover-crop. */
+  scaleMethod: 'fit' | 'fill'
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+}
+
 // ─── Thumbnail Types ────────────────────────────────────────────────────────
 
 /** A single timeline thumbnail. */

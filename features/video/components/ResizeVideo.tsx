@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react'
 import {
-  Download, RotateCcw, Film, RotateCw, FlipHorizontal, FlipVertical,
+  Download, RotateCcw, Film, Maximize2, Lock, Unlock,
 } from 'lucide-react'
 import { UploadDropzone } from '@/components/shared/UploadDropzone'
 import { ProcessingStatus } from '@/components/shared/ProcessingStatus'
@@ -12,7 +12,7 @@ import { FAQSection } from '@/components/shared/FAQSection'
 import { Button } from '@/components/ui/button'
 import { processVideo } from '@/features/video/utils/videoProcessor'
 import { getBasicMetadata, preloadFFmpeg } from '@/features/video/utils/videoMetadata'
-import { buildRotateArgs } from '@/features/video/utils/videoRotator'
+import { buildResizeArgs, computePresetDimensions, roundEven } from '@/features/video/utils/videoResizer'
 import { FORMAT_CONFIG, DEFAULT_CRF, MIN_CRF, MAX_CRF } from '@/features/video/types'
 import { MAX_FILE_SIZE_TRIM } from '@/features/video/utils/videoValidation'
 import { cn } from '@/lib/utils'
@@ -24,7 +24,7 @@ import type {
   VideoPreset,
   VideoFrameRate,
   VideoMetadata,
-  RotateResult,
+  ResizeResult,
 } from '@/features/video/types'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -50,35 +50,28 @@ const FRAMERATE_OPTIONS: { value: VideoFrameRate; label: string }[] = [
   { value: '24', label: '24 fps' },
 ]
 
-const SNAP_POINTS = [0, 90, 180, 270, 360]
-const SNAP_THRESHOLD = 3
-
-const FILL_COLORS = [
-  { value: 'black', label: 'Black', swatch: '#000000', requiresAlpha: false },
-  { value: 'white', label: 'White', swatch: '#ffffff', requiresAlpha: false },
-  { value: 'black@0', label: 'Transparent', swatch: 'transparent', requiresAlpha: true },
-]
+const RESOLUTION_PRESETS = [240, 360, 480, 720, 1080]
 
 const TOOL_FAQS = [
   {
-    question: 'What video formats are supported for rotating?',
+    question: 'What video formats are supported for resizing?',
     answer:
       'You can upload MP4, WebM, MOV, AVI, and MKV files. Output formats are MP4, MOV, AVI, and MKV — all using high-quality H.264 encoding for wide compatibility.',
   },
   {
-    question: 'What rotation options are available?',
+    question: 'What do Fit and Fill mean?',
     answer:
-      'Use the quick buttons for 90° clockwise, 90° counter-clockwise, or 180° rotation. Toggle Flip Horizontal or Flip Vertical independently — flips can be combined with any rotation. For full control, drag the angle slider (0–360°) which snaps to 0°, 90°, 180°, 270°, and 360° for quick selection of standard angles.',
+      '"Fit" scales the video to fit within the target resolution while preserving the original aspect ratio. Black bars (letterbox or pillarbox) are added where needed so the entire frame is visible. "Fill" scales the video to completely cover the target resolution, cropping any excess content that extends beyond the frame. Both produce output at exactly the dimensions you specify.',
   },
   {
-    question: 'Does rotating a video affect quality?',
+    question: 'Does resizing a video affect quality?',
     answer:
-      'Rotation always requires re-encoding the video stream — stream copy is not possible with rotation. We use a dedicated, lossless transpose filter for exact 90°/180°/270° angles, so there is no quality loss beyond what the re-encode itself introduces. We encode at CRF 23 (high quality) by default. The audio stream is passed through without re-encoding, so audio quality is preserved.',
+      'Yes, resizing requires re-encoding the video, which can affect quality. Our advanced video processing technology uses high-quality settings to minimize quality loss.',
   },
   {
-    question: 'Why do custom angles add black corners?',
+    question: 'Are portrait videos handled correctly?',
     answer:
-      'When rotating by an angle that is not a multiple of 90° (e.g., 45°), the video frame must grow to contain the rotated image. The empty triangular corners are filled with your selected fill color — black by default, or choose white/transparent. For exact 90°/180°/270° rotations, the frame dimensions stay the same and there are no added borders. Enable the Auto-crop option to automatically remove the corner fill for custom angles.',
+      'Yes! The preset buttons automatically detect portrait vs. landscape orientation using the source video\'s actual dimensions. A vertical video with the "1080p" preset will produce 1080 as the height (tall edge), preserving the portrait orientation rather than forcing it into a landscape frame.',
   },
   {
     question: 'Is my video uploaded to a server?',
@@ -95,24 +88,15 @@ const HOW_TO_STEPS = [
   },
   {
     step: 2,
-    title: 'Choose your rotation',
-    desc: 'Use the quick buttons (90° CW, 90° CCW, 180°) for common angles, toggle Flip Horizontal or Flip Vertical for mirroring, or drag the angle slider for precise control. The live preview updates in real time so you can see exactly what the output will look like.',
+    title: 'Set your target resolution',
+    desc: 'Pick a preset (240p–1080p) that automatically preserves your video\'s orientation, or enter custom dimensions. Toggle the aspect ratio lock to keep the original shape, or unlock for free adjustments. Choose "Fit" to see the full frame with bars, or "Fill" to crop the frame.',
   },
   {
     step: 3,
-    title: 'Download your rotated video',
-    desc: 'Click Rotate Video, wait for the progress bar, then preview and download your rotated clip. The entire process runs locally in your browser.',
+    title: 'Download your resized video',
+    desc: 'Click Resize Video, wait for the progress bar, then preview and download your resized clip. The entire process runs locally in your browser.',
   },
 ]
-
-// ─── Snap helper ─────────────────────────────────────────────────────────────
-
-function snapAngle(raw: number): number {
-  for (const point of SNAP_POINTS) {
-    if (Math.abs(raw - point) <= SNAP_THRESHOLD) return point
-  }
-  return raw
-}
 
 // ─── Analytics ────────────────────────────────────────────────────────────────
 
@@ -124,17 +108,18 @@ function trackEvent(name: string, props?: Record<string, unknown>): void {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export function RotateVideo() {
+export function ResizeVideo() {
   // ── Core state ──────────────────────────────────────────────────────────
   const [originalFile, setOriginalFile] = useState<File | null>(null)
   const [videoMetadata, setVideoMetadata] = useState<VideoMetadata | null>(null)
 
-  // ── Rotation state ──────────────────────────────────────────────────────
-  const [angle, setAngle] = useState(0)
-  const [flipH, setFlipH] = useState(false)
-  const [flipV, setFlipV] = useState(false)
-  const [fillColor, setFillColor] = useState('black')
-  const [autoCrop, setAutoCrop] = useState(false)
+  // ── Resolution state ────────────────────────────────────────────────────
+  const [targetWidth, setTargetWidth] = useState(1920)
+  const [targetHeight, setTargetHeight] = useState(1080)
+  const [widthInput, setWidthInput] = useState('1920')
+  const [heightInput, setHeightInput] = useState('1080')
+  const [aspectLocked, setAspectLocked] = useState(true)
+  const [scaleMethod, setScaleMethod] = useState<'fit' | 'fill'>('fit')
 
   // ── Options ─────────────────────────────────────────────────────────────
   const [targetFormat, setTargetFormat] = useState<VideoOutputFormat>('mp4')
@@ -147,7 +132,7 @@ export function RotateVideo() {
   const [progress, setProgress] = useState(0)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [estimatedRemaining, setEstimatedRemaining] = useState(0)
-  const [result, setResult] = useState<RotateResult | null>(null)
+  const [result, setResult] = useState<ResizeResult | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isCancelled, setIsCancelled] = useState(false)
 
@@ -160,7 +145,9 @@ export function RotateVideo() {
   // ── Derived ─────────────────────────────────────────────────────────────
   const metadataAvailable = videoMetadata !== null
   const duration = videoMetadata?.duration ?? 0
-  const isFreeAngle = !SNAP_POINTS.includes(((angle % 360) + 360) % 360)
+  const originalAspectRatio = videoMetadata && videoMetadata.height > 0
+    ? videoMetadata.width / videoMetadata.height
+    : 16 / 9
 
   // ── Sync metadata ref ───────────────────────────────────────────────────
   useEffect(() => {
@@ -193,6 +180,16 @@ export function RotateVideo() {
     }
   }, [])
 
+  // ── Initialize target dimensions from source ────────────────────────────
+  const initFromSource = useCallback((metadata: VideoMetadata) => {
+    const w = roundEven(metadata.width)
+    const h = roundEven(metadata.height)
+    setTargetWidth(w)
+    setTargetHeight(h)
+    setWidthInput(String(w))
+    setHeightInput(String(h))
+  }, [])
+
   // ── File selection ──────────────────────────────────────────────────────
 
   const handleFileSelect = useCallback(async (file: File) => {
@@ -207,11 +204,8 @@ export function RotateVideo() {
     setError(null)
     setIsCancelled(false)
     setProgress(0)
-    setAngle(0)
-    setFlipH(false)
-    setFlipV(false)
-    setFillColor('black')
-    setAutoCrop(false)
+    setScaleMethod('fit')
+    setAspectLocked(true)
 
     if (file.size > MAX_FILE_SIZE_TRIM) {
       setError(
@@ -226,30 +220,110 @@ export function RotateVideo() {
     setVideoMetadata(metadata)
     metadataRef.current = metadata
 
+    if (metadata && metadata.width > 0 && metadata.height > 0) {
+      initFromSource(metadata)
+    }
+
     trackEvent('video_uploaded', {
       format: file.name.split('.').pop()?.toLowerCase(),
       size_mb: Math.round(file.size / (1024 * 1024)),
     })
 
     preloadFFmpeg()
+  }, [initFromSource])
+
+  // ── Preset button ───────────────────────────────────────────────────────
+
+  const handlePreset = useCallback((presetValue: number) => {
+    const metadata = metadataRef.current
+    if (!metadata || metadata.width <= 0 || metadata.height <= 0) return
+    const dims = computePresetDimensions(presetValue, metadata.width, metadata.height)
+    setTargetWidth(dims.width)
+    setTargetHeight(dims.height)
+    setWidthInput(String(dims.width))
+    setHeightInput(String(dims.height))
   }, [])
 
-  // ── Quick rotate buttons ────────────────────────────────────────────────
+  // ── Width change (aspect-locked) ────────────────────────────────────────
 
-  const handleQuickRotate = useCallback((degrees: number) => {
-    setAngle(degrees)
+  const handleWidthChange = useCallback((raw: string) => {
+    setWidthInput(raw)
+    const w = parseInt(raw, 10)
+    if (isNaN(w) || w <= 0) return
+    if (aspectLocked && videoMetadata && videoMetadata.height > 0) {
+      const h = roundEven(w / originalAspectRatio)
+      if (h > 0 && h <= 8192) {
+        setTargetHeight(h)
+        setHeightInput(String(h))
+      }
+    }
+    setTargetWidth(w)
+  }, [aspectLocked, videoMetadata, originalAspectRatio])
+
+  // ── Height change (aspect-locked) ───────────────────────────────────────
+
+  const handleHeightChange = useCallback((raw: string) => {
+    setHeightInput(raw)
+    const h = parseInt(raw, 10)
+    if (isNaN(h) || h <= 0) return
+    if (aspectLocked && videoMetadata && videoMetadata.height > 0) {
+      const w = roundEven(h * originalAspectRatio)
+      if (w > 0 && w <= 8192) {
+        setTargetWidth(w)
+        setWidthInput(String(w))
+      }
+    }
+    setTargetHeight(h)
+  }, [aspectLocked, videoMetadata, originalAspectRatio])
+
+  // ── Blur/Enter: finalize even rounding ──────────────────────────────────
+
+  const handleWidthBlur = useCallback(() => {
+    const w = roundEven(targetWidth)
+    setTargetWidth(w)
+    setWidthInput(String(w))
+    if (aspectLocked && videoMetadata && videoMetadata.height > 0) {
+      const h = roundEven(w / originalAspectRatio)
+      setTargetHeight(h)
+      setHeightInput(String(h))
+    }
+  }, [targetWidth, aspectLocked, videoMetadata, originalAspectRatio])
+
+  const handleHeightBlur = useCallback(() => {
+    const h = roundEven(targetHeight)
+    setTargetHeight(h)
+    setHeightInput(String(h))
+    if (aspectLocked && videoMetadata && videoMetadata.height > 0) {
+      const w = roundEven(h * originalAspectRatio)
+      setTargetWidth(w)
+      setWidthInput(String(w))
+    }
+  }, [targetHeight, aspectLocked, videoMetadata, originalAspectRatio])
+
+  const handleInputKeyDown = useCallback((e: React.KeyboardEvent, field: 'w' | 'h') => {
+    if (e.key === 'Enter') {
+      if (field === 'w') handleWidthBlur()
+      else handleHeightBlur()
+    }
+  }, [handleWidthBlur, handleHeightBlur])
+
+  // ── Toggle aspect lock ──────────────────────────────────────────────────
+
+  const handleToggleLock = useCallback(() => {
+    setAspectLocked((prev) => !prev)
   }, [])
 
-  // ── Angle slider ────────────────────────────────────────────────────────
+  // ── Reset to source dimensions ──────────────────────────────────────────
 
-  const handleSliderChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = Number(e.target.value)
-    setAngle(snapAngle(raw))
-  }, [])
+  const handleResetDimensions = useCallback(() => {
+    const metadata = metadataRef.current
+    if (!metadata || metadata.width <= 0 || metadata.height <= 0) return
+    initFromSource(metadata)
+  }, [initFromSource])
 
   // ── Processing ──────────────────────────────────────────────────────────
 
-  const handleRotate = useCallback(async () => {
+  const handleResize = useCallback(async () => {
     if (!originalFile) return
 
     setError(null)
@@ -260,31 +334,31 @@ export function RotateVideo() {
     setEstimatedRemaining(0)
     setResult(null)
 
+    const finalW = roundEven(targetWidth)
+    const finalH = roundEven(targetHeight)
+
     const abortController = new AbortController()
     abortControllerRef.current = abortController
 
-    trackEvent('rotate_started', {
+    trackEvent('resize_started', {
       format: targetFormat,
-      angle,
-      flipH,
-      flipV,
+      target: `${finalW}x${finalH}`,
+      method: scaleMethod,
     })
 
     try {
       const config = FORMAT_CONFIG[targetFormat]
 
       const buildArgs = (inputName: string, outputName: string) =>
-        buildRotateArgs(inputName, outputName, {
-          angle,
-          flipH,
-          flipV,
-          fillColor,
-          autoCrop,
+        buildResizeArgs(inputName, outputName, {
+          targetWidth: finalW,
+          targetHeight: finalH,
+          scaleMethod,
           targetFormat,
           encoderOptions: {
             preset,
             crf,
-            resolution: 'original',
+            resolution: 'original', // we handle scaling via our own filter chain
             frameRate,
             audioCodec: config.audioCodec,
             audioBitrate: config.audioBitrate,
@@ -306,48 +380,47 @@ export function RotateVideo() {
         signal: abortController.signal,
       })
 
-      const rotateResult: RotateResult = {
+      const resizeResult: ResizeResult = {
         blob: processResult.blob,
         mimeType: processResult.mimeType,
         targetFormat,
         originalSize: originalFile.size,
-        rotatedSize: processResult.blob.size,
-        angle,
-        flipH,
-        flipV,
+        resizedSize: processResult.blob.size,
+        targetWidth: finalW,
+        targetHeight: finalH,
+        scaleMethod,
         metadata: videoMetadata,
       }
 
-      setResult(rotateResult)
+      setResult(resizeResult)
 
       if (previewUrlRef.current) {
         URL.revokeObjectURL(previewUrlRef.current)
       }
       previewUrlRef.current = URL.createObjectURL(processResult.blob)
 
-      trackEvent('rotate_completed', {
+      trackEvent('resize_completed', {
         format: targetFormat,
-        angle,
         original_mb: Math.round(originalFile.size / (1024 * 1024)),
-        rotated_mb: Math.round(processResult.blob.size / (1024 * 1024)),
+        resized_mb: Math.round(processResult.blob.size / (1024 * 1024)),
       })
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {
         setIsCancelled(true)
-        trackEvent('rotate_cancelled', { format: targetFormat })
+        trackEvent('resize_cancelled', { format: targetFormat })
       } else {
         setError(
           err instanceof Error
             ? err.message
-            : 'Rotation failed. Please try again with a different video file.'
+            : 'Resizing failed. Please try again with a different video file.'
         )
-        trackEvent('rotate_failed', { error: err instanceof Error ? err.message : 'unknown' })
+        trackEvent('resize_failed', { error: err instanceof Error ? err.message : 'unknown' })
       }
     } finally {
       setIsProcessing(false)
       abortControllerRef.current = null
     }
-  }, [originalFile, videoMetadata, angle, flipH, flipV, fillColor, autoCrop, targetFormat, preset, crf, frameRate])
+  }, [originalFile, videoMetadata, targetWidth, targetHeight, scaleMethod, targetFormat, preset, crf, frameRate])
 
   // ── Cancel ──────────────────────────────────────────────────────────────
 
@@ -383,11 +456,12 @@ export function RotateVideo() {
     }
     setOriginalFile(null)
     setVideoMetadata(null)
-    setAngle(0)
-    setFlipH(false)
-    setFlipV(false)
-    setFillColor('black')
-    setAutoCrop(false)
+    setTargetWidth(1920)
+    setTargetHeight(1080)
+    setWidthInput('1920')
+    setHeightInput('1080')
+    setAspectLocked(true)
+    setScaleMethod('fit')
     setTargetFormat('mp4')
     setPreset('medium')
     setCrf(DEFAULT_CRF)
@@ -403,9 +477,28 @@ export function RotateVideo() {
     setError(null)
   }, [])
 
-  // ── CSS transform for live preview ──────────────────────────────────────
+  // ── Is this a preset match? ─────────────────────────────────────────────
 
-  const previewTransform = `rotate(${angle}deg) scaleX(${flipH ? -1 : 1}) scaleY(${flipV ? -1 : 1})`
+  const activePreset = (() => {
+    const metadata = metadataRef.current
+    if (!metadata || metadata.width <= 0 || metadata.height <= 0) return null
+    for (const p of RESOLUTION_PRESETS) {
+      const dims = computePresetDimensions(p, metadata.width, metadata.height)
+      if (dims.width === targetWidth && dims.height === targetHeight) return p
+    }
+    return null
+  })()
+
+  // ── Is resolution changed from source? ──────────────────────────────────
+
+  const isChanged = videoMetadata
+    ? roundEven(targetWidth) !== roundEven(videoMetadata.width) ||
+      roundEven(targetHeight) !== roundEven(videoMetadata.height)
+    : true
+
+  // ── Preview style ───────────────────────────────────────────────────────
+
+  const previewObjectFit = scaleMethod === 'fit' ? 'contain' : 'cover'
 
   // ── Render ──────────────────────────────────────────────────────────────
 
@@ -424,17 +517,17 @@ export function RotateVideo() {
         {/* ── Error: processing failure ──────────────────────────────── */}
         {error && originalFile && (
           <ErrorCard
-            title="Rotation Failed"
+            title="Resize Failed"
             message={error}
-            onRetry={handleRotate}
+            onRetry={handleResize}
           />
         )}
 
         {/* ── Cancelled ──────────────────────────────────────────────── */}
         {isCancelled && !error && !result && (
           <div className="border border-border rounded-xl p-8 text-center bg-card">
-            <RotateCw className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Rotation Cancelled</h3>
+            <Maximize2 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">Resize Cancelled</h3>
             <p className="text-muted-foreground mb-4">
               Processing was cancelled. Temporary files have been cleaned up.
             </p>
@@ -483,133 +576,156 @@ export function RotateVideo() {
               {!isProcessing && !result && (
                 <div
                   className="rounded-xl overflow-hidden bg-black"
-                  style={{ overflow: 'hidden' }}
+                  style={{
+                    aspectRatio: `${targetWidth}/${targetHeight}`,
+                    maxHeight: '480px',
+                  }}
                 >
                   <video
                     ref={videoRef}
                     src={previewUrlRef.current ?? undefined}
-                    className="w-full block"
+                    className="w-full h-full block"
                     preload="auto"
                     controls={false}
                     draggable={false}
-                    style={{ transform: previewTransform }}
+                    style={{ objectFit: previewObjectFit }}
                   >
                     Your browser does not support the video tag.
                   </video>
                 </div>
               )}
 
-              {/* ── Rotation Controls ────────────────────────────────── */}
+              {/* ── Resolution Controls ──────────────────────────────── */}
               {!isProcessing && !result && originalFile && (
                 <div className="border border-border rounded-xl p-6 bg-card space-y-5">
-                  <h3 className="font-semibold text-lg">Rotation Controls</h3>
+                  <h3 className="font-semibold text-lg">Resolution</h3>
 
-                  {/* Quick rotate buttons */}
+                  {/* Preset buttons */}
                   <div>
                     <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                      Quick Rotate
+                      Presets (orientation-aware)
                     </label>
                     <div className="flex flex-wrap gap-2">
-                      <Button
-                        variant={angle === 90 ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => handleQuickRotate(90)}
-                      >
-                        <RotateCw className="w-4 h-4 mr-1" />
-                        90° CW
-                      </Button>
-                      <Button
-                        variant={angle === 270 ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => handleQuickRotate(270)}
-                      >
-                        <RotateCw className="w-4 h-4 mr-1 rotate-180" />
-                        90° CCW
-                      </Button>
-                      <Button
-                        variant={angle === 180 ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => handleQuickRotate(180)}
-                      >
-                        180°
-                      </Button>
-                      <Button
-                        variant={angle === 0 ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => handleQuickRotate(0)}
-                      >
-                        0° (Reset)
-                      </Button>
+                      {RESOLUTION_PRESETS.map((presetValue) => {
+                        const isActive = activePreset === presetValue
+                        const metadata = metadataRef.current
+                        const label = metadata && metadata.width >= metadata.height
+                          ? `${presetValue}p`
+                          : `${presetValue}p`
+                        return (
+                          <button
+                            key={presetValue}
+                            onClick={() => handlePreset(presetValue)}
+                            className={cn(
+                              'px-4 py-2 text-sm rounded-lg border transition-colors',
+                              isActive
+                                ? 'bg-primary text-primary-foreground border-primary'
+                                : 'border-border bg-card hover:bg-muted/50 text-foreground',
+                            )}
+                          >
+                            {label}
+                          </button>
+                        )
+                      })}
                     </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Presets set the longer edge. Portrait videos get portrait output.
+                    </p>
                   </div>
 
-                  {/* Flip toggles */}
+                  {/* Custom width/height with aspect lock */}
                   <div>
                     <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                      Flip
+                      Custom Dimensions
                     </label>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          value={widthInput}
+                          onChange={(e) => handleWidthChange(e.target.value)}
+                          onBlur={handleWidthBlur}
+                          onKeyDown={(e) => handleInputKeyDown(e, 'w')}
+                          className="w-full px-3 py-2 border border-border rounded-lg bg-background text-sm text-center font-mono"
+                          disabled={isProcessing}
+                          aria-label="Target width"
+                        />
+                      </div>
+                      <span className="text-muted-foreground text-sm">×</span>
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          value={heightInput}
+                          onChange={(e) => handleHeightChange(e.target.value)}
+                          onBlur={handleHeightBlur}
+                          onKeyDown={(e) => handleInputKeyDown(e, 'h')}
+                          className="w-full px-3 py-2 border border-border rounded-lg bg-background text-sm text-center font-mono"
+                          disabled={isProcessing}
+                          aria-label="Target height"
+                        />
+                      </div>
                       <button
-                        onClick={() => setFlipH(!flipH)}
+                        onClick={handleToggleLock}
                         className={cn(
-                          'flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors text-sm',
-                          flipH
+                          'p-2 rounded-lg border transition-colors shrink-0',
+                          aspectLocked
                             ? 'bg-primary text-primary-foreground border-primary'
                             : 'border-border bg-card hover:bg-muted/50 text-foreground',
                         )}
+                        title={aspectLocked ? 'Unlock aspect ratio' : 'Lock aspect ratio'}
+                        aria-label={aspectLocked ? 'Unlock aspect ratio' : 'Lock aspect ratio'}
                       >
-                        <FlipHorizontal className="w-4 h-4" />
-                        Flip Horizontal
-                      </button>
-                      <button
-                        onClick={() => setFlipV(!flipV)}
-                        className={cn(
-                          'flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors text-sm',
-                          flipV
-                            ? 'bg-primary text-primary-foreground border-primary'
-                            : 'border-border bg-card hover:bg-muted/50 text-foreground',
-                        )}
-                      >
-                        <FlipVertical className="w-4 h-4" />
-                        Flip Vertical
+                        {aspectLocked ? <Lock className="w-4 h-4" /> : <Unlock className="w-4 h-4" />}
                       </button>
                     </div>
-                  </div>
-
-                  {/* Angle slider */}
-                  <div>
-                    <label className="text-sm font-medium flex justify-between mb-2">
-                      <span className="text-muted-foreground">Custom Angle</span>
-                      <span className="font-semibold">
-                        {angle}°
-                        {!isFreeAngle && angle !== 0 && (
-                          <span className="ml-1 text-xs text-green-600 dark:text-green-400 font-normal">
-                            (optimized)
-                          </span>
-                        )}
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min={0}
-                      max={360}
-                      step={1}
-                      value={angle}
-                      onChange={handleSliderChange}
-                      className="w-full accent-primary"
-                    />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>0°</span>
-                      <span>90°</span>
-                      <span>180°</span>
-                      <span>270°</span>
-                      <span>360°</span>
-                    </div>
-                    {isFreeAngle && (
-                      <p className="text-xs text-amber-600 dark:text-amber-400 mt-2">
-                        Custom angle — will add {fillColor === 'black@0' ? 'transparent' : fillColor} corner fill.
+                    {aspectLocked && (
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Aspect ratio locked ({originalAspectRatio.toFixed(2)}:1) — dimensions stay proportional.
                       </p>
                     )}
+                  </div>
+
+                  {/* Scale method selector */}
+                  <div>
+                    <label className="text-sm font-medium text-muted-foreground mb-2 block">
+                      Scale Method
+                    </label>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setScaleMethod('fit')}
+                        className={cn(
+                          'flex-1 px-4 py-2 text-sm rounded-lg border transition-colors',
+                          scaleMethod === 'fit'
+                            ? 'bg-primary text-primary-foreground border-primary'
+                            : 'border-border bg-card hover:bg-muted/50 text-foreground',
+                        )}
+                      >
+                        Fit
+                      </button>
+                      <button
+                        onClick={() => setScaleMethod('fill')}
+                        className={cn(
+                          'flex-1 px-4 py-2 text-sm rounded-lg border transition-colors',
+                          scaleMethod === 'fill'
+                            ? 'bg-primary text-primary-foreground border-primary'
+                            : 'border-border bg-card hover:bg-muted/50 text-foreground',
+                        )}
+                      >
+                        Fill
+                      </button>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {scaleMethod === 'fit'
+                        ? 'Scales to fit within the target. Adds black bars if the aspect ratio differs.'
+                        : 'Scales to fill the entire target. Crops excess content if the aspect ratio differs.'}
+                    </p>
+                  </div>
+
+                  {/* Reset to source */}
+                  <div>
+                    <Button variant="outline" size="sm" onClick={handleResetDimensions}>
+                      Reset to Original ({videoMetadata ? `${videoMetadata.width}×${videoMetadata.height}` : '—'})
+                    </Button>
                   </div>
                 </div>
               )}
@@ -617,10 +733,10 @@ export function RotateVideo() {
               {/* ── Progress ──────────────────────────────────────────── */}
               {isProcessing && (
                 <div className="space-y-4">
-                  <ProcessingStatus message="Rotating video..." />
+                  <ProcessingStatus message="Resizing video..." />
                   <ProgressBar
                     percent={progress}
-                    label="Rotation Progress"
+                    label="Resize Progress"
                     detail={
                       progress < 5
                         ? 'Initializing...'
@@ -647,7 +763,7 @@ export function RotateVideo() {
               {result && (
                 <div className="space-y-6">
                   <div className="border border-border rounded-xl p-6 bg-card">
-                    <h3 className="font-semibold text-lg mb-4">Rotation Complete</h3>
+                    <h3 className="font-semibold text-lg mb-4">Resize Complete</h3>
 
                     {previewUrlRef.current && (
                       <div className="mb-6 rounded-lg overflow-hidden bg-black">
@@ -669,19 +785,17 @@ export function RotateVideo() {
                         <div className="font-semibold text-sm uppercase">{result.targetFormat}</div>
                       </div>
                       <div className="p-3 rounded-lg bg-muted/30">
-                        <div className="text-xs text-muted-foreground mb-1">Angle</div>
+                        <div className="text-xs text-muted-foreground mb-1">Resolution</div>
                         <div className="font-semibold text-sm">
-                          {result.angle}°
-                          {result.flipH && ' + H'}
-                          {result.flipV && ' + V'}
+                          {result.targetWidth}×{result.targetHeight}
                         </div>
                       </div>
                       <div className="p-3 rounded-lg bg-muted/30">
-                        <div className="text-xs text-muted-foreground mb-1">Preset</div>
-                        <div className="font-semibold text-sm capitalize">{preset}</div>
+                        <div className="text-xs text-muted-foreground mb-1">Method</div>
+                        <div className="font-semibold text-sm capitalize">{result.scaleMethod}</div>
                       </div>
                       <div className="p-3 rounded-lg bg-muted/30">
-                        <div className="text-xs text-muted-foreground mb-1">Method</div>
+                        <div className="text-xs text-muted-foreground mb-1">Encoding</div>
                         <div className="font-semibold text-sm">Re-encode</div>
                       </div>
                     </div>
@@ -694,14 +808,14 @@ export function RotateVideo() {
                         <div className="text-2xl font-bold">{formatBytes(result.originalSize)}</div>
                       </div>
                       <div className="p-4 rounded-lg bg-muted/30">
-                        <div className="text-xs text-muted-foreground mb-1">Rotated</div>
-                        <div className="text-2xl font-bold">{formatBytes(result.rotatedSize)}</div>
+                        <div className="text-xs text-muted-foreground mb-1">Resized</div>
+                        <div className="text-2xl font-bold">{formatBytes(result.resizedSize)}</div>
                         {result.originalSize > 0 && (
                           <div className="text-xs text-muted-foreground mt-1">
-                            {result.rotatedSize < result.originalSize
-                              ? `${Math.round(((result.originalSize - result.rotatedSize) / result.originalSize) * 100)}% smaller`
-                              : result.rotatedSize > result.originalSize
-                                ? `${Math.round(((result.rotatedSize - result.originalSize) / result.originalSize) * 100)}% larger`
+                            {result.resizedSize < result.originalSize
+                              ? `${Math.round(((result.originalSize - result.resizedSize) / result.originalSize) * 100)}% smaller`
+                              : result.resizedSize > result.originalSize
+                                ? `${Math.round(((result.resizedSize - result.originalSize) / result.originalSize) * 100)}% larger`
                                 : 'Same size'}
                           </div>
                         )}
@@ -721,7 +835,7 @@ export function RotateVideo() {
                     </Button>
                     <Button size="lg" variant="outline" onClick={handleReset}>
                       <RotateCcw className="w-4 h-4 mr-2" />
-                      Rotate Another
+                      Resize Another
                     </Button>
                   </div>
                 </div>
@@ -758,7 +872,7 @@ export function RotateVideo() {
                     {/* Preset */}
                     <div>
                       <label className="text-sm font-medium flex justify-between">
-                        <span>Preset</span>
+                        <span>Encoding Preset</span>
                         <span className="text-primary font-semibold capitalize">{preset}</span>
                       </label>
                       <select
@@ -819,96 +933,32 @@ export function RotateVideo() {
                       </select>
                     </div>
 
-                    {/* Fill Color */}
-                    <div>
-                      <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                        Corner Fill Color
-                      </label>
-                      <div className="flex gap-2">
-                        {FILL_COLORS.map((color) => {
-                          const disabled = color.requiresAlpha && targetFormat === 'mp4'
-                          return (
-                            <button
-                              key={color.value}
-                              onClick={() => setFillColor(color.value)}
-                              disabled={disabled}
-                              className={cn(
-                                'flex items-center gap-2 px-3 py-1.5 text-sm rounded-lg border transition-colors',
-                                fillColor === color.value
-                                  ? 'bg-primary text-primary-foreground border-primary'
-                                  : disabled
-                                    ? 'border-border bg-muted/30 text-muted-foreground cursor-not-allowed'
-                                    : 'border-border bg-card hover:bg-muted/50 text-foreground',
-                              )}
-                              title={
-                                disabled
-                                  ? 'Transparent fill requires WebM output (MP4 does not support alpha)'
-                                  : color.label
-                              }
-                            >
-                              <span
-                                className="w-4 h-4 rounded border border-border shrink-0"
-                                style={{
-                                  background:
-                                    color.swatch === 'transparent'
-                                      ? 'repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 50% / 8px 8px'
-                                      : color.swatch,
-                                }}
-                              />
-                              {color.label}
-                            </button>
-                          )
-                        })}
+                    {/* Target info */}
+                    <div className="p-3 rounded-lg bg-background border border-border">
+                      <div className="text-xs text-muted-foreground mb-1">Output Resolution</div>
+                      <div className="text-lg font-bold font-mono">
+                        {roundEven(targetWidth)} × {roundEven(targetHeight)}
                       </div>
-                      {isFreeAngle && (
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Only applies to custom (non-90°) angles.
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Auto-crop toggle */}
-                    <div className="space-y-2">
-                      <label
-                        className={cn(
-                          'flex items-center gap-2',
-                          !isFreeAngle ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-                        )}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={autoCrop}
-                          onChange={(e) => setAutoCrop(e.target.checked)}
-                          disabled={!isFreeAngle}
-                          className="w-4 h-4 accent-primary"
-                        />
-                        <span className="text-sm font-medium">Auto-crop black borders</span>
-                      </label>
-                      <p className="text-xs text-muted-foreground ml-6">
-                        Removes the corner fill for custom angles by cropping to the largest
-                        centered rectangle without borders.
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {scaleMethod === 'fit' ? 'Fit — black bars if needed' : 'Fill — cropped to fit'}
                       </p>
                     </div>
 
                     {/* Re-encode notice */}
                     <div className="p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
                       <p className="text-xs text-blue-800 dark:text-blue-200">
-                        Rotation always re-encodes the video stream. Audio is passed through
-                        without re-encoding.
-                        {!isFreeAngle && angle !== 0 && (
-                          <> Exact 90° multiples use optimized transpose — no quality loss beyond the re-encode.</>
-                        )}
+                        Resizing always re-encodes the video stream. Audio is passed through without re-encoding.
                       </p>
                     </div>
 
-                    {/* Rotate button */}
+                    {/* Resize button */}
                     <Button
                       className="w-full bg-primary hover:bg-primary/90"
-                      disabled={!originalFile}
-                      onClick={handleRotate}
+                      disabled={!originalFile || !isChanged}
+                      onClick={handleResize}
                     >
-                      <RotateCw className="w-4 h-4 mr-2" />
-                      Rotate Video
+                      <Maximize2 className="w-4 h-4 mr-2" />
+                      {isChanged ? 'Resize Video' : 'No change needed'}
                     </Button>
                   </div>
                 )}
@@ -925,15 +975,15 @@ export function RotateVideo() {
                         </div>
                       </div>
                       <div>
-                        <label className="text-sm font-medium">Angle</label>
+                        <label className="text-sm font-medium">Target</label>
                         <div className="w-full mt-1 px-3 py-2 border border-border rounded-lg bg-background text-sm">
-                          {angle}°{flipH && ' + Flip H'}{flipV && ' + Flip V'}
+                          {roundEven(targetWidth)}×{roundEven(targetHeight)} ({scaleMethod})
                         </div>
                       </div>
                       <div>
                         <label className="text-sm font-medium">Method</label>
                         <div className="w-full mt-1 px-3 py-2 border border-border rounded-lg bg-background text-sm">
-                          Re-encode (required for rotation)
+                          Re-encode (required for resize)
                         </div>
                       </div>
                     </div>
@@ -957,7 +1007,7 @@ export function RotateVideo() {
                       </Button>
                       <Button className="w-full" variant="outline" onClick={handleReset}>
                         <RotateCcw className="w-4 h-4 mr-2" />
-                        Rotate Another Video
+                        Resize Another Video
                       </Button>
                     </div>
                   </div>
@@ -969,7 +1019,7 @@ export function RotateVideo() {
 
         {/* ── How To ────────────────────────────────────────────────────── */}
         <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">How to Rotate a Video</h2>
+          <h2 className="text-2xl font-bold mb-6">How to Resize a Video</h2>
           <ol className="space-y-4">
             {HOW_TO_STEPS.map((item) => (
               <li key={item.step} className="flex gap-4">

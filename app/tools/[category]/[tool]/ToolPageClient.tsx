@@ -288,6 +288,11 @@ const RotateVideo = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const ResizeVideo = dynamic(
+  () => import('@/features/video/components/ResizeVideo').then(m => ({ default: m.ResizeVideo })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const QRCodeGenerator = dynamic(
   () => import('@/features/utility/components/QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -342,6 +347,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'merge-video': MergeVideo,
   'crop-video': CropVideo,
   'rotate-video': RotateVideo,
+  'resize-video': ResizeVideo,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,
   'rotate-pdf': RotatePDF,

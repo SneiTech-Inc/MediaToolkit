@@ -33,8 +33,8 @@ export const videoTools = [
   },
   {
     id: 'resize-video', slug: 'resize-video', name: 'Resize Video', category: 'video',
-    description: 'Change video resolution and aspect ratio', icon: '📐', badge: null,
-    dateAdded: '2024-01-10', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['mp4', 'webm'], isComingSoon: true,
+    description: 'Change video resolution and aspect ratio. Fit or fill any size.', icon: '📐', badge: null,
+    dateAdded: '2024-01-10', inputFormats: ['mp4', 'webm', 'mov', 'avi', 'mkv'], outputFormats: ['mp4', 'webm'], isComingSoon: false,
   },
   {
     id: 'video-speed', slug: 'video-speed', name: 'Video Speed Controller', category: 'video',
