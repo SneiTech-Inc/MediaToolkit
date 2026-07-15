@@ -303,6 +303,11 @@ const ReverseVideo = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const ExtractAudio = dynamic(
+  () => import('@/features/video/components/ExtractAudio').then(m => ({ default: m.ExtractAudio })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const QRCodeGenerator = dynamic(
   () => import('@/features/utility/components/QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -353,6 +358,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'change-volume': ChangeVolume,
   'compress-video': CompressVideo,
   'convert-video': ConvertVideo,
+  'extract-audio': ExtractAudio,
   'trim-video': TrimVideo,
   'merge-video': MergeVideo,
   'crop-video': CropVideo,

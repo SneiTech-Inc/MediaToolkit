@@ -329,6 +329,26 @@ export interface ReverseResult {
   metadata: VideoMetadata | null
 }
 
+// ─── Extract Audio Types ──────────────────────────────────────────────────────
+
+/** Result returned after a successful audio extraction from video. */
+export interface ExtractAudioResult {
+  /** The extracted audio as a Blob. */
+  blob: Blob
+  /** MIME type of the output (e.g. "audio/mpeg"). */
+  mimeType: string
+  /** The output audio format used. */
+  outputFormat: string
+  /** Original video file size in bytes. */
+  originalSize: number
+  /** Extracted audio file size in bytes. */
+  outputSize: number
+  /** Audio duration in seconds. */
+  duration: number
+  /** Whether the source video had an audio track. */
+  hasAudio: boolean
+}
+
 // ─── Thumbnail Types ────────────────────────────────────────────────────────
 
 /** A single timeline thumbnail. */
