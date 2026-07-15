@@ -52,8 +52,8 @@ export const videoTools = [
     dateAdded: '2024-01-11', inputFormats: ['mp4', 'mov', 'webm', 'mkv', 'avi'], outputFormats: ['mp3', 'wav', 'aac', 'ogg', 'flac', 'm4a'], isComingSoon: false,
   },
   {
-    id: 'video-to-gif', slug: 'video-to-gif', name: 'Video to GIF', category: 'video',
-    description: 'Create animated GIFs from video clips', icon: '🎞️', badge: 'popular',
-    dateAdded: '2024-01-11', inputFormats: ['mp4', 'mov', 'webm'], outputFormats: ['gif'], isComingSoon: true,
+    id: 'video-to-gif', slug: 'video-to-gif', name: 'Video to GIF Converter', category: 'video',
+    description: 'Convert video clips to animated GIFs. Customize size, frame rate, and quality. Free, fast, and entirely in your browser.', icon: '🎞️', badge: 'popular',
+    dateAdded: '2024-01-11', inputFormats: ['mp4', 'mov', 'webm', 'mkv', 'avi'], outputFormats: ['gif'], isComingSoon: false,
   },
 ] as const satisfies Tool[]

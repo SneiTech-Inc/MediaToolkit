@@ -31,7 +31,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   'crop-video': Crop, 'rotate-video': RotateCw,
   'resize-video': FileDown, 'video-speed': FileText,
   'reverse-video': ArrowLeftRight, 'extract-audio': FileText,
-  'video-to-gif': FileText,
+  'video-to-gif': Image,
 
   'convert-audio': ArrowLeftRight, 'merge-audio': Merge, 'trim-audio': Scissors,
   'change-volume': FileText,

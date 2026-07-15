@@ -303,6 +303,11 @@ const ReverseVideo = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const VideoToGIF = dynamic(
+  () => import('@/features/video/components/VideoToGIF').then(m => ({ default: m.VideoToGIF })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const ExtractAudio = dynamic(
   () => import('@/features/video/components/ExtractAudio').then(m => ({ default: m.ExtractAudio })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -365,6 +370,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'rotate-video': RotateVideo,
   'resize-video': ResizeVideo,
   'reverse-video': ReverseVideo,
+  'video-to-gif': VideoToGIF,
   'video-speed': SpeedController,
   'pdf-to-jpg': PDFToJPG,
   'jpg-to-pdf': JPGToPDF,

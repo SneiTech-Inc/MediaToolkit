@@ -386,3 +386,59 @@ export interface MergeOptions {
   /** Use stream copy when files are compatible. Default true. */
   fastMerge: boolean
 }
+
+// ─── Video to GIF Types ────────────────────────────────────────────────────────
+
+/** GIF quality levels. Higher = more palette colors = better quality + larger file. */
+export type GIFQuality = 'low' | 'medium' | 'high'
+
+/** Loop behavior for animated GIF output. */
+export type GIFLoop = 'infinite' | '1' | '3' | '5' | '10'
+
+/** Options for the Video to GIF tool. */
+export interface VideoToGIFOptions {
+  /** The source video file. */
+  file: File
+  /** Start time in seconds. */
+  startTime: number
+  /** Duration of the GIF segment in seconds. */
+  duration: number
+  /** Target width in pixels (0 = auto-derive from height). */
+  width: number
+  /** Target height in pixels (0 = auto-derive from source). */
+  height: number
+  /** Frames per second for the GIF (5–30). */
+  fps: number
+  /** Palette quality level (controls max colors). */
+  quality: GIFQuality
+  /** Loop behavior. */
+  loop: GIFLoop
+  /** Progress callback. */
+  onProgress?: (percent: number, elapsed: number, remaining: number) => void
+  /** AbortSignal for cancellation. */
+  signal?: AbortSignal
+}
+
+/** Result returned after a successful video-to-GIF conversion. */
+export interface VideoToGIFResult {
+  /** The GIF as a Blob. */
+  blob: Blob
+  /** MIME type of the output (always "image/gif"). */
+  mimeType: string
+  /** Original file size in bytes. */
+  originalSize: number
+  /** GIF output file size in bytes. */
+  outputSize: number
+  /** Actual width of the output GIF in pixels. */
+  width: number
+  /** Actual height of the output GIF in pixels. */
+  height: number
+  /** Duration of the GIF segment in seconds. */
+  duration: number
+  /** Frame rate used for the output. */
+  fps: number
+  /** Loop behavior applied. */
+  loop: string
+  /** Source video metadata extracted during upload. */
+  metadata: VideoMetadata | null
+}
