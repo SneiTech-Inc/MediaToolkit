@@ -28,6 +28,16 @@ export const BLOG_POSTS = [
     content: '',
     readingTime: '3 min read',
   },
+  {
+    title: 'New Video Tools: Reverse, Extract Audio, and Video to GIF — Now Available on SaveVex',
+    excerpt:
+      'We\'ve added three powerful new video tools to SaveVex: Reverse Video, Extract Audio, and Video to GIF. Create creative effects, extract soundtracks, and make animated GIFs — all free and in your browser.',
+    date: 'Jul 16, 2026',
+    category: 'News',
+    slug: 'new-video-tools-reverse-extract-audio-gif',
+    content: '',
+    readingTime: '6 min read',
+  },
   // ── July 15, 2026 ──
   {
     title: 'SaveVex Video Tools: Now Available — Compress, Convert, Trim, Merge, Crop, Rotate, Resize, and Speed Control',

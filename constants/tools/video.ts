@@ -48,7 +48,7 @@ export const videoTools = [
   },
   {
     id: 'extract-audio', slug: 'extract-audio', name: 'Extract Audio', category: 'video',
-    description: 'Extract audio from video files as MP3, WAV, AAC, OGG, FLAC, or M4A. Free, fast, and entirely in your browser.', icon: '🎧', badge: 'popular',
+    description: 'Extract audio from video files as MP3, WAV, AAC, OGG, FLAC, or M4A. Free, fast, also known as Video to Audio, and entirely in your browser.', icon: '🎧', badge: 'popular',
     dateAdded: '2024-01-11', inputFormats: ['mp4', 'mov', 'webm', 'mkv', 'avi'], outputFormats: ['mp3', 'wav', 'aac', 'ogg', 'flac', 'm4a'], isComingSoon: false,
   },
   {

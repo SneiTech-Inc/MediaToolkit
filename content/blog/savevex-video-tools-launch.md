@@ -37,7 +37,21 @@ Fix sideways footage or get creative with flips. [Rotate Video](/tools/video/rot
 Change your video's resolution — scale down for faster sharing or up for a consistent look across clips. [Resize Video](/tools/video/resize-video) offers orientation-aware presets (portrait videos stay portrait), custom dimensions with aspect ratio lock, and two scale modes: Fit (letterbox) and Fill (crop).
 
 ### ⚡ Video Speed Controller
-Create slow-motion effects, speed through long lectures, or adjust playback tempo. [Video Speed Controller](/tools/video/speed-video) lets you choose any speed from 0.25× to 4× with a simple slider. The audio pitch stays natural at every speed — no chipmunk voices or deep rumbles.
+Create slow-motion effects, speed through long lectures, or adjust playback tempo. [Video Speed Controller](/tools/video/video-speed) lets you choose any speed from 0.25× to 4× with a simple slider. The audio pitch stays natural at every speed — no chipmunk voices or deep rumbles.
+
+## New Additions: Reverse Video, Extract Audio, and Video to GIF
+
+We've since added **three more** video tools to complete the set:
+
+- **Reverse Video** — Play your videos backwards for creative effects. The audio reverses too, staying perfectly in sync. Perfect for surreal effects, funny compilations, and creative storytelling.
+- **Extract Audio** — Save audio from video files as MP3, WAV, AAC, OGG, FLAC, or M4A. Each format has its own quality controls so you get exactly the output you need.
+- **Video to GIF** — Convert any video clip into an animated GIF. Customize the segment, resolution, frame rate, quality, and loop settings for the perfect result.
+
+These tools are now live and ready to use. Check them out:
+
+- [Reverse Video](/tools/video/reverse-video)
+- [Extract Audio](/tools/video/extract-audio)
+- [Video to GIF](/tools/video/video-to-gif)
 
 ## Why These Tools Are Different
 
