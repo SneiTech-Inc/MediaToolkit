@@ -10,7 +10,7 @@ import { TOOLS, CATEGORIES, BLOG_POSTS, TRUST_BADGES } from '@/lib/constants'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Heart } from 'lucide-react'
 
 export default function Page() {
   const router = useRouter()
@@ -161,6 +161,27 @@ export default function Page() {
               <p className="text-muted-foreground">Get your processed file instantly</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Support SaveVex CTA */}
+      <section className="py-16 px-4 border-t border-border">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+            <Heart className="w-8 h-8 text-primary" />
+          </div>
+          <h2 className="text-3xl font-bold mb-4">Love SaveVex?</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            Help us keep 50+ file processing tools free, private, and accessible to everyone.
+            Your support directly fuels development.
+          </p>
+          <Link
+            href="/donate"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-lg font-bold shadow-lg shadow-primary/25"
+          >
+            <Heart className="w-5 h-5" />
+            Support SaveVex
+          </Link>
         </div>
       </section>
 

@@ -43,3 +43,11 @@ export interface HowItWorksStep {
   title: string
   description: string
 }
+
+export type SupportFrequency = 'one-time' | 'monthly'
+
+export interface SupportTier {
+  amountUSD: number
+  amountGHS: number
+  amountPesewas: number
+}

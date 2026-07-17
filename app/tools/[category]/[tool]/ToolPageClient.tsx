@@ -8,6 +8,7 @@ import { ResultCard } from '@/components/shared/ResultCard'
 import { FAQSection } from '@/components/shared/FAQSection'
 import { RelatedTools } from '@/components/shared/RelatedTools'
 import { ToolOptions } from '@/components/shared/ToolOptions'
+import { DonationPrompt } from '@/components/shared/DonationPrompt'
 import { TOOLS } from '@/lib/constants'
 import type { Tool } from '@/types/tool'
 
@@ -423,7 +424,14 @@ export function ToolPageClient({ toolSlug, toolData }: ToolPageClientProps) {
   const RealTool = toolComponents[toolSlug]
 
   if (RealTool) {
-    return <RealTool />
+    return (
+      <>
+        <RealTool />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <DonationPrompt />
+        </div>
+      </>
+    )
   }
 
   // ─── Generic fallback UI for unimplemented tools ───────────────────────
@@ -513,6 +521,10 @@ function GenericToolFallback({ toolData }: { toolData: Tool }) {
                 </div>
               </li>
             </ol>
+          </div>
+
+          <div className="mt-12">
+            <DonationPrompt />
           </div>
 
           <div className="mt-12">

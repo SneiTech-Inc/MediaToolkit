@@ -149,6 +149,11 @@ export function Footer() {
                   About Us
                 </Link>
               </li>
+              <li>
+                <Link href="/donate" className="text-sm opacity-75 hover:opacity-100 transition-opacity font-medium">
+                  ❤️ Support SaveVex
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -13,6 +13,7 @@ import {
   Home,
   BookOpen,
   Newspaper,
+  Heart,
   FileText,
   ImageIcon,
   Film,
@@ -39,12 +40,14 @@ const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/blog', label: 'Blog' },
   { href: '/press', label: 'Press' },
+  { href: '/donate', label: 'Support' },
 ]
 
 const navLinkIcons: Record<string, LucideIcon> = {
   '/': Home,
   '/blog': BookOpen,
   '/press': Newspaper,
+  '/donate': Heart,
 }
 
 const categoryIconMap: Record<CategorySlug, LucideIcon> = {
