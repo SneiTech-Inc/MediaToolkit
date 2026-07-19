@@ -1,15 +1,15 @@
 ---
-title: 'How to Rotate PDF Pages: A Quick & Easy Guide'
+title: 'Rotate PDF Pages: Quick Fix for Sideways and Upside-Down Documents'
 date: '2026-07-06'
 category: 'Guide'
 excerpt: 'Learn how to rotate PDF pages to fix orientation issues. Quick guide for fixing scanned documents, rotating individual pages, and handling bulk rotation.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '3 min read'
 ---
 
-# How to Rotate PDF Pages: A Quick & Easy Guide
+# Rotate PDF Pages: Quick Fix for Sideways and Upside-Down Documents
 
-We've all been there. You open a PDF and every other page is sideways — or worse, upside-down. Rotating PDF pages is the fix, and it's one of the simplest yet most frequently needed document corrections. In this quick guide, we'll cover how to rotate PDF pages, when to use each rotation option, and how to avoid common orientation pitfalls.
+You open a PDF and every other page is sideways — or worse, upside-down. It happens more often than you'd think. Rotating PDF pages is the fix, and it's one of the simplest yet most frequently needed document corrections. In this guide, we'll cover how to rotate PDF pages, when to use each rotation option, and how to avoid common orientation pitfalls.
 
 ## Why PDF Pages End Up in the Wrong Orientation
 
@@ -86,6 +86,13 @@ A: Yes! SaveVex works in mobile browsers, so you can rotate PDFs directly on you
 
 **Q: What if I rotate the wrong way?**
 A: Simply rotate again in the opposite direction, or use the undo option if available. Since rotation is non-destructive, you can always correct mistakes.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

@@ -24,6 +24,7 @@ export interface BlogPost {
   slug: string
   content: string
   readingTime: string
+  author: string
 }
 
 export interface TrustBadge {

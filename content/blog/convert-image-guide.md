@@ -1,15 +1,15 @@
 ---
-title: 'How to Convert Images: JPG, PNG, WebP & More'
+title: 'Convert Images: JPG, PNG, WebP, AVIF, and Beyond'
 date: '2026-07-07'
 category: 'Tutorial'
 excerpt: 'Master image format conversion. Learn when to use JPG, PNG, WebP, AVIF, SVG, and other formats, plus how to convert between them without quality loss.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '4 min read'
 ---
 
-# How to Convert Images: JPG, PNG, WebP & More
+# Convert Images: JPG, PNG, WebP, AVIF, and Beyond
 
-Converting between image formats is one of those tasks that seems trivial — just pick a different extension, right? Not quite. Each format has strengths, weaknesses, and specific use cases. Convert to the wrong format and you'll end up with bloated files, lost transparency, or visible artifacts. In this guide, we'll walk through every major image format, when to use each, and how to convert between them properly.
+Converting between image formats seems trivial — just pick a different extension. But each format has strengths, weaknesses, and specific use cases. Choose the wrong one and you'll end up with bloated files, lost transparency, or visible artifacts. In this guide, we'll walk through every major image format, when to use each, and how to convert between them properly.
 
 ## The Major Image Formats at a Glance
 
@@ -114,6 +114,13 @@ A: JPEG is still the safest bet for universal compatibility. Most social platfor
 
 **Q: Should I convert all my website images to WebP?**
 A: Yes, for any website built in 2026, WebP should be your default format. It's supported by every modern browser and is significantly smaller than JPEG and PNG equivalents.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

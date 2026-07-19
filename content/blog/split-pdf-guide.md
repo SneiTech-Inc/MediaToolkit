@@ -1,13 +1,13 @@
 ---
-title: 'How to Split PDF Files: Extract Pages Like a Pro'
+title: 'Split PDF Files Like a Pro: Extract Pages in Seconds'
 date: '2026-07-06'
 category: 'Guide'
 excerpt: 'Master the art of splitting PDFs. Learn when and why to split documents, how to extract specific pages, and the best practices for organizing your files.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '4 min read'
 ---
 
-# How to Split PDF Files: Extract Pages Like a Pro
+# Split PDF Files Like a Pro: Extract Pages in Seconds
 
 Sometimes you don't need the whole document — you just need a few pages. Maybe it's a single chapter from a textbook, a specific form from a multi-page packet, or a key slide from a lengthy presentation deck. Splitting PDFs lets you pull out exactly what you need and leave the rest behind. In this guide, we'll cover everything from basic page extraction to advanced splitting strategies.
 
@@ -96,6 +96,13 @@ A: There's no hard limit. You can extract any combination of pages and ranges in
 
 **Q: What happens if I enter a page number that doesn't exist?**
 A: The tool will alert you if your page range exceeds the document's total page count. Always check the total pages before entering ranges.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

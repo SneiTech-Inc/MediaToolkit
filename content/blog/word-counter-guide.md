@@ -1,15 +1,15 @@
 ---
-title: 'How to Count Words and Characters Like a Pro'
+title: 'Word Counter Guide: Track Words, Characters, and Sentences Like a Pro'
 date: '2026-07-09'
 category: 'Guide'
 excerpt: 'Master word and character counting for writing, SEO, and content optimization. Tips for hitting word counts, tracking progress, and using counters effectively.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '3 min read'
 ---
 
-# How to Count Words and Characters Like a Pro
+# Word Counter Guide: Track Words, Characters, and Sentences Like a Pro
 
-Whether you're a student hitting a minimum word count, a content writer optimizing for SEO, or a social media manager squeezing into a character limit, word and character counting is a daily necessity. It seems simple — just count the words, right? But there's more to it than meets the eye. In this guide, we'll cover everything from the basics to advanced counting strategies used by professional writers.
+Whether you're a student hitting a minimum word count, a content writer optimizing for SEO, or a social media manager squeezing into a character limit, word and character counting is a daily necessity. It seems simple — just count the words — but which metric matters depends entirely on the context. In this guide, we'll cover everything from the basics to advanced counting strategies used by professional writers.
 
 ## Why Word and Character Counts Matter
 
@@ -108,6 +108,13 @@ A: Depends on the context. Academic papers often exclude footnotes and bibliogra
 
 **Q: How accurate is estimated reading time?**
 A: It's a rough guide. Technical content with complex vocabulary reads slower than narrative content. Treat reading time as an approximation, not a guarantee.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

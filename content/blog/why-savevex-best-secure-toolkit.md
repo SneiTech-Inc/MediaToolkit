@@ -3,13 +3,13 @@ title: 'Why SaveVex is the Best and Most Secure Media Toolkit'
 date: '2026-07-10'
 category: 'Guide'
 excerpt: 'Discover why SaveVex is the most secure, private, and capable free media toolkit available. Browser-based processing, no uploads, zero compromise on quality.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '5 min read'
 ---
 
 # Why SaveVex is the Best and Most Secure Media Toolkit
 
-Finding a reliable online tool for editing PDFs, compressing images, or converting documents shouldn't feel like a gamble. Yet most online file tools come with serious trade-offs: your files get uploaded to unknown servers, you hit a paywall after two uses, or the tool slaps a watermark on your output and calls it "free." SaveVex is different — and not just in small ways.
+Finding a reliable online tool for editing PDFs, compressing images, or converting documents shouldn't feel like a gamble. Yet most online file tools come with serious trade-offs: your files get uploaded to unknown servers, you hit a paywall after two uses, or the tool slaps a watermark on your output and calls it "free." SaveVex is different — fundamentally so.
 
 We built SaveVex from the ground up around one principle: **your files belong to you, and they should stay on your device.** That's not a marketing line. It's how the entire platform works.
 
@@ -63,6 +63,13 @@ SaveVex is built for everyone who works with digital files — which, these days
 - **Professionals** rely on it for contract management, creating polished presentations, and preparing client deliverables without switching between five different tools.
 - **Content creators** compress and resize images for web, create social media graphics, and organize media assets — all without leaving the browser.
 - **Developers** use the JSON formatter, URL encoder, and base64 tools as a quick no-signup utility belt.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## The Bottom Line
 

@@ -3,7 +3,7 @@ title: 'SaveVex Audio Tools: Now Available — Convert, Merge, Trim, and Boost Y
 date: '2026-07-11'
 category: 'News'
 excerpt: 'Announcing the launch of SaveVex Audio Tools: Convert Audio, Merge Audio, Trim Audio, and Change Volume. Process audio entirely in your browser — free, fast, and private.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '3 min read'
 ---
 
@@ -60,6 +60,13 @@ Find all Audio Tools under the **Audio** category in the site navigation, or vis
 With Audio Tools now live, our Video Tool suite is up next — bringing video compression, trimming, format conversion, and more to the SaveVex platform. These tools will build on the same principles: free, fast, private, and entirely browser-based.
 
 We're also continuing to improve existing tools based on your feedback. If you have ideas for new audio features, run into an edge case, or just want to share how you're using the tools, we'd love to hear from you. [Reach out to us](/contact) anytime.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Thank You
 

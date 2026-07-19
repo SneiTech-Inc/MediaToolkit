@@ -3,13 +3,13 @@ title: 'The Complete Guide to SaveVex Image Tools'
 date: '2026-07-10'
 category: 'Guide'
 excerpt: 'Your comprehensive guide to all SaveVex image tools: compress, resize, crop, convert, rotate, flip, watermark, blur, add border, and image to PDF. Learn when and how to use each one.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '5 min read'
 ---
 
 # The Complete Guide to SaveVex Image Tools
 
-Images are everywhere — on your website, in your social media feeds, attached to emails, embedded in presentations, and filling up your camera roll. Managing them shouldn't require a dozen different apps and a subscription to Photoshop.
+Images are everywhere — on your website, in your social media feeds, attached to emails, embedded in presentations, and filling up your camera roll. Managing them shouldn't require a dozen different apps or a Photoshop subscription.
 
 SaveVex offers a complete suite of image tools, all running directly in your browser. This guide walks through every tool, explains what it does, and gives you practical use cases so you know exactly which tool to reach for.
 
@@ -207,6 +207,13 @@ For social media posts, you might add a border after cropping, then resize to pl
 - **Use batch processing** when working with large collections. SaveVex lets you process multiple images at once across most tools.
 - **Preview before downloading.** Every SaveVex tool shows you exactly what you'll get, so there are no surprises.
 - **Keep an original backup.** SaveVex doesn't store your files, so keep your originals safe before overwriting.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Get Started
 

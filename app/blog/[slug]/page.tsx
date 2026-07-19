@@ -4,6 +4,7 @@ import { PageLayout } from '@/components/shared/PageLayout'
 import { PageHero } from '@/components/shared/PageHero'
 import { BlogCard } from '@/components/shared/BlogCard'
 import { EmptyState } from '@/components/shared/EmptyState'
+import { BlogShare } from '@/components/shared/BlogShare'
 import { getPostBySlug, getPostSlugs, getAllPosts } from '@/lib/blog'
 import { getBlogPostMetadata } from '@/lib/metadata'
 import type { BlogPostWithContent } from '@/lib/blog'
@@ -91,6 +92,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div
             className="prose max-w-none"
             dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+
+          {/* Social sharing */}
+          <BlogShare
+            title={post.title}
+            url={`https://savevex.com/blog/${post.slug}`}
           />
 
           {/* Related Posts */}

@@ -1,13 +1,13 @@
 ---
-title: 'How to Convert PDF to Excel: Extract Tables Like a Pro'
+title: 'PDF to Excel: Extract Tables and Data Like a Pro'
 date: '2026-07-08'
 category: 'Guide'
 excerpt: 'Master the art of converting PDF tables to Excel spreadsheets. Learn how to extract data cleanly, handle complex tables, and avoid common formatting pitfalls.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '4 min read'
 ---
 
-# How to Convert PDF to Excel: Extract Tables Like a Pro
+# PDF to Excel: Extract Tables and Data Like a Pro
 
 Someone sends you a PDF packed with data tables — financial statements, survey results, inventory lists — and you need to analyze those numbers. You could manually retype everything into Excel, but that's hours of tedious work and a recipe for errors. There's a better way: convert the PDF directly to an Excel spreadsheet. In this guide, we'll cover how to extract tables from PDFs cleanly, accurately, and efficiently.
 
@@ -96,6 +96,13 @@ A: Remove the password first. SaveVex processes files in your browser and cannot
 
 **Q: How accurate is the conversion?**
 A: For clean, digital PDFs with well-structured tables, accuracy is typically 95%+. For scanned documents, accuracy depends on scan quality — expect 85-95% with good source material.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

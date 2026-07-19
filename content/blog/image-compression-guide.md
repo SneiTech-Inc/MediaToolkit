@@ -3,13 +3,13 @@ title: 'The Ultimate Guide to Online Image Compression'
 date: '2026-07-08'
 category: 'Tutorial'
 excerpt: 'Discover how to compress images for web without sacrificing visual quality. Learn about lossy vs lossless compression, format selection, and best practices for faster websites.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '4 min read'
 ---
 
 # The Ultimate Guide to Online Image Compression
 
-Images are the single largest contributor to web page weight. According to the HTTP Archive, images account for roughly 45% of a typical web page's total size — more than JavaScript, CSS, and fonts combined. Unoptimized images slow down your site, frustrate visitors, and hurt your search rankings. The solution? Smart image compression. In this guide, we'll cover everything you need to know to compress images effectively without ruining their quality.
+Images are the single largest contributor to web page weight. According to the HTTP Archive, images account for roughly 45% of a typical web page's total size — more than JavaScript, CSS, and fonts combined. Unoptimized images slow down your site, frustrate visitors, and hurt your search rankings. Smart image compression solves all of these problems. In this guide, we'll cover everything you need to know to compress images effectively without sacrificing visual quality.
 
 ## Why Image Compression Matters
 
@@ -117,6 +117,13 @@ Reality: JPEG still has its place. For maximum compatibility (email attachments,
 
 **Myth: "Smaller files always mean worse quality."**
 Reality: A well-resized and properly compressed image at 200 KB often looks identical to a 5 MB original when displayed at web sizes. The extra data in the larger file simply isn't visible at typical screen resolutions.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Final Thoughts
 

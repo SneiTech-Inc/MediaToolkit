@@ -3,7 +3,7 @@ title: 'SaveVex Utility Tools: Now Available — Everything You Need in One Plac
 date: '2026-07-11'
 category: 'News'
 excerpt: 'Announcing the launch of SaveVex Utility Tools: QR Code Generator, Color Picker, Timestamp Converter, UUID Generator, Hash Generator, Lorem Ipsum Generator, and Password Generator. Free, private, and entirely browser-based.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '5 min read'
 ---
 
@@ -78,6 +78,13 @@ You can find all Utility Tools under the **Utility** category in the site naviga
 The Utility Tools launch marks another milestone in the SaveVex journey, but we're not slowing down. Our Audio and Video tool suites are in active development, bringing audio conversion, trimming, and volume adjustment plus video compression, trimming, and format conversion to the platform.
 
 Have a tool idea you'd love to see? We welcome feedback and suggestions — the tools we build are shaped by the people who use them. [Reach out to us](/contact) and let us know what would make your workflow better.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Thank You
 

@@ -3,7 +3,7 @@ title: 'Does SaveVex Collect or Record User Data?'
 date: '2026-07-10'
 category: 'Guide'
 excerpt: 'A clear explanation of SaveVex privacy practices. Learn what data we do and do not collect, how local processing keeps your files safe, and what you can expect.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '4 min read'
 ---
 
@@ -72,6 +72,13 @@ While SaveVex is designed with privacy at its core, here are some general best p
 - **Read the fine print.** Many free tools monetize through data collection. If the privacy policy is vague about what they collect or share, that's a red flag.
 - **Clear your browser cache** periodically, especially after working with sensitive documents.
 - **Use HTTPS.** SaveVex enforces HTTPS, and you should avoid any file processing tool that doesn't.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Final Word on Privacy
 

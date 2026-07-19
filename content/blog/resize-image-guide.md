@@ -1,15 +1,15 @@
 ---
-title: 'How to Resize Images Without Losing Quality'
+title: 'Resize Images Without Losing Quality: A Complete Guide'
 date: '2026-07-07'
 category: 'Tutorial'
 excerpt: 'Learn how to resize images for social media, websites, and email while maintaining sharp, professional quality. Tips for aspect ratios, resolution, and batch resizing.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '4 min read'
 ---
 
-# How to Resize Images Without Losing Quality
+# Resize Images Without Losing Quality: A Complete Guide
 
-Resizing an image sounds simple — make it smaller or larger. But do it wrong, and you end up with a blurry, stretched, or pixelated mess. Do it right, and nobody can tell the image was ever resized. In this guide, we'll cover everything you need to know to resize images correctly, whether you're preparing photos for a website, social media, email, or print.
+Resizing an image sounds simple — make it smaller or larger. But do it wrong, and you end up with a blurry, stretched, or pixelated mess. Do it right, and nobody can tell the image was ever resized. In this guide, we'll cover how to resize images correctly for websites, social media, email, and print.
 
 ## Why Resize Images?
 
@@ -104,6 +104,13 @@ A: Resizing down preserves quality because you're keeping the most important pix
 
 **Q: What DPI should I use for web images?**
 A: DPI is irrelevant for screen display — only pixel dimensions matter. Set it to 72 or 96 PPI for web; the browser ignores it anyway.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

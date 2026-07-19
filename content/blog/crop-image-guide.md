@@ -1,15 +1,15 @@
 ---
-title: 'How to Crop Images: A Step-by-Step Guide'
+title: 'Crop Images Like a Pro: Composition, Aspect Ratios, and Best Practices'
 date: '2026-07-08'
 category: 'Tutorial'
 excerpt: 'Master image cropping for better composition. Learn about aspect ratios, composition rules, and how to crop images perfectly for any platform or purpose.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '3 min read'
 ---
 
-# How to Crop Images: A Step-by-Step Guide
+# Crop Images Like a Pro: Composition, Aspect Ratios, and Best Practices
 
-Cropping is the most fundamental image editing operation — and often the most impactful. A well-cropped photo draws the eye exactly where you want it. A poorly-cropped one leaves viewers confused about what they should be looking at. In this guide, we'll cover cropping fundamentals, composition tips, and platform-specific aspect ratios that make your images look professional.
+Cropping is the most fundamental image editing operation — and often the most impactful. A well-cropped photo draws the eye exactly where you want it. A poorly-cropped one leaves viewers wondering what they should be looking at. In this guide, we'll cover cropping fundamentals, composition tips, and platform-specific aspect ratios that make your images look professional.
 
 ## Why Crop an Image?
 
@@ -93,6 +93,13 @@ A: No. Cropping is destructive — it permanently removes the cropped-out areas.
 
 **Q: How do I crop to an exact pixel size?**
 A: Enter the target dimensions and use a fixed aspect ratio crop at those proportions. After cropping, use the Resize tool to set the exact pixel dimensions.
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

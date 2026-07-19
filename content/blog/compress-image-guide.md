@@ -1,15 +1,15 @@
 ---
-title: 'How to Compress Images for Web: A Complete Guide'
+title: 'Compress Images for Web: The Complete Guide to Smaller, Faster Images'
 date: '2026-07-07'
 category: 'Guide'
 excerpt: 'Master image compression for the web. Learn how to optimize JPEG, PNG, WebP, and AVIF images for faster loading, better SEO, and improved user experience.'
-author: 'SaveVex Team'
+author: 'Michael Schneider'
 readingTime: '4 min read'
 ---
 
-# How to Compress Images for Web: A Complete Guide
+# Compress Images for Web: The Complete Guide to Smaller, Faster Images
 
-Images make the web beautiful — but they also make it slow. The average web page is over 2 MB, and images account for nearly half of that. Compressing your images properly is the single highest-impact optimization you can make for your website. In this guide, we'll cover exactly how to compress images for the web without turning them into a pixelated mess.
+Images make the web beautiful — but they also make it slow. The average web page exceeds 2 MB, and images account for nearly half of that. Compressing your images properly is the single highest-impact optimization you can make for your website. In this guide, we'll cover exactly how to compress images for the web without sacrificing visual quality.
 
 ## Why Web Image Compression Matters
 
@@ -92,6 +92,13 @@ Here's what typical compression looks like at quality 80:
 - **Is it a screenshot or UI element?** → Lossless WebP or PNG
 - **Is it a logo or icon?** → SVG if possible (vector), otherwise lossless WebP or PNG
 - **Are you targeting only modern browsers?** → AVIF for best compression
+
+---
+**About the Author**
+![Michael Schneider](/images/authors/michael-schneider.jpg)
+**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
+*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
+---
 
 ## Conclusion
 

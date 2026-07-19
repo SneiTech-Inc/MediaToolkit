@@ -16,6 +16,7 @@ export const BLOG_POSTS = [
     category: 'News',
     slug: 'savevex-utility-tools-now-available',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '5 min read',
   },
   {
@@ -26,6 +27,7 @@ export const BLOG_POSTS = [
     category: 'News',
     slug: 'savevex-audio-tools-now-available',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '3 min read',
   },
   {
@@ -36,6 +38,7 @@ export const BLOG_POSTS = [
     category: 'News',
     slug: 'new-video-tools-reverse-extract-audio-gif',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '6 min read',
   },
   // ── July 15, 2026 ──
@@ -47,6 +50,7 @@ export const BLOG_POSTS = [
     category: 'News',
     slug: 'savevex-video-tools-launch',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '6 min read',
   },
   {
@@ -57,6 +61,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'how-to-crop-video',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -67,6 +72,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'how-to-rotate-video',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -77,6 +83,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'how-to-resize-video',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -87,6 +94,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'video-speed-controller-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   // ── July 14, 2026 (Video Tools) ──
@@ -98,6 +106,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'compress-video-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -108,6 +117,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'convert-video-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -118,6 +128,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'trim-video-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -128,6 +139,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'merge-video-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   // ── July 10, 2026 ──
@@ -139,6 +151,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'why-savevex-best-secure-toolkit',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '5 min read',
   },
   {
@@ -149,6 +162,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'savevex-privacy-data-policy',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -159,6 +173,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'savevex-image-tools-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '5 min read',
   },
   // ── July 9, 2026 ──
@@ -170,6 +185,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'compress-pdf-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '5 min read',
   },
   {
@@ -180,6 +196,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'compress-pdf-advanced',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -190,6 +207,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'word-counter-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '3 min read',
   },
   {
@@ -200,6 +218,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'password-generator-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   // ── July 8, 2026 ──
@@ -211,6 +230,7 @@ export const BLOG_POSTS = [
     category: 'Tutorial',
     slug: 'image-compression-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -221,6 +241,7 @@ export const BLOG_POSTS = [
     category: 'Tutorial',
     slug: 'crop-image-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '3 min read',
   },
   {
@@ -231,6 +252,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'word-to-pdf-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -241,6 +263,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'pdf-to-excel-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   // ── July 7, 2026 ──
@@ -252,6 +275,7 @@ export const BLOG_POSTS = [
     category: 'News',
     slug: 'savevex-launch',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '3 min read',
   },
   {
@@ -262,6 +286,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'compress-image-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -272,6 +297,7 @@ export const BLOG_POSTS = [
     category: 'Tutorial',
     slug: 'resize-image-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -282,6 +308,7 @@ export const BLOG_POSTS = [
     category: 'Tutorial',
     slug: 'convert-image-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   // ── July 6, 2026 ──
@@ -293,6 +320,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'merge-pdf-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -303,6 +331,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'split-pdf-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '4 min read',
   },
   {
@@ -313,6 +342,7 @@ export const BLOG_POSTS = [
     category: 'Guide',
     slug: 'rotate-pdf-guide',
     content: '',
+    author: 'Michael Schneider',
     readingTime: '3 min read',
   },
 ] as const satisfies BlogPost[]
