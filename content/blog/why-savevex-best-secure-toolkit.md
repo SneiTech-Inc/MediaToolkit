@@ -64,12 +64,6 @@ SaveVex is built for everyone who works with digital files — which, these days
 - **Content creators** compress and resize images for web, create social media graphics, and organize media assets — all without leaving the browser.
 - **Developers** use the JSON formatter, URL encoder, and base64 tools as a quick no-signup utility belt.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## The Bottom Line
 

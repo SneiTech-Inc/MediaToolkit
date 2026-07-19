@@ -97,12 +97,6 @@ A: Remove the password first. SaveVex processes files in your browser and cannot
 **Q: How accurate is the conversion?**
 A: For clean, digital PDFs with well-structured tables, accuracy is typically 95%+. For scanned documents, accuracy depends on scan quality — expect 85-95% with good source material.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Conclusion
 

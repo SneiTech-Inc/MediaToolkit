@@ -111,12 +111,6 @@ A: No. A breach on an "unimportant" forum exposes your password. Attackers autom
 **Q: Can password generators be trusted?**
 A: Yes, if they generate passwords client-side (in your browser, like SaveVex does). The generated password should never be sent to a server. If a generator requires an internet connection to generate passwords, avoid it.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Conclusion
 

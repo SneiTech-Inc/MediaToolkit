@@ -60,22 +60,3 @@ SaveVex offers three compression levels, and understanding them helps you pick t
 **Use the preview.** Before downloading, watch a few seconds of the compressed video — especially sections with movement, detail, or text. A 10-second check saves you from discovering issues after you've already shared the file.
 
 ---
-
-**About the Author**
-
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-
-**Michael Schneider** is the Founder & CEO of [SneiTech Inc.](https://sneitech.com), the product‑development company behind SaveVex. With over 10 years of experience spanning full‑stack development, file‑processing technologies, and digital product creation, he builds tools that prioritize user privacy, simplicity, and real‑world utility.
-
-Michael has personally built and used every tool featured on SaveVex. His approach is grounded in SneiTech's core philosophy: lead with creativity, innovation, and purpose — and ship products that actually solve problems, not add complexity.
-
-**Michael's expertise includes:**
-
-- **Full‑stack development** — Next.js, React, Node.js, .NET
-- **File processing technologies** — PDF manipulation, image/video compression, document conversion
-- **UX/UI design** — Creating intuitive, accessible user experiences
-- **Privacy‑first product design** — Building tools that never upload user data
-
-*Want to connect?* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [Twitter/X](https://x.com/sneitech)
-
----

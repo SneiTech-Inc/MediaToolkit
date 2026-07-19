@@ -105,12 +105,6 @@ A: Resizing down preserves quality because you're keeping the most important pix
 **Q: What DPI should I use for web images?**
 A: DPI is irrelevant for screen display — only pixel dimensions matter. Set it to 72 or 96 PPI for web; the browser ignores it anyway.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Conclusion
 

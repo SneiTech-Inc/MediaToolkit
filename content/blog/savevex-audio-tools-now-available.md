@@ -61,12 +61,6 @@ With Audio Tools now live, our Video Tool suite is up next — bringing video co
 
 We're also continuing to improve existing tools based on your feedback. If you have ideas for new audio features, run into an edge case, or just want to share how you're using the tools, we'd love to hear from you. [Reach out to us](/contact) anytime.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Thank You
 

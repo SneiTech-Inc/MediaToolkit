@@ -79,12 +79,6 @@ The Utility Tools launch marks another milestone in the SaveVex journey, but we'
 
 Have a tool idea you'd love to see? We welcome feedback and suggestions — the tools we build are shaped by the people who use them. [Reach out to us](/contact) and let us know what would make your workflow better.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Thank You
 

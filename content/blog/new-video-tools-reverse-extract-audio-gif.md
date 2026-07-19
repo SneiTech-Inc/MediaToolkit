@@ -100,11 +100,5 @@ And don't forget to explore all our other tools — PDF, Images, Documents, Text
 
 If you have feedback or suggestions, we'd love to hear from you. Happy creating! 🎬
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 *SaveVex — Your all‑in‑one file & media toolkit.*

@@ -75,12 +75,6 @@ Getting started takes exactly zero steps beyond visiting the site. No sign-up, n
 3. **Try the dark mode toggle** in the top-right corner — it looks great either way.
 4. **Explore the blog** for guides and tutorials on getting the most from each tool.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Thank You
 

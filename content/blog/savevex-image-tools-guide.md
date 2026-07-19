@@ -208,12 +208,6 @@ For social media posts, you might add a border after cropping, then resize to pl
 - **Preview before downloading.** Every SaveVex tool shows you exactly what you'll get, so there are no surprises.
 - **Keep an original backup.** SaveVex doesn't store your files, so keep your originals safe before overwriting.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Get Started
 

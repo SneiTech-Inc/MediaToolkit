@@ -109,12 +109,6 @@ A: Depends on the context. Academic papers often exclude footnotes and bibliogra
 **Q: How accurate is estimated reading time?**
 A: It's a rough guide. Technical content with complex vocabulary reads slower than narrative content. Treat reading time as an approximation, not a guarantee.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Conclusion
 

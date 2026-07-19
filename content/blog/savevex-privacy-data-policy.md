@@ -73,12 +73,6 @@ While SaveVex is designed with privacy at its core, here are some general best p
 - **Clear your browser cache** periodically, especially after working with sensitive documents.
 - **Use HTTPS.** SaveVex enforces HTTPS, and you should avoid any file processing tool that doesn't.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Final Word on Privacy
 

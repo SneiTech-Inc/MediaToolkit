@@ -97,12 +97,6 @@ A: There's no hard limit. You can extract any combination of pages and ranges in
 **Q: What happens if I enter a page number that doesn't exist?**
 A: The tool will alert you if your page range exceeds the document's total page count. Always check the total pages before entering ranges.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Conclusion
 

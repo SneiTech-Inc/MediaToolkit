@@ -54,25 +54,6 @@ Hit "Crop Video," watch the progress bar, and when it's done you'll see a side-b
 
 ---
 
-**About the Author**
-
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-
-**Michael Schneider** is the Founder & CEO of [SneiTech Inc.](https://sneitech.com), the product‑development company behind SaveVex. With over 10 years of experience spanning full‑stack development, file‑processing technologies, and digital product creation, he builds tools that prioritize user privacy, simplicity, and real‑world utility.
-
-Michael has personally built and used every tool featured on SaveVex. His approach is grounded in SneiTech's core philosophy: lead with creativity, innovation, and purpose — and ship products that actually solve problems, not add complexity.
-
-**Michael's expertise includes:**
-
-- **Full‑stack development** — Next.js, React, Node.js, .NET
-- **File processing technologies** — PDF manipulation, image/video compression, document conversion
-- **UX/UI design** — Creating intuitive, accessible user experiences
-- **Privacy‑first product design** — Building tools that never upload user data
-
-*Want to connect?* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [Twitter/X](https://x.com/sneitech)
-
----
-
 ## Why SaveVex?
 
 There's no software to download and no account to create. Your video never leaves your device — all the processing happens locally in your browser. It's completely free, completely private, and works on any modern browser.

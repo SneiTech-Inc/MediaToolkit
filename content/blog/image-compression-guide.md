@@ -118,12 +118,6 @@ Reality: JPEG still has its place. For maximum compatibility (email attachments,
 **Myth: "Smaller files always mean worse quality."**
 Reality: A well-resized and properly compressed image at 200 KB often looks identical to a 5 MB original when displayed at web sizes. The extra data in the larger file simply isn't visible at typical screen resolutions.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Final Thoughts
 

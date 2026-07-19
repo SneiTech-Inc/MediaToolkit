@@ -115,12 +115,6 @@ A: JPEG is still the safest bet for universal compatibility. Most social platfor
 **Q: Should I convert all my website images to WebP?**
 A: Yes, for any website built in 2026, WebP should be your default format. It's supported by every modern browser and is significantly smaller than JPEG and PNG equivalents.
 
----
-**About the Author**
-![Michael Schneider](/images/authors/michael-schneider.jpg)
-**Michael Schneider** is the Founder & CEO of SneiTech Inc., the company behind SaveVex. With over 10 years in software development and file-processing technologies, he builds privacy-first tools. He personally built and uses every tool on SaveVex.
-*Connect:* [LinkedIn](https://www.linkedin.com/company/sneitech/) • [X](https://x.com/sneitech)
----
 
 ## Conclusion
 

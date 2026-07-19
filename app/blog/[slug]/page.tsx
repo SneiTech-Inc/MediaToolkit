@@ -5,6 +5,7 @@ import { PageHero } from '@/components/shared/PageHero'
 import { BlogCard } from '@/components/shared/BlogCard'
 import { EmptyState } from '@/components/shared/EmptyState'
 import { BlogShare } from '@/components/shared/BlogShare'
+import { AuthorBio } from '@/components/shared/AuthorBio'
 import { getPostBySlug, getPostSlugs, getAllPosts } from '@/lib/blog'
 import { getBlogPostMetadata } from '@/lib/metadata'
 import type { BlogPostWithContent } from '@/lib/blog'
@@ -93,6 +94,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             className="prose max-w-none"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+
+          {/* Author bio */}
+          <AuthorBio />
 
           {/* Social sharing */}
           <BlogShare
