@@ -73,7 +73,7 @@ export function Footer() {
               alt="SaveVex"
               width={150}
               height={50}
-              className="h-12 md:h-14 w-auto mb-4 brightness-0 invert dark:brightness-100 dark:invert-0"
+              className="h-10 md:h-12 w-auto mb-4"
             />
             <p className="text-sm opacity-75 leading-relaxed max-w-md">
               Your all-in-one file &amp; media toolkit. Compress, convert, edit, and optimize — 100% free, all in your browser.

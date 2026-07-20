@@ -99,9 +99,9 @@ export function Header() {
           <Image
             src="/savevex-logo.png"
             alt="SaveVex"
-            width={200}
-            height={60}
-            className="h-12 md:h-14 w-auto hover:scale-105 transition-transform"
+            width={40}
+            height={40}
+            className="h-10 md:h-10 w-auto hover:scale-105 transition-transform"
           />
         </Link>
 
@@ -200,9 +200,9 @@ export function Header() {
                   <Image
                     src="/savevex-logo.png"
                     alt="SaveVex"
-                    width={180}
-                    height={54}
-                    className="h-12 w-auto"
+                    width={40}
+                    height={40}
+                    className="h-10 w-auto"
                   />
                 </Link>
                 <div className="flex items-center gap-2">
