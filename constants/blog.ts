@@ -7,6 +7,87 @@ import type { BlogPost } from '@/types/common'
  * Update this array when adding new posts to keep client components in sync.
  */
 export const BLOG_POSTS = [
+  // ── July 20, 2026 ──
+  {
+    title: 'How to Generate Strong Passwords That You Will Actually Remember',
+    excerpt:
+      'A practical guide to password security that balances strength with usability. Learn how password entropy works, why length beats complexity, and how to generate passwords that keep your accounts safe without driving you crazy.',
+    date: 'Jul 20, 2026',
+    category: 'Guide',
+    slug: 'password-generator-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
+  // ── July 19, 2026 ──
+  {
+    title: 'Unix Timestamps Explained: A Tool I Use Every Day',
+    excerpt:
+      'What Unix timestamps are, why they are everywhere in software, and how a simple converter saves hours of debugging. A developers guide with real-world examples from API work and log analysis.',
+    date: 'Jul 19, 2026',
+    category: 'Guide',
+    slug: 'timestamp-converter-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
+  {
+    title: 'Stop Copy-Pasting Lorem Ipsum — Generate It Instantly Instead',
+    excerpt:
+      'Why hunting for placeholder text wastes time and how a dedicated lorem ipsum generator speeds up design mockups, wireframes, and CMS templates. Practical tips for designers and developers.',
+    date: 'Jul 19, 2026',
+    category: 'Guide',
+    slug: 'lorem-ipsum-generator-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
+  // ── July 18, 2026 ──
+  {
+    title: 'What Is a Hash? A Developers Guide to Generating Secure Hashes',
+    excerpt:
+      'An accessible explanation of cryptographic hashing — deterministic output, fixed length, the avalanche effect — and how to use the SaveVex Hash Generator for file integrity checks and data verification.',
+    date: 'Jul 18, 2026',
+    category: 'Guide',
+    slug: 'hash-generator-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
+  {
+    title: 'Why Unique IDs Matter and How to Generate Them Instantly',
+    excerpt:
+      'UUIDs are the invisible backbone of distributed systems, database keys, and API tracing. Learn how UUID v4 works, why collision probability is so low, and how to generate them in seconds.',
+    date: 'Jul 18, 2026',
+    category: 'Guide',
+    slug: 'uuid-generator-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
+  // ── July 17, 2026 ──
+  {
+    title: 'QR Codes Are Everywhere — Here Is How to Create Them Without Compromising Privacy',
+    excerpt:
+      'Most online QR code generators send your data through their servers. Learn how to generate QR codes locally — for URLs, WiFi credentials, and more — with full control over error correction and output format.',
+    date: 'Jul 17, 2026',
+    category: 'Guide',
+    slug: 'qr-code-generator-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
+  {
+    title: 'Why Every Designer Needs a Reliable Color Picker (And What I Use)',
+    excerpt:
+      'A practical guide to choosing, picking, and converting colors across HEX, RGB, HSL, and OKLCH formats. Learn why color accessibility matters and how a good color picker fits into a real design workflow.',
+    date: 'Jul 17, 2026',
+    category: 'Guide',
+    slug: 'color-picker-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
   // ── July 11, 2026 ──
   {
     title: 'SaveVex Utility Tools: Now Available — Everything You Need in One Place',
@@ -209,17 +290,6 @@ export const BLOG_POSTS = [
     content: '',
     author: 'Michael Schneider',
     readingTime: '3 min read',
-  },
-  {
-    title: 'How to Generate Strong Passwords: A Complete Guide',
-    excerpt:
-      'Learn how to create and manage strong passwords that keep your accounts secure. Tips for generating uncrackable passwords, avoiding common mistakes, and using password tools.',
-    date: 'Jul 9, 2026',
-    category: 'Guide',
-    slug: 'password-generator-guide',
-    content: '',
-    author: 'Michael Schneider',
-    readingTime: '4 min read',
   },
   // ── July 8, 2026 ──
   {
