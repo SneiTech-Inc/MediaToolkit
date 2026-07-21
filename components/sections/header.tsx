@@ -99,9 +99,9 @@ export function Header() {
           <Image
             src="/savevex-logo.png"
             alt="SaveVex"
-            width={40}
-            height={40}
-            className="h-10 md:h-10 w-auto hover:scale-105 transition-transform"
+            width={1320}
+            height={329}
+            className="h-10 w-auto hover:scale-105 transition-transform"
           />
         </Link>
 
@@ -183,9 +183,8 @@ export function Header() {
 
             {/* Slide-in Panel */}
             <div
-              className={`fixed top-0 right-0 h-full w-full max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-out ${
-                mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-              }`}
+              className={`fixed top-0 right-0 h-full w-full max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                }`}
             >
               {/* Gradient accent bar */}
               <div className="h-1 bg-gradient-to-r from-primary via-accent to-primary" />
@@ -307,17 +306,15 @@ function MobileCategorySection({
         {Icon && <Icon className="w-5 h-5 text-primary flex-shrink-0" />}
         <span className="flex-1 text-left">{category.name}</span>
         <ChevronDown
-          className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${
-            open ? 'rotate-180' : ''
-          }`}
+          className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${open ? 'rotate-180' : ''
+            }`}
         />
       </button>
 
       {/* Expandable tools list */}
       <div
-        className={`grid transition-all duration-300 ease-out ${
-          open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-        }`}
+        className={`grid transition-all duration-300 ease-out ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+          }`}
       >
         <div className="overflow-hidden">
           <div className="ml-9 mr-2 space-y-0.5 pt-0.5 pb-2">
