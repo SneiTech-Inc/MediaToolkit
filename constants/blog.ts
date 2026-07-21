@@ -7,6 +7,18 @@ import type { BlogPost } from '@/types/common'
  * Update this array when adding new posts to keep client components in sync.
  */
 export const BLOG_POSTS = [
+  // ── July 21, 2026 ──
+  {
+    title: 'Remove Image Backgrounds Instantly with AI — Now Available on SaveVex',
+    excerpt:
+      'SaveVex launches its first AI-powered tool: Remove Background. Remove image backgrounds instantly, replace them with colors or custom images, and download transparent PNGs — all in your browser, completely free.',
+    date: 'Jul 21, 2026',
+    category: 'News',
+    slug: 'remove-background-ai-tool',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '5 min read',
+  },
   // ── July 20, 2026 ──
   {
     title: 'How to Generate Strong Passwords That You Will Actually Remember',
