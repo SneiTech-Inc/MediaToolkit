@@ -126,8 +126,10 @@ export async function initializeTransaction(
   }
 
   if (params.plan) {
-    // When plan is provided, amount is invalidated — plan amount is used
     body.plan = params.plan
+    if (params.amount !== undefined) {
+      body.amount = params.amount
+    }
   } else if (params.amount !== undefined) {
     body.amount = params.amount
   }

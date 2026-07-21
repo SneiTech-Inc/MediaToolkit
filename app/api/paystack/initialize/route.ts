@@ -54,6 +54,7 @@ export async function POST(request: Request) {
       const result = await initializeTransaction({
         email,
         plan: planCode,
+        amount: amountPesewas,
         metadata,
       })
 
