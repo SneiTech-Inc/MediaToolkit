@@ -53,7 +53,7 @@ export const imageTools = [
   },
   {
     id: 'remove-background', slug: 'remove-background', name: 'Remove Background', category: 'image',
-    description: 'Remove backgrounds from images using AI', icon: '✨', badge: 'coming-soon',
-    dateAdded: '2024-01-07', inputFormats: ['jpg', 'png', 'webp'], outputFormats: ['png'], isComingSoon: true,
+    description: 'Remove backgrounds from images using AI', icon: '✨', badge: null,
+    dateAdded: '2024-01-07', inputFormats: ['jpg', 'png', 'webp'], outputFormats: ['png', 'webp'], isComingSoon: false,
   },
 ] as const satisfies Tool[]

@@ -68,6 +68,11 @@ const AddBorder = dynamic(
   { ssr: false, loading: () => <ToolLoading /> }
 )
 
+const RemoveBackground = dynamic(
+  () => import('@/features/image/components/RemoveBackground').then(m => ({ default: m.RemoveBackground })),
+  { ssr: false, loading: () => <ToolLoading /> }
+)
+
 const MergePDF = dynamic(
   () => import('@/features/pdf/components/MergePDF').then(m => ({ default: m.MergePDF })),
   { ssr: false, loading: () => <ToolLoading /> }
@@ -355,6 +360,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'blur-image': ImageBlur,
   'image-to-pdf': ImageToPDF,
   'add-border': AddBorder,
+  'remove-background': RemoveBackground,
   'merge-pdf': MergePDF,
   'split-pdf': SplitPDF,
   'compress-pdf': CompressPDF,

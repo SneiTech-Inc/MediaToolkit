@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {
   ChevronDown, type LucideIcon,
   Merge, Scissors, FileDown, RotateCw, Image, FileImage,
-  Lock, Unlock, Droplets, Crop, FileText, Hash,
+  Lock, Unlock, Droplets, Crop, FileText, Hash, Sparkles,
   WrapText, ArrowLeftRight, QrCode, Palette,
   Fingerprint, GripHorizontal, FileArchive,
   FileSpreadsheet, Presentation, Globe, Code, Table,
@@ -24,7 +24,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   'crop-image': Crop, 'rotate-image': RotateCw, 'flip-image': WrapText,
   'watermark-image': Droplets, 'blur-image': Droplets,
   'image-to-pdf': FileText, 'add-border': Crop,
-  'remove-background': FileText,
+  'remove-background': Sparkles,
 
   'compress-video': FileDown, 'convert-video': ArrowLeftRight,
   'trim-video': Scissors, 'merge-video': Merge,
