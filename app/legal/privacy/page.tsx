@@ -60,7 +60,7 @@ export default function PrivacyPage() {
 
             <h2>6. Third-Party Services</h2>
             <p>
-              We use Vercel Analytics for anonymous usage statistics. No personal data
+              We use Google and Vercel Analytics for anonymous usage statistics. No personal data
               is shared with any third-party service.
             </p>
 
