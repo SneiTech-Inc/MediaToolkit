@@ -7,6 +7,40 @@ import type { BlogPost } from '@/types/common'
  * Update this array when adding new posts to keep client components in sync.
  */
 export const BLOG_POSTS = [
+  // ── July 22, 2026 ──
+  {
+    title: 'Sort Lines of Text Like a Pro — A Practical Guide',
+    excerpt:
+      'Learn how to sort text lines alphabetically or numerically with SaveVex\'s Sort Lines tool. Perfect for organizing lists, cleaning data, and preparing content for development.',
+    date: 'Jul 22, 2026',
+    category: 'Guide',
+    slug: 'sort-lines-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'JSON Formatter: The Tool Every Developer Needs',
+    excerpt:
+      'Learn how to format, validate, and minify JSON data with SaveVex\'s JSON Formatter. Essential for developers, data analysts, and API users.',
+    date: 'Jul 22, 2026',
+    category: 'Guide',
+    slug: 'json-formatter-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'Base64 Encoder: A Simple Guide to Encoding and Decoding',
+    excerpt:
+      'Learn what Base64 encoding is, why it\'s used, and how to encode and decode text with SaveVex\'s Base64 Encoder — a must-have tool for developers and data professionals.',
+    date: 'Jul 22, 2026',
+    category: 'Guide',
+    slug: 'base64-encoder-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
   // ── July 21, 2026 ──
   {
     title: 'Remove Image Backgrounds Instantly with AI — Now Available on SaveVex',
