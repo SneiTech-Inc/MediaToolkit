@@ -45,7 +45,7 @@ SaveVex started, as I mentioned, with two PDFs and a Friday afternoon. The first
 
 So I kept building. Each new tool followed the same constraints: no uploads, no accounts, no fees, no compromises on privacy. Today SaveVex has over 60 tools across seven categories — PDF, images, video, audio, documents, text, and utilities — serving users in more than 120 countries. And we're just getting started. A mobile app with on-device AI features is in development, and we have plans for more tools, more capabilities, and more ways to make powerful file processing accessible to everyone.
 
-Why is SaveVex free? Because the internet already has enough products that bait you with "free" and then lock the useful features behind a subscription. We'd rather build something genuinely valuable, give it away, and trust that the people who can afford to support us will. Our [Premium page](/premium) offers optional support options for those who want to help keep the servers running and the tools improving. No pressure, no paywalls — just a way for the community to invest in something they find useful.
+Why is SaveVex free? Because the internet already has enough products that bait you with "free" and then lock the useful features behind a subscription. We'd rather build something genuinely valuable, give it away, and trust that the people who can afford to support us will. Our [Support page](/donate) offers optional support options for those who want to help keep the servers running and the tools improving. No pressure, no paywalls — just a way for the community to invest in something they find useful.
 
 ## What's Next
 
