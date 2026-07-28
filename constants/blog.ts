@@ -41,6 +41,65 @@ export const BLOG_POSTS = [
     author: 'Michael Schneider',
     readingTime: '4 min read',
   },
+  // ── July 28, 2026 ──
+  {
+    title: 'Meet Sneitech Inc. — The Company Behind SaveVex',
+    excerpt:
+      'Learn about Sneitech Inc., the software development firm behind SaveVex. Discover our mission, our team, and our commitment to building privacy-first digital tools.',
+    date: 'Jul 28, 2026',
+    category: 'Company',
+    slug: 'sneitech-inc-company-profile',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
+  // ── July 27, 2026 ──
+  {
+    title: 'SaveVex Mobile App Coming Soon — AI-Powered File Processing on the Go',
+    excerpt:
+      'SaveVex is expanding beyond the browser. We\'re excited to announce the upcoming mobile app with advanced AI features — including AI-generated video, images, cartoons, and more.',
+    date: 'Jul 27, 2026',
+    category: 'News',
+    slug: 'savevex-mobile-app-ai-features',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
+  // ── July 25, 2026 ──
+  {
+    title: 'URL Encoder/Decoder: A Developer\'s Essential Tool',
+    excerpt:
+      'Learn how to encode and decode URLs for safe web transmission. A must-have tool for developers, API users, and web professionals.',
+    date: 'Jul 25, 2026',
+    category: 'Guide',
+    slug: 'url-encoder-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
+  {
+    title: 'Remove Duplicates: Clean Your Text Data in Seconds',
+    excerpt:
+      'Learn how to remove duplicate lines from text with SaveVex\'s Remove Duplicates tool. Perfect for cleaning lists, data exports, and preparing content.',
+    date: 'Jul 25, 2026',
+    category: 'Guide',
+    slug: 'remove-duplicates-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
+  // ── July 24, 2026 ──
+  {
+    title: 'Case Converter: Transform Text Instantly — A Practical Guide',
+    excerpt:
+      'Learn how to convert text between uppercase, lowercase, title case, and more with SaveVex\'s Case Converter. A must-have tool for writers, editors, and developers.',
+    date: 'Jul 24, 2026',
+    category: 'Guide',
+    slug: 'case-converter-guide',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
   // ── July 21, 2026 ──
   {
     title: 'Remove Image Backgrounds Instantly with AI — Now Available on SaveVex',
