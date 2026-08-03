@@ -23,7 +23,7 @@ function getSecretKey(): string {
 function getCallbackUrl(): string {
   return process.env.NEXT_PUBLIC_APP_URL
     ? `${process.env.NEXT_PUBLIC_APP_URL}/donate/success`
-    : 'http://localhost:3000/donate/success'
+    : 'https://savevex.com/donate/success'
 }
 
 // ─── Shared Fetch Wrapper ─────────────────────────────────────────────────────

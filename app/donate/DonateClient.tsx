@@ -202,7 +202,7 @@ export function DonateClient() {
           <div className="mb-6">
             <Button
               onClick={handleSupport}
-              disabled
+              disabled={state === 'loading' || !activeTier}
               className="w-full py-6 text-lg font-bold rounded-xl bg-primary hover:bg-primary/90 transition-all"
               size="lg"
             >
