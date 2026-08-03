@@ -7,6 +7,17 @@ import type { BlogPost } from '@/types/common'
  * Update this array when adding new posts to keep client components in sync.
  */
 export const BLOG_POSTS = [
+  // ── August 3, 2026 ──
+  {
+    title: 'Why Support SaveVex? — A Personal Invitation',
+    excerpt: 'SaveVex has always been free. But keeping it free isn\'t free. Here\'s why your support matters — and how you can help.',
+    date: 'Aug 3, 2026',
+    category: 'Company',
+    slug: 'why-support-savevex',
+    content: '',
+    author: 'Michael Schneider',
+    readingTime: '4 min read',
+  },
   // ── July 22, 2026 ──
   {
     title: 'Sort Lines of Text Like a Pro — A Practical Guide',
